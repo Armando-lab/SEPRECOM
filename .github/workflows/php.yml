@@ -1,0 +1,36 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y php5.3
+
+    - name: Build application
+      run: 
+        php5.3 composer.phar install
+
+    - name: Deploy to Hostinger
+      uses: easingthemes/ftp-publish-action@v2
+      with:
+        server: ${{ ftp://seprecom.tech }}
+        username: ${{ u593151871 }}
+        password: ${{ Leo11tun02. }}
+        local-dir: '.' # Directorio local donde está la aplicación CodeIgniter
+        remote-dir: '/public_html/SEPRECOM2/SEPRECOM' # Directorio remoto en el servidor de Hostinger
