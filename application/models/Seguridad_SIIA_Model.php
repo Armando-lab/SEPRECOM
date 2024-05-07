@@ -15,7 +15,7 @@ class Seguridad_SIIA_Model extends CI_Model {
 	}
 
 	public function Obtener_Datos_Usuario($Username,$Password){			
-		$qry = "select * from usuario where Nombre=? and Contrasena=?";		
+		$qry = "select * from cliente where nombre=? and contrasena=?";		
 		$resqry = $this->db->query($qry, array( $Username,$Password));								
 		
 		if ($resqry->num_rows()>0){
@@ -316,13 +316,13 @@ class Seguridad_SIIA_Model extends CI_Model {
 		$Menu_HTML.=$this->Crear_Opcion("Principal",$Active,$SubActive,"principal","Principal",$arrOpcionesMenuInvisibles);				
 		$Menu_HTML.=$this->Crear_Menu_Dropdown("Catalogos",$Active,$SubActive,"Catálogos",$arrOpcionesMenuInvisibles,
 												array(
-													array("Nombre"=>"Productos","accion"=>"Producto","descripcion"=>"Productos"),
-													array("Nombre"=>"Usuarios","accion"=>"Usuarios","descripcion"=>"Usuarios")
+													array("nombre"=>"Productos","accion"=>"Producto","descripcion"=>"Productos"),
+													array("nombre"=>"Usuarios","accion"=>"Usuarios","descripcion"=>"Usuarios")
 												));
 		$Menu_HTML.=$this->Crear_Menu_Dropdown("Procesos",$Active,$SubActive,"Procesos",$arrOpcionesMenuInvisibles,
 												array(
-													array("Nombre"=>"Solicitudes","accion"=>"Prestamo","descripcion"=>"Solicitudes"),
-													array("Nombre"=>"Préstamos","accion"=>"Devolucion","descripcion"=>"Préstamos")
+													array("nombre"=>"Solicitudes","accion"=>"Prestamo","descripcion"=>"Solicitudes"),
+													array("nombre"=>"Préstamos","accion"=>"Devolucion","descripcion"=>"Préstamos")
 												));	
 		return $Menu_HTML;
 	}
