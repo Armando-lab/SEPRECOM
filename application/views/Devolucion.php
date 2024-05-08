@@ -160,6 +160,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<option value="Prestado">Prestado</option>
 					</select>
 				</div>
+				<script>
+					// Configura el filtro personalizado para la columna "Estado"
+					$('#filtroEstado').on('change', function() {
+						var estado = this.value;
+						table.column(6).search(estado).draw(); // Cambia 6 al índice de la columna "Estado"
+					});
+				</script>
 
 				
 				<!-- Ventana modal del formulario para editar un registro -->	
