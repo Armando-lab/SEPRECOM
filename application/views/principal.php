@@ -249,7 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								"F": {
 									"AULA": ["17"],
 									"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"]
-								}
+								},
 								"Externo":{
 									"I+D+I": ["Laboratorios"]
 								}
