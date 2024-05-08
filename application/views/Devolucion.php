@@ -559,7 +559,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	require "owned/set_security_controller.php";
 	require "owned/notification_messages_controller.php";
 ?>
-<script>
+				<script>
 					$(document).ready(function() {
 						var table = $('#tbSolicitudes').DataTable({
 							// Configuración de DataTables
@@ -571,7 +571,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						// Configura el filtro personalizado para la columna "Estado"
 						$('#filtroEstado').on('change', function() {
 							var estado = this.value;
-							table.column(7).search(<Estado).draw(); // Cambia 6 al índice de la columna "Estado"
+							table.column(7).search(estado).draw(); // Cambia 6 al índice de la columna "Estado"
 						});
 					});
 				</script>
