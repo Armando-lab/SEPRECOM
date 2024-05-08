@@ -539,7 +539,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							
 						} 
-					);																							
+					);
+					
+					$('#fechaInicio, #fechaFin').on('change', function () {
+						var fechaInicio = $('#fechaInicio').val();
+						var fechaFin = $('#fechaFin').val();
+
+						// Aplicar el filtro por rango de fechas
+						tbSolicitudes.columns(3).search(fechaInicio + ' to ' + fechaFin).draw();
+					});
+
 					 // Aplicar el filtrado por Estado
 					 $('#filtroEstado').on('change', function () {
 						var filtro = $(this).val();
