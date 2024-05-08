@@ -20,7 +20,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	require "owned/form_tweaks.js";
 	require "owned/estilos_portal.php";
 ?>
-	
+	    <style>
+        #tbSolicitudes td,
+        #tbSolicitudes th {
+            color: white;
+        }
+    </style>
 </head>
 <body>
 	
