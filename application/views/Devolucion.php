@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										$('#id_prestamo').val(data[0].id_prestamo);
 										$('#Equipo_Solicitado').html(data[0].id_producto);
 										$('#id_producto').val(data[0].id_producto);
-										$('Profesor').val(data[0].profesor);
+										$('Profesor').val(data[0].nombre);
 										$('#Encargado2').val(data[0].encargado_devo);
 										$('#Fecha_prestamo').val(data[0].fecha_prest);
 										$('#Fecha_devolucion').html(data[0].fecha_devo);
