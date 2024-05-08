@@ -160,22 +160,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 				
-				<script>
-					$(document).ready(function() {
-						var table = $('#tbSolicitudes').DataTable({
-							// Configuración de DataTables
-							"paging": true,
-							"ordering": true,
-							"info": true
-						});
-
-						// Configura el filtro personalizado para la columna "Estado"
-						$('#filtroEstado').on('change', function() {
-							var estado = this.value;
-							table.column(6).search(estado).draw(); // Cambia 6 al índice de la columna "Estado"
-						});
-					});
-				</script>
+				
 
 				
 				<!-- Ventana modal del formulario para editar un registro -->	
@@ -574,5 +559,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	require "owned/set_security_controller.php";
 	require "owned/notification_messages_controller.php";
 ?>
+<script>
+					$(document).ready(function() {
+						var table = $('#tbSolicitudes').DataTable({
+							// Configuración de DataTables
+							"paging": true,
+							"ordering": true,
+							"info": true
+						});
+
+						// Configura el filtro personalizado para la columna "Estado"
+						$('#filtroEstado').on('change', function() {
+							var estado = this.value;
+							table.column(6).search(estado).draw(); // Cambia 6 al índice de la columna "Estado"
+						});
+					});
+				</script>
 </body>
 </html>
