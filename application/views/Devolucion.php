@@ -548,8 +548,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						var fechaInicio = $('#fechaInicio').val();
 						var fechaFin = $('#fechaFin').val();
 
-						// Aplicar el filtro por rango de fechas
-						tbSolicitudes.columns(3).search(fechaFin).draw();
+						 // Aplicar el filtro por rango de fechas en la columna de fecha de inicio
+						tbSolicitudes.column(3).search(fechaInicio).draw();
+
+						// Aplicar el filtro por rango de fechas en la columna de fecha de fin
+						tbSolicitudes.column(4).search(fechaFin).draw();
 					});
 
 					 // Aplicar el filtrado por Estado
