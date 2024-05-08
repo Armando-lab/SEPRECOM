@@ -154,7 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<label for="filtroEstado">Filtrar por Estado:</label>
 						<select id="filtroEstado">
 							<option value="">Todos</option>
-							<option value="Devuelto">Devuelto</option>
+							<option value="devuelto">Devuelto</option>
 							<option value="Prestado">Prestado</option>
 						</select>
 					</div>
@@ -571,7 +571,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						// Configura el filtro personalizado para la columna "Estado"
 						$('#filtroEstado').on('change', function() {
 							var estado = this.value;
-							table.column(6).search(estado).draw(); // Cambia 6 al índice de la columna "Estado"
+							table.column(7).search(<Estado).draw(); // Cambia 6 al índice de la columna "Estado"
 						});
 					});
 				</script>
