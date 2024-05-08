@@ -558,7 +558,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					 // Aplicar el filtrado por Estado
 					 $('#filtroEstado').on('change', function () {
 						var filtro = $(this).val();
-						tbSolicitudes.column(6).search(filtro).draw();
+						tbSolicitudes.column(7).search(filtro).draw();
 					});
 
 					// Aplicar el filtrado por Estado al iniciar la página
