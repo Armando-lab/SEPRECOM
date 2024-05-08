@@ -118,10 +118,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 									<br>
 									<div class='col-md-8'>
-										<div class='form-group'>											
+										<div class='form-group'>
+											<select id="Nombre_Solicitante" name="Nombre_Solicitante" class="form-control">
 <?php
 											ComboBox("Nombre_Solicitante","Nombre_Solicitante","form-control","",1,false,1,$array_cliente,"","","","Nombre del solicitante");												
 ?>
+											</select>
 										</div>
 									</div>
 								</div>
