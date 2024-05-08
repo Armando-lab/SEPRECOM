@@ -150,16 +150,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								});
 							});
 						</script>
-
+					<div class="filtro">
+						<label for="filtroEstado">Filtrar por Estado:</label>
+						<select id="filtroEstado">
+							<option value="">Todos</option>
+							<option value="Devuelto">Devuelto</option>
+							<option value="Prestado">Prestado</option>
+						</select>
+					</div>
 				</div>
-				<div class="filtro">
-					<label for="filtroEstado">Filtrar por Estado:</label>
-					<select id="filtroEstado">
-						<option value="">Todos</option>
-						<option value="Devuelto">Devuelto</option>
-						<option value="Prestado">Prestado</option>
-					</select>
-				</div>
+				
 				<script>
 					$(document).ready(function() {
 						var table = $('#tbSolicitudes').DataTable({
