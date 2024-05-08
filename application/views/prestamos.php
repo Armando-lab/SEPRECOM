@@ -483,7 +483,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='row'>
 									<div class='col-md-5'>
-										Id. de Solicitud:
+										Numero de Solicitud:
 									</div>
 									<div class='col-md-8'>
 										<div class='form-group'>											

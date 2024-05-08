@@ -309,7 +309,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='row'>
 									<div class='col-md-5'>
-										Id préstamo:
+										Numero de Prestamo:
 									</div>
 									<div class='col-md-8'>
 										<div class='form-group'>											
@@ -363,7 +363,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='row'>
 									<div class='col-md-5'>
-										Id de solicitud:
+										Numero de solicitud:
 									</div>
 									<div class='col-md-8'>
 										<div class='form-group'>
@@ -405,7 +405,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<th>Encargado de devolución
 							<th>Fecha de devolución
 							<th>Observaciones
-							<th>Id de solicitud
+							<th>Numero de Prestamo
 							<th>Estado
 					</thead>
 					<tfoot>
