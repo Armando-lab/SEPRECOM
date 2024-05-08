@@ -118,12 +118,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 									<br>
 									<div class='col-md-8'>
-										<div class='form-group'>
-											<select id="Nombre_Solicitante" name="Nombre_Solicitante" class="form-control">
+										<div class='form-group'>											
 <?php
 											ComboBox("Nombre_Solicitante","Nombre_Solicitante","form-control","",1,false,1,$array_cliente,"","","","Nombre del solicitante");												
 ?>
-											</select>
 										</div>
 									</div>
 								</div>
@@ -219,25 +217,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						});
 					});
 					</script>
-					
-					<script>
-						document.getElementById('Nombre_Solicitante').addEventListener('input', function() {
-							var query = this.value.toLowerCase();
-							var options = this.options;
 
-							for (var i = 0; i < options.length; i++) {
-								var option = options[i];
-								var text = option.text.toLowerCase();
-								var matches = text.includes(query);
-
-								if (!matches) {
-									option.style.display = 'none';
-								} else {
-									option.style.display = '';
-								}
-							}
-						});
-					</script>
 
 												
 					<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Verprestamo">			
