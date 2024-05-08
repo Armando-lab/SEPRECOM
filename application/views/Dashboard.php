@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
         <div class="row">
 					
-					<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Rprestamo" >			
+					<div style="text-align: center; cursor: pointer;" class="col-md-3 rotated-table" id="Rprestamo" >			
 						<a style="text-decoration: none;background-color:#327ab4;" href='<?php echo base_url();?>index.php/devolucion' class="thumbnail">
 							<h3 style="color:#FFFFFF">Préstamos activos</h3>	
 							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/activo.png" alt="...">
@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 												
-					<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Verprestamo">			
+					<div style="text-align: center; cursor: pointer;" class="col-md-3 rotated-table" id="Verprestamo">			
 						<a style="text-decoration: none;background-color:#d75250;" data-toggle="modal" data-target="#modalPrestamosVencidos" id="modalPrestamos"  class="thumbnail">
 							<h3 style="color:#FFFFFF">Préstamos con atraso!</h3>	
 							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/atraso.png" alt="...">
@@ -75,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>			  				  
 					</div>
 
-					<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Vperfil">			
+					<div style="text-align: center; cursor: pointer;" class="col-md-3 rotated-table" id="Vperfil">			
 						<a style="text-decoration: none;background-color:#5fb760;" href='<?php echo base_url();?>index.php/devolucion' class="thumbnail">
 							<h3 style="color:#FFFFFF">Artáculo más prestado</h3>
 							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/popular.png" alt="...">
@@ -87,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>			  				  
 					</div>	
                     
-                    <div style="text-align: center; cursor: pointer;" class="col-md-3" id="Vperfil">			
+                    <div style="text-align: center; cursor: pointer;" class="col-md-3 rotated-table" id="Vperfil">			
 						<a style="text-decoration: none;background-color:#ecac54;" href='<?php echo base_url();?>index.php/devolucion' class="thumbnail">
 							<h3 style="color:#FFFFFF">Total de préstamos</h3>
 							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/total.png" alt="...">
