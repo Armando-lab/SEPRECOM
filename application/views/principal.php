@@ -20,7 +20,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	require "owned/form_tweaks.js";
 	require "owned/estilos_portal.php";
 ?>
-	
+	<style>
+        #selector {
+            display: none; /* Oculta el selector por defecto */
+        }
+
+		#selector1 {
+            display: none; /* Oculta el selector por defecto */
+        }
+
+		#busqueda {
+            max-width: 300px;
+        }
+
+		#busqueda1 {
+            max-width: 300px;
+        }
+
+		#selector3 {
+            display: none; /* Oculta el selector por defecto */
+        }
+
+		#busqueda3 {
+            max-width: 300px;
+        }
+    </style>
+
 </head>
 <body>
 	
@@ -112,19 +137,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 
-								<div class='row'>
-									<div class='col-md-5'>
-										Nombre del solicitante:
-									</div>
-									<br>
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php
-											ComboBox("Nombre_Solicitante","Nombre_Solicitante","form-control","",1,false,1,$array_cliente,"","","","Nombre del solicitante");												
-?>
-										</div>
+								<div class="row">
+									<div class="col-md-6">
+										<!-- Campo de b�squeda -->
+										<label for="busqueda">Buscar cliente:</label>
+										<input type="text" id="busqueda" class="form-control">
 									</div>
 								</div>
+								<div class="row mt-3">
+									<div class="col-md-6">
+										<!-- Selector para los clientes filtrados -->
+										<select id="selector" size="1" name="Nombre_Solicitante" class="form-control">
+											<?php foreach($array_cliente as $cliente): ?>
+												<option value="<?php echo $cliente; ?>"><?php echo $cliente; ?></option>
+											<?php endforeach; ?>
+										</select>
+									</div>
+								</div>
+
+													<!-- Script de JavaScript -->
+					<script>
+						$(document).ready(function(){
+							// Agrega un evento de cambio al campo de b�squeda
+							$('#busqueda').on('input', function(){
+								var busqueda = $(this).val().toLowerCase();
+								if (busqueda.trim() !== '') {
+									$('#selector').show(); // Muestra el selector si hay una b�squeda
+								} else {
+									$('#selector').hide(); // Oculta el selector si no hay b�squeda
+								}
+								$('#selector option').each(function() {
+									var cliente = $(this).text().toLowerCase();
+									if (cliente.includes(busqueda)) {
+										$(this).show();
+									} else {
+										$(this).hide();
+									}
+								});
+							});
+						});
+					</script>
 
 								<div style="width: auto; display: flex; flex-wrap: wrap; align-items: flex-start;">
 									<div style="flex: 0 0 auto; margin-right: 10px;">
@@ -163,35 +215,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 
-								<div class='row'>
-									<div class='col-md-8'>
-										Equipo o accesorio solicitado:
-									</div>
-									<br>
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php 
-											ComboBox("Equipo_Solicitado1","Equipo_Solicitado1","form-control","",1,false,1,$array_producto,"","","","Elige un equipo o accesorio");												
-?>
-										</div>
-									</div>
 
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php 
-											ComboBox("Equipo_Solicitado2","Equipo_Solicitado2","form-control","",1,false,1,$array_producto,"","","","Elige un equipo o accesorio");												
-?>
-										</div>
-									</div>
-
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php 
-											ComboBox("Equipo_Solicitado3","Equipo_Solicitado3","form-control","",1,false,1,$array_producto,"","","","Elige un equipo o accesorio");												
-?>
-										</div>
-									</div>
-								</div>
 
 								<div class='row'>
 									<div class='col-md-4'>
@@ -207,7 +231,145 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 
+<div class='row'>
 
+									<br>
+								<div class='col-md-8'>
+									<div class='form-group'>											
+
+										<div class="row">
+												<div class="col-md-9">
+													<!-- Campo de b�squeda -->
+													<label for="busqueda1">Equipo o accesorio solicitado:</label>
+													<input type="text" id="busqueda1" class="form-control">
+												</div>
+										</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<!-- Selector para los productos filtrados -->
+													<select id="selector1" size="1" name="Equipo_Solicitado1" class="form-control">
+														<?php foreach($array_producto as $producto): ?>
+															<option value="<?php echo $producto; ?>"><?php echo $producto; ?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
+											</div>
+									</div>
+								</div>
+
+									<script>
+						$(document).ready(function(){
+							// Agrega un evento de cambio al campo de b�squeda
+							$('#busqueda1').on('input', function(){
+								var busqueda1 = $(this).val().toLowerCase();
+								if (busqueda1.trim() !== '') {
+									$('#selector1').show(); // Muestra el selector si hay una b�squeda
+								} else {
+									$('#selector1').hide(); // Oculta el selector si no hay b�squeda
+								}
+								$('#selector1 option').each(function() {
+									var producto = $(this).text().toLowerCase();
+									if (producto.includes(busqueda1)) {
+										$(this).show();
+									} else {
+										$(this).hide();
+									}
+								});
+							});
+						});
+					</script>
+
+
+
+								<div class='col-md-8'>
+									<div class='form-group'>											
+
+										<div class="row">
+												<div class="col-md-9">
+													<!-- Campo de b�squeda -->
+													<label for="busqueda2">Equipo o accesorio solicitado:</label>
+													<input type="text" id="busqueda2" class="form-control">
+												</div>
+										</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<!-- Selector para los productos filtrados -->
+													<select id="selector2" size="1" name="Equipo_Solicitado2" class="form-control">
+														<?php foreach($array_producto as $producto1): ?>
+															<option value="<?php echo $producto1; ?>"><?php echo $producto1; ?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
+											</div>
+									</div>
+								</div>
+
+								<script>
+									$(document).ready(function(){
+										// Agrega un evento de cambio al campo de b�squeda
+										$('#busqueda2').on('input', function(){
+											var busqueda2 = $(this).val().toLowerCase();
+											if (busqueda2.trim() !== '') {
+												$('#selector2').show(); // Muestra el selector si hay una b�squeda
+											} else {
+												$('#selector2').hide(); // Oculta el selector si no hay b�squeda
+											}
+											$('#selector2 option').each(function() {
+												var producto1 = $(this).text().toLowerCase();
+												if (producto1.includes(busqueda2)) {
+													$(this).show();
+												} else {
+													$(this).hide();
+												}
+											});
+										});
+									});
+								</script>
+
+									<div class='col-md-8'>
+										<div class='form-group'>											
+										<div class="row">
+												<div class="col-md-9">
+													<!-- Campo de b�squeda -->
+													<label for="busqueda3">Equipo o accesorio solicitado:</label>
+													<input type="text" id="busqueda3" class="form-control">
+												</div>
+										</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<!-- Selector para los productos filtrados -->
+													<select id="selector3" size="1" name="Equipo_Solicitado3" class="form-control">
+														<?php foreach($array_producto as $producto2): ?>
+															<option value="<?php echo $producto2; ?>"><?php echo $producto2; ?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
+											</div>
+									</div>
+								</div>
+								</div>
+
+								<script>
+									$(document).ready(function(){
+										// Agrega un evento de cambio al campo de b�squeda
+										$('#busqueda3').on('input', function(){
+											var busqued3 = $(this).val().toLowerCase();
+											if (busqueda3.trim() !== '') {
+												$('#selector3').show(); // Muestra el selector si hay una b�squeda
+											} else {
+												$('#selector3').hide(); // Oculta el selector si no hay b�squeda
+											}
+											$('#selector3 option').each(function() {
+												var producto2 = $(this).text().toLowerCase();
+												if (producto2.includes(busqueda3)) {
+													$(this).show();
+												} else {
+													$(this).hide();
+												}
+											});
+										});
+									});
+								</script>
 
 							</div>
 							<div style="background-color: #000053;" class='modal-footer'>
