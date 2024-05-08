@@ -91,6 +91,7 @@
 
         <!-- Tu propio script para generar la gráfica de barras -->
         <script>
+			
             $(document).ready(function(){
                 // Datos de ejemplo (puedes obtener estos datos desde tu backend)
                 var datos = {
