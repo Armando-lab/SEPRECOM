@@ -572,26 +572,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						} 
 					);
 					
-					// Aplicar el filtro por rango de fechas
 					$('#fechaInicio, #fechaFin').on('change', function () {
 						var fechaInicio = $('#fechaInicio').val();
 						var fechaFin = $('#fechaFin').val();
 
-						// Convertir las fechas a objetos de fecha para comparación
-						var fechaInicioObj = new Date(fechaInicio);
-						var fechaFinObj = new Date(fechaFin);
-
-						// Remover cualquier filtro existente para esta columna
-						tbSolicitudes.column(3).search('').draw();
-
 						// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-						tbSolicitudes.column(3).search(
-							fechaInicioObj.getTime() + '|' + fechaFinObj.getTime(),
-							true, // Habilitar el filtrado regex
-							false // No escapar el pipe para regex
-						).draw();
-					});
+						tbSolicitudes.column(3).search(fechaInicio, true, false).draw();
 
+						// Aplicar el filtro por rango de fechas en la columna de fecha de fin
+						tbSolicitudes.column(4).search(fechaFin, true, false).draw();
+					});
 
 					 // Aplicar el filtrado por Estado
 					 $('#filtroEstado').on('change', function () {
