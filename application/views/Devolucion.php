@@ -581,21 +581,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						var fechaInicioObj = new Date(fechaInicio);
 						var fechaFinObj = new Date(fechaFin);
 
-						tbSolicitudes.draw();
+						// Remover cualquier filtro existente para esta columna
+						tbSolicitudes.column(3).search('').draw();
 
 						// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-						$.fn.dataTable.ext.search.push(
-							function (settings, data, dataIndex) {
-								var fechaPrestamo = new Date(data[3]); // Fecha de prestamo en la columna 3
-
-								// Devolver verdadero si la fecha de prestamo está dentro del rango
-								return (fechaInicioObj <= fechaPrestamo && fechaPrestamo <= fechaFinObj);
-							}
-						);
-
-						// Redibujar la tabla con los filtros aplicados
-						tbSolicitudes.draw();
+						tbSolicitudes.column(3).search(
+							fechaInicioObj.getTime() + '|' + fechaFinObj.getTime(),
+							true, // Habilitar el filtrado regex
+							false // No escapar el pipe para regex
+						).draw();
 					});
+
 
 					 // Aplicar el filtrado por Estado
 					 $('#filtroEstado').on('change', function () {
