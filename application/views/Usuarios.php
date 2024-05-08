@@ -224,7 +224,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>															
 				$(document).ready(function () {
 					$("#btnGuardarNuevoUsuario").click(function(){
-						// Convertir los campos de texto a capitalización original
+
 						$('#frmNuevoUsuario input[type="text"]').each(function() {
 							var currentValue = $(this).val();
 							var originalValue = currentValue.charAt(0).toUpperCase() + currentValue.slice(1).toLowerCase();
@@ -235,31 +235,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							type: "POST",
 							url: "<?php echo base_url();?>index.php/Usuarios/Crear_Usuario",
 							data: $('#frmNuevoUsuario').serialize(),
-							success: function(msg){                                                                                  
+							success: function(msg){																					
 								var msg_substr = msg.split("@", 4);
 								var msg_html = msg_substr[0];
 								var msg_cont_notif = msg_substr[1];
 								var msg_result = msg_substr[2];
 								var msg_val_errors = msg_substr[3];
-								$('#div_notifications_content').html(msg_html);   
-								$("#span_notif_count").html(msg_cont_notif);                                                                                                                                   
-								$('#modal_notificaciones').modal();                                
-								if (msg_result=="T"){                                                                                
-									$("#modalNuevoUsuario").modal('hide');                                                                                
+								$('#div_notifications_content').html(msg_html);	
+								$("#span_notif_count").html(msg_cont_notif);         																																																																					
+								$('#modal_notificaciones').modal();								
+								if (msg_result=="T"){																				
+									$("#modalNuevoUsuario").modal('hide');																				
 									$('#tbCliente').DataTable().ajax.reload(null, false);
 									$('#tbCliente').DataTable().page('last');
 									$("#div_col_val_errors").html("");
 								}else{
 									$("#div_col_val_errors").html(msg_val_errors);
-								}                                   
+								}									
 							},
 							error: function(){
 								alert("Ocurrió un error al procesar la petición al servidor.");
 							}
 						});
-					});                                     
+					});
+										
 				});
-
 </script>	
 				
 				<!-- Ventana modal del formulario para editar un registro -->	
