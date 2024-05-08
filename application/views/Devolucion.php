@@ -76,6 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										$('#id_prestamo').val(data[0].id_prestamo);
 										$('#Equipo_Solicitado').html(data[0].id_producto);
 										$('#id_producto').val(data[0].id_producto);
+										$('Profesor').val(data[0].profesor);
 										$('#Encargado2').val(data[0].encargado_devo);
 										$('#Fecha_prestamo').val(data[0].fecha_prest);
 										$('#Fecha_devolucion').html(data[0].fecha_devo);
@@ -421,6 +422,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>							
 							<th>Numero de préstamo					
 							<th>Producto
+							<th>Profesor Solicitante
 							<th>Encargado de devolución
 							<th>Fecha de Prestamo
 							<th>Fecha de devolución
