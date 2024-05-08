@@ -59,7 +59,7 @@ class Cliente_model extends CI_Model {
 	public function Crear_Usuario($nombreUsuario,$correo,$cargo,$roladmin,$contra){						
 		$Sig_matricula=$this->Obtener_Sig_Id_Usuario();		
 		$qry = "insert into cliente (matricula,nombre,correo,cargo,Rol_admin,contrasena) values (?,?,?,?,?,"NEWTON")";
-		$resqry = $this->db->query($qry,array((int)$Sig_matricula,$nombreUsuario,$correo,$cargo,$roladmin,$contra));			
+		$resqry = $this->db->query($qry,array((int)$Sig_matricula,$nombreUsuario,$correo,$cargo,$roladmin));			
 		return ($this->db->affected_rows()>0);
 	}
 	
