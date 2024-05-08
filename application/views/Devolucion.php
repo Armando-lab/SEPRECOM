@@ -531,6 +531,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							
 						} 
 					);																							
+					 // Aplicar el filtrado por Estado
+					 $('#filtroEstado').on('change', function () {
+						var filtro = $(this).val();
+						tbSolicitudes.column(6).search(filtro).draw();
+					});
+
+					// Aplicar el filtrado por Estado al iniciar la página
+					$('#filtroEstado').trigger('change');
 					
 					// Apply the search
 					$('#tbSolicitudes').DataTable().columns().every( function () {
@@ -559,12 +567,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	require "owned/set_security_controller.php";
 	require "owned/notification_messages_controller.php";
 ?>
-				<script>
-						// Configura el filtro personalizado para la columna "Estado"
-						$('#filtroEstado').on('change', function() {
-							var estado = this.value;
-							table.column(7).search(estado).draw(); // Cambia 6 al índice de la columna "Estado"
-						});
-				</script>
+				
 </body>
 </html>
