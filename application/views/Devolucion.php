@@ -424,23 +424,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tbody>															
 					</tbody>
 				</table>
-<script>
-    // Código JavaScript para inicializar DataTables y agregar el filtro personalizado
-    $(document).ready(function() {
-        var table = $('#tbSolicitudes').DataTable({
-            // Configuración de DataTables
-            "paging": true,
-            "ordering": true,
-            "info": true
-        });
 
-        // Configura el filtro personalizado para la columna "Estado"
-        $('#filtroEstado').on('change', function() {
-            var estado = this.value;
-            table.column(6).search(estado).draw(); // Cambia 6 al índice de la columna "Estado"
-        });
-    });
-</script>
 
 <script>
 				var tbSolicitudes;
