@@ -408,12 +408,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table id='tbSolicitudes' name='tbSolicitudes' class='display cell-border order-column dt-responsive'>
 					<thead>
 						<tr>							
-							<th>Id. préstamo					
+							<th>Numero de préstamo					
 							<th>Producto
 							<th>Encargado de devolución
 							<th>Fecha de devolución
 							<th>Observaciones
-							<th>Numero de Prestamo
+							<th>Numero de Solicitud
 							<th>Estado
 					</thead>
 					<tfoot>
