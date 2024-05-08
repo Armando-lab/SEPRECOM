@@ -81,49 +81,55 @@ class Usuarios extends CI_Controller {
 	}
 	
 	public function Crear_Usuario(){
-		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	
-			//los valores de tipo cadena deben decodificarse de utf8 para que lo almacena correctamente
-			$this->form_validation->set_rules('Usuario1', 'Nombre de usuario', "required|xss_clean|strtoupper|utf8_decode",																							
+		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){ 
+			// Los valores de tipo cadena deben decodificarse de utf8 para que se almacenen correctamente
+			$nombreUsuario = $this->input->post('Usuario1');
+			$correo = $this->input->post('Correo1');
+			$cargo = $this->input->post('Cargo1');
+			$roladmin = $this->input->post('Rol_adm');
+	
+			// Verificar si los datos son requeridos sin realizar ninguna transformación
+			$this->form_validation->set_rules('Usuario1', 'Nombre de usuario', "required|xss_clean|trim|utf8_decode",                                                              
 												array(
 													'required' => 'Debe proporcionar un %s.'
 												)
 											);
-			$this->form_validation->set_rules('Correo1', 'correo', "required|xss_clean|strtoupper|utf8_decode",																							
+			$this->form_validation->set_rules('Correo1', 'correo', "required|xss_clean|trim|utf8_decode",                                                              
 												array(
 													'required' => 'Debe proporcionar un %s.'
 												)
 											);
-			$this->form_validation->set_rules('Cargo1', 'cargo', "required|xss_clean|strtoupper|utf8_decode",																							
+			$this->form_validation->set_rules('Cargo1', 'cargo', "required|xss_clean|trim|utf8_decode",                                                              
 												array(
 													'required' => 'Debe proporcionar un %s.'
 												)
 											);
-			$this->form_validation->set_rules('Rol_adm', 'rol de administrador', "required|xss_clean|strtoupper|utf8_decode",																							
+			$this->form_validation->set_rules('Rol_adm', 'rol de administrador', "required|xss_clean|trim|utf8_decode",                                                              
 												array(
 													'required' => 'Debe proporcionar un %s.'
 												)
-											);												
-				
+											);                                  
+	
 			if ($this->form_validation->run() == FALSE){
 				MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 				echo "@".Obtener_Contador_Notificaciones();
 				echo "@F";
 				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
-			}else{
-				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
-				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));					
-				
+			} else {
+				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));                            
+				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));                    
+	
 				$Operacion_Creacion_Exitosa=false;
-				$this->db->trans_begin();								
+				$this->db->trans_begin();                               
 				
 				$this->load->model('Cliente_model');
-				$Usuario_Creada=$this->Cliente_model->Crear_Usuario($this->input->post('Usuario1'),$this->input->post('Correo1'),$this->input->post('Cargo1'),$this->input->post('Rol_adm'));
+				$Usuario_Creada=$this->Cliente_model->Crear_Usuario($nombreUsuario, $correo, $cargo, $roladmin);
 				
 				if ($Usuario_Creada){
 					$this->db->trans_commit();
 					MostrarNotificacion("Se creó el usuario exitosamente","OK",true);
 					$Operacion_Creacion_Exitosa=true;
-				}else{
+				} else {
 					$this->db->trans_rollback();
 					MostrarNotificacion("Ocurrio un error al intentar crear el usuario","Error",true);
 				}
@@ -131,14 +137,15 @@ class Usuarios extends CI_Controller {
 				echo "@".Obtener_Contador_Notificaciones();
 				if ($Operacion_Creacion_Exitosa){
 					echo "@T";
-				}else{
+				} else {
 					echo "@F";
 				}
 			}
-		}else{
+		} else {
 			redirect($this->router->default_controller);
 		}
 	}
+	
 	
 	public function Editar_Institucion(){
 		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	

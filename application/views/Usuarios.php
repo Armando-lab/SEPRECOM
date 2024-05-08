@@ -224,13 +224,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>															
 				$(document).ready(function () {
 					$("#btnGuardarNuevoUsuario").click(function(){
-
-						$('#frmNuevoUsuario input[type="text"]').each(function() {
-							var currentValue = $(this).val();
-							var originalValue = currentValue.charAt(0).toUpperCase() + currentValue.slice(1).toLowerCase();
-							$(this).val(originalValue);
-						});
-
 						$.ajax({
 							type: "POST",
 							url: "<?php echo base_url();?>index.php/Usuarios/Crear_Usuario",
