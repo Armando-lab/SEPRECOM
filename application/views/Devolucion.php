@@ -501,6 +501,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							columns: [								
 								{ data: "id_prestamo", visible: false},
 								{ data: "nombre_producto" },
+								{data: "profesor" },
 								{ data: "encargado_devo" },
 								{ data: "fecha_prest"},
 								{ data: "fecha_devo" },
@@ -551,16 +552,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						var fechaFin = $('#fechaFin').val();
 
 						 // Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-						tbSolicitudes.column(3).search(fechaInicio).draw();
+						tbSolicitudes.column(4).search(fechaInicio).draw();
 
 						// Aplicar el filtro por rango de fechas en la columna de fecha de fin
-						tbSolicitudes.column(4).search(fechaFin).draw();
+						tbSolicitudes.column(5).search(fechaFin).draw();
 					});
 
 					 // Aplicar el filtrado por Estado
 					 $('#filtroEstado').on('change', function () {
 						var filtro = $(this).val();
-						tbSolicitudes.column(6).search(filtro).draw();
+						tbSolicitudes.column(8).search(filtro).draw();
 					});
 
 					// Aplicar el filtrado por Estado al iniciar la página
