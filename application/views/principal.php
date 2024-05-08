@@ -145,6 +145,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<select name="Tipo_Area" id="Tipo_Area" class="form-control" onchange="fillAreas(document.getElementById('Edificio').value, this.value)">
 												<option value="AULA">AULA</option>
 												<option value="LABORATORIO">LABORATORIO</option>
+												<option value="Sala CIC">Sala CIC</option>
 											</select>
 										</div>
 									</div>
@@ -239,7 +240,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									"Cubiculos": ["0"]
 								},
 								"E": {
-									"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"]
+									"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"],
+									"Sala CIC": ["1", "2", "3", "4"]
 								},
 								"F": {
 									"AULA": ["17"],
