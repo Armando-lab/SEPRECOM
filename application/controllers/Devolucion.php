@@ -184,7 +184,8 @@ class Devolucion extends CI_Controller {
 			redirect($this->router->default_controller);
 		}
 	}
-
+	
+	
 
 }
 ?>
