@@ -572,15 +572,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						} 
 					);
 					
+					// Aplicar el filtro por rango de fechas
 					$('#fechaInicio, #fechaFin').on('change', function () {
 						var fechaInicio = $('#fechaInicio').val();
 						var fechaFin = $('#fechaFin').val();
 
-						 // Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-						tbSolicitudes.column(3).search(fechaInicio).draw();
+						// Convertir las fechas a objetos de fecha para comparación
+						var fechaInicioObj = new Date(fechaInicio);
+						var fechaFinObj = new Date(fechaFin);
 
-						// Aplicar el filtro por rango de fechas en la columna de fecha de fin
-						tbSolicitudes.column(4).search(fechaFin).draw();
+						tbSolicitudes.draw();
+
+						// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
+						$.fn.dataTable.ext.search.push(
+							function (settings, data, dataIndex) {
+								var fechaPrestamo = new Date(data[3]); // Fecha de prestamo en la columna 3
+
+								// Devolver verdadero si la fecha de prestamo está dentro del rango
+								return (fechaInicioObj <= fechaPrestamo && fechaPrestamo <= fechaFinObj);
+							}
+						);
+
+						// Redibujar la tabla con los filtros aplicados
+						tbSolicitudes.draw();
 					});
 
 					 // Aplicar el filtrado por Estado
