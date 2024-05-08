@@ -152,6 +152,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</script>
 
 				</div>
+				<div class="filtro">
+					<label for="filtroEstado">Filtrar por Estado:</label>
+					<select id="filtroEstado">
+						<option value="">Todos</option>
+						<option value="Devuelto">Devuelto</option>
+						<option value="Prestado">Prestado</option>
+					</select>
+				</div>
 
 				
 				<!-- Ventana modal del formulario para editar un registro -->	
@@ -417,7 +425,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</tbody>
 				</table>
 
+<script>
+	$(document).ready(function() {
+		// Inicializa la tabla DataTable
+		var table = $('#tbSolicitudes').DataTable({
+			"paging": true,
+			"ordering": true,
+			"info": true
+		});
 
+		// Configura el filtro personalizado para la columna "Estado"
+		$('#filtroEstado').on('change', function() {
+			var estado = this.value;
+			table.column(6).search(estado).draw(); // Cambia 6 al índice de la columna "Estado"
+		});
+	});
+
+</script>
 <script>
 				var tbSolicitudes;
 				$(document).ready( function () {
