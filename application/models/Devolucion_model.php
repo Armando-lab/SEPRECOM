@@ -5,11 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Devolucion_model extends CI_Model {			
 	
 	public function Obtener_Prestamo(){			
-		$qry = "SELECT devolucion.*, producto.nombre_producto
+		$qry = "SELECT devolucion.*, producto.nombre_producto, prestamo.fecha_prest
         FROM devolucion
         LEFT JOIN producto ON devolucion.id_producto = producto.id_producto
-        WHERE devolucion.id_prestamo IS NOT NULL;
-        ";
+        LEFT JOIN prestamo ON devolucion.id_solicitud = prestamo.id_solicitud
+        WHERE devolucion.id_prestamo IS NOT NULL;";
+
 		$resqry = $this->db->query($qry);										
 		if ($resqry->num_rows()>0){			
 			return $resqry; 
@@ -52,9 +53,9 @@ class Devolucion_model extends CI_Model {
 
 // En tu modelo Devolucion_model
 public function crearPrestamoConProductos() {
-    $this->db->trans_start(); // Iniciar transacción
+    $this->db->trans_start(); // Iniciar transacciï¿½n
 
-    // Obtener la última solicitud creada
+    // Obtener la ï¿½ltima solicitud creada
     $id_solicitud = $this->ObtenerUltimaSolicitud();
 
     // Obtener productos desde los inputs
@@ -64,7 +65,7 @@ public function crearPrestamoConProductos() {
 
     $productos = array();
 
-    // Verifica si cada input tiene un valor y agrégalo al array
+    // Verifica si cada input tiene un valor y agrï¿½galo al array
     if (!empty($equipo_solicitado1)) {
         $productos[] = $equipo_solicitado1;
     }
@@ -88,7 +89,7 @@ public function crearPrestamoConProductos() {
         $this->db->insert('devolucion', $prestamo_data);
     }
 
-    $this->db->trans_complete(); // Finalizar transacción
+    $this->db->trans_complete(); // Finalizar transacciï¿½n
 }
 
 
