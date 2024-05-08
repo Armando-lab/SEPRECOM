@@ -512,7 +512,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								// Aplica el color de fondo a la fila
 								$(row).css('background-color', color);
-							}
+							},
 							"footerCallback": function ( row, data, start, end, display ) {
 								var api = this.api(), data;
 					 
