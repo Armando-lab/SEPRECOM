@@ -289,7 +289,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 
-								<br>
+								<br>	
 <div class='col-md-8'>
 <div class='form-group'>											
 
@@ -404,7 +404,7 @@ $(document).ready(function(){
 </div>
 </div>
 </div>
-<br>
+
 
 <script>
 $(document).ready(function(){
