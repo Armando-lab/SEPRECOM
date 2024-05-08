@@ -158,6 +158,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<option value="Prestado">Prestado</option>
 						</select>
 					</div>
+					<div class="filtro">
+						<label for="fechaInicio">Fecha de Inicio:</label>
+						<input type="date" id="fechaInicio" name="fechaInicio">
+					</div>
+
+					<div class="filtro">
+						<label for="fechaFin">Fecha de Fin:</label>
+						<input type="date" id="fechaFin" name="fechaFin">
+					</div>
 				</div>
 				
 				
@@ -539,7 +548,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 					// Aplicar el filtrado por Estado al iniciar la página
 					$('#filtroEstado').trigger('change');
-					
+
 					// Apply the search
 					$('#tbSolicitudes').DataTable().columns().every( function () {
 						var that = this;
