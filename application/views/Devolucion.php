@@ -505,10 +505,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								{ data: "observaciones" },
 								{ data: "id_solicitud" },
 								{ data: "estado" }
-							]
-							
+							],
+							"createdRow": function (row, data) {
+								// Obtener el tiempo transcurrido para el préstamo
+								var fechaPrestamo = new Date(data.fecha_prest);
+								var fechaActual = new Date();
+								var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
+
+								// Aplicar color según el tiempo transcurrido
+								var color;
+								if (tiempoTranscurrido <= 7) {
+									color = 'green'; // Verde si el préstamo es reciente
+								} else if (tiempoTranscurrido <= 30) {
+									color = 'yellow'; // Amarillo si el préstamo tiene menos de un mes
+								} else {
+									color = 'red'; // Rojo si el préstamo es antiguo
+								}
+
+								// Aplicar el color de fondo a la fila
+								$(row).css('background-color', color);
 							},
-							
 							"footerCallback": function ( row, data, start, end, display ) {
 								var api = this.api(), data;
 					 
@@ -546,9 +562,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							
 						} 
 					);
-
-					
-					
 					
 					$('#fechaInicio, #fechaFin').on('change', function () {
 						var fechaInicio = $('#fechaInicio').val();
