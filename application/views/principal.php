@@ -135,6 +135,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<option value="D">D</option>
 												<option value="E">E</option>
 												<option value="F">F</option>
+												<option value="Externo">Externo</option>
+
 											</select>
 										</div>
 									</div>
@@ -146,6 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<option value="AULA">AULA</option>
 												<option value="LABORATORIO">LABORATORIO</option>
 												<option value="Sala CIC">Sala CIC</option>
+												<option value="I+D+I">I+D+I</option>
 											</select>
 										</div>
 									</div>
@@ -246,6 +249,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								"F": {
 									"AULA": ["17"],
 									"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"]
+								}
+								"Externo":{
+									"I+D+I": ["Laboratorios"]
 								}
 								// Add more areas as needed
 							};
