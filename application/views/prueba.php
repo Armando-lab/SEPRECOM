@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- Espacio disponible para mostrar informaci?n del portal -->	
 		<div class='row'>
 			<div class='col-md-12'>
-				<h1>Opci�n de prueba</h1>
+				<h1>Opción de prueba</h1>
 				<p>En esta vista usted podr?...</p>									
 			</div>	
 		</div>	

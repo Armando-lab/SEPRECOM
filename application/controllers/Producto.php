@@ -174,7 +174,7 @@ class Producto extends CI_Controller {
 				
 				if ($Producto_Editado){
 					$this->db->trans_commit();
-					MostrarNotificacion("Se edit el producto exitosamente","OK",true);
+					MostrarNotificacion("Se editó el producto exitosamente","OK",true);
 					$Operacion_Edicion_Exitosa=true;
 				}else{
 					$this->db->trans_rollback();

@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class='col-md-4'></div>
 			<div class='col-md-4' style='text-align: center;'>
 				<h4 class="form-signin-heading"><strong><?php echo $this->config->item('mycfg_nombre_aplicacion'); ?></strong><br>
-				<small>Haga clic en el bot�n para proporcionar la informaci�n de acceso de su Cuenta de EMail Institucional</small></h4><br>
+				<small>Haga clic en el botón para proporcionar la información de acceso de su Cuenta de EMail Institucional</small></h4><br>
 			</div>
 			<div class='col-md-4'></div>
 		</div>

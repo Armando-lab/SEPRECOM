@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 		<div class='row'>
 		
-			<!-- Ubicación actual dentro del portal -->	
+			<!-- Ubicaci�n actual dentro del portal -->	
 			<div class='col-md-7'>
 				<ol class='breadcrumb main_breadcrumb'>
 					<li><a class='color_amarillo' href='principal'><?php echo $this->config->item('mycfg_nombre_aplicacion'); ?></a></li>
@@ -121,10 +121,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							var rows =  $('#tbCliente').DataTable().rows({ selected: true }).indexes();
 							var data =  $('#tbCliente').DataTable().rows( rows ).data();												
 							//se inicializan los valores del formulario												
-							$('#p_v_usuario').html(data[0].nombre);
+							$('#p_v_usuario').html(data[0].num_empleado);
+							$('#p_v_nombre').html(data[0].nombre);
+							$('#p_v_cargo').html(data[0].apellido);
+							$('#p_v_rol').html(data[0].estado);
 							$('#p_v_correo').html(data[0].correo);
-							$('#p_v_cargo').html(data[0].cargo);
-							$('#p_v_rol').html(data[0].Rol_admin);
 							//se muestra la ventana modal del formulario
 							$('#modalVerUsuario').modal();
 						}else{
@@ -357,7 +358,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='row'>
 									<div class='col-md-4'>
-										Nombre de usuario:
+										Numero de empleado:
 									</div>
 									<br>
 									<div class='col-md-8'>
@@ -369,19 +370,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='row'>
 									<div class='col-md-4'>
-										Correo:
+										Nombre:
 									</div>
 									<br>
 									<div class='col-md-8'>
 										<div class='form-group'>											
-										<p style="color:orange; font-size: 17px; font-weight: bold;" id='p_v_correo' name='p_v_correo'></p>
+										<p style="color:orange; font-size: 17px; font-weight: bold;" id='p_v_nombre' name='p_v_correo'></p>
 										</div>
 									</div>
 								</div>
 
 								<div class='row'>
 									<div class='col-md-4'>
-										Cargo:
+										Apellido:
 									</div>
 									<br>
 									<div class='col-md-8'>
@@ -393,7 +394,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='row'>
 									<div class='col-md-4'>
-										Rol de administrador:
+										Estado:
 									</div>
 									<br>
 									<div class='col-md-8'>
@@ -402,7 +403,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</div>
 								</div>
+
+								<div class='row'>
+									<div class='col-md-4'>
+										Correo:
+									</div>
+									<br>
+									<div class='col-md-8'>
+										<div class='form-group'>											
+										<p style="color:orange; font-size: 17px; font-weight: bold;" id='p_v_correo' name='p_v_rol'></p>
+										</div>
+									</div>
+								</div>
 							</div>
+
+							
 							<div style="background-color: #000053;" class='modal-footer'>
 								<button type='button' class='btn btn-close' data-dismiss='modal'>Cancelar</button>
 							</div>
@@ -417,12 +432,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table id='tbCliente' name='tbCliente' class='display cell-border order-column dt-responsive'>
 					<thead>
 						<tr>							
-							<th style='width: 50px;'>Matrícula				
+							<th style='width: 50px;'>Id		
+							<th>Num. Empleado
 							<th>Nombre
+							<th>Apellido
+							<th>estado
 							<th>Correo
-							<th>Cargo
-							<th>Rol de administrador
-							<th>Contraseña
 										
 					</thead>
 					<tfoot>
@@ -494,12 +509,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							ajax: '<?php echo base_url();?>index.php/Usuarios/Obtener_Dataset_Cliente',
 							autoWidth: false,							
 							columns: [
-								{ data: "matricula" },
+								{ data: "id" , visible: false},
+								{ data: "num_empleado" },
 								{ data: "nombre" },
-								{ data: "correo" },
-								{ data: "cargo" },
-								{ data: "Rol_admin" },
-								{ data: "contrasena", visible: false}
+								{ data: "apellido" },
+								{ data: "estado" },
+								{ data: "correo"}
 							],
 							"footerCallback": function ( row, data, start, end, display ) {
 								var api = this.api(), data;
