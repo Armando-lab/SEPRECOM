@@ -112,28 +112,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 
-								
-
-
 								<div class='row'>
 									<div class='col-md-5'>
 										Nombre del solicitante:
 									</div>
 									<br>
 									<div class='col-md-8'>
-										<div class='form-group'>
-											<select id="Nombre_Solicitante" name="Nombre_Solicitante" class="form-control">
-												<?php
-												// Genera las opciones del menú desplegable con PHP
-												foreach ($array_cliente as $cliente) {
-													echo "<option value='" . $cliente['value'] . "'>" . $cliente['label'] . "</option>";
-												}
-												?>
-											</select>
+										<div class='form-group'>											
+<?php
+											ComboBox("Nombre_Solicitante","Nombre_Solicitante","form-control","",1,false,1,$array_cliente,"","","","Nombre del solicitante");												
+?>
 										</div>
 									</div>
 								</div>
-
 
 								<div style="width: auto; display: flex; flex-wrap: wrap; align-items: flex-start;">
 									<div style="flex: 0 0 auto; margin-right: 10px;">
@@ -226,7 +217,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						});
 					});
 					</script>
-
+					
 					<script>
 						document.getElementById('Nombre_Solicitante').addEventListener('input', function() {
 							var query = this.value.toLowerCase();
@@ -245,7 +236,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							}
 						});
 					</script>
-
 
 												
 					<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Verprestamo">			
