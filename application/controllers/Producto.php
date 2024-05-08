@@ -103,7 +103,7 @@ class Producto extends CI_Controller {
 				MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 				echo "@".Obtener_Contador_Notificaciones();
 				echo "@F";
-				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validaci�n:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
+				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
 			}else{
 				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
 				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));					
@@ -117,7 +117,7 @@ class Producto extends CI_Controller {
 				
 				if ($Producto_Creado){
 					$this->db->trans_commit();
-					MostrarNotificacion("Se cre� el producto exitosamente","OK",true);
+					MostrarNotificacion("Se creó el producto exitosamente","OK",true);
 					$Operacion_Creacion_Exitosa=true;
 				}else{
 					$this->db->trans_rollback();
@@ -160,7 +160,7 @@ class Producto extends CI_Controller {
 					MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 					echo "@".Obtener_Contador_Notificaciones();
 					echo "@F";
-					echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validaci�n:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
+					echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
 				}else{
 				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
 				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));					
@@ -173,7 +173,7 @@ class Producto extends CI_Controller {
 				
 				if ($Producto_Editado){
 					$this->db->trans_commit();
-					MostrarNotificacion("Se edit� el producto exitosamente","OK",true);
+					MostrarNotificacion("Se edit el producto exitosamente","OK",true);
 					$Operacion_Edicion_Exitosa=true;
 				}else{
 					$this->db->trans_rollback();
