@@ -227,7 +227,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					});
 					</script>
 
+					<script>
+						function fillAreas(edificio, areaType) {
+							var areas = {
+								"B": {
+									"AULA": ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"],
+									"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"]
+								},
+								"D": {
+									"AULA": ["42", "43", "44", "45", "46", "47"],
+								},
+								"E": {
+									"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"]
+								},
+								"F": {
+									"AULA": ["17"]
+								}
+								// Add more areas as needed
+							};
 
+							var areaSelect = document.getElementById("Id_Area");
+							areaSelect.innerHTML = "";
+
+							areas[edificio][areaType].forEach(function(area) {
+								var option = document.createElement("option");
+								option.value = area;
+								option.text = area;
+								areaSelect.appendChild(option);
+							});
+
+							// Update other fields
+							document.getElementById("Edificio").value = edificio;
+							document.getElementById("Tipo_Area").value = areaType;
+						}
+
+						function updateFields() {
+							var edificio = document.getElementById("Edificio").value;
+							var areaType = document.getElementById("Tipo_Area").value;
+							var area = document.getElementById("Id_Area").value;
+
+							// Update other fields
+							document.getElementById("Edificio").value = edificio;
+							document.getElementById("Tipo_Area").value = areaType;
+						}
+
+						// Initially fill the areas based on the selected type
+						var initialEdificio = document.getElementById("Edificio").value;
+						var initialType = document.getElementById("Tipo_Area").value;
+						fillAreas(initialEdificio, initialType);
+
+					</script>
 												
 					<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Verprestamo">			
 						<a style="text-decoration: none;background-color:#FFCD00;" href='<?php echo base_url();?>index.php/prestamo' class="thumbnail">
