@@ -5,12 +5,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<title>Principal</title>
 
+	
 <?php
 	require "third_party/jquery.js";
 	require "third_party/bootstrap.js";
@@ -130,22 +131,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div style="flex: 0 0 auto; margin-right: 10px;">
 										<div>Edificio:</div>
 										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<?php ComboBox("Edificio","Edificio","form-control","",1,false,1,array("A"=>"A","B"=>"B","C"=>"C","D"=>"D","F"=>"F","G"=>"G"),"","","","Elige un edificio"); ?>
+											<select name="Edificio" id="Edificio" class="form-control" onchange="fillAreas(this.value, document.getElementById('Tipo_Area').value)">
+												<option value="B">B</option>
+												<option value="D">D</option>
+												<option value="E">E</option>
+												<option value="F">F</option>
+												<option value="Externo">Externo</option>
+
+											</select>
 										</div>
 									</div>
 									
 									<div style="flex: 0 0 auto; margin-right: 10px;">
 										<div>Tipo Área:</div>
 										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<?php ComboBox("Tipo_Area","Tipo_Area","form-control","",1,false,1,array("AULA"=>"AULA","SALA CIC"=>"SALA CIC","EXTERNA"=>"EXTERNA","I+D+I"=>"I+D+I","LABORATORIO"=>"LABORATORIO","CUBICULO"=>"CUBICULO","COORDINACION"=>"COORDINACION","SITE"=>"SITE"),"","","","Elige el area"); ?>
+											<select name="Tipo_Area" id="Tipo_Area" class="form-control" onchange="fillAreas(document.getElementById('Edificio').value, this.value)">
+												<option value="AULA">AULA</option>
+												<option value="LABORATORIO">LABORATORIO</option>
+												<option value="Sala CIC">Sala CIC</option>
+												<option value="I+D+I">I+D+I</option>
+											</select>
 										</div>
 									</div>
 
 									<div style="flex: 0 0 auto; margin-right: 10px;">
-										<div>ID Área:</div>
+										<div>Número de Área:</div>
 										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<?php ComboBox("Id_Area","Id_Area","form-control","",1,false,1,array("1" => "1","2" => "2","3" => "3","4" => "4","5" => "5","6" => "6","7" => "7","8" => "8","9" => "9","10" => "10","11" => "11","12" => "12","13" => "13","14" => "14","15" => "15","16" => "16","17" => "17","18" => "18","19" => "19","20" => "20","21" => "21","22" => "22","23" => "23","24" => "24","25" => "25","26" => "26","27" => "27","28" => "28","29" => "29","30" => "30","31" => "31","32" => "32","33" => "33","34" => "34","35" => "35","36" => "36","37" => "37","38" => "38","39" => "39","40" => "40","41" => "41","42" => "42","43" => "43","44" => "44","45" => "45","46" => "46","47" => "47","48"=>"48"),"","","","id del area"); ?>
-											
+											<select name="Id_Area" id="Id_Area" class="form-control" onchange="updateFields()">
+												<!-- Options will be filled by JavaScript -->
+											</select>
 										</div>
 									</div>
 								</div>
@@ -218,7 +232,62 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					});
 					</script>
 
+					<script>
+						function fillAreas(edificio, areaType) {
+							var areas = {
+								"B": {
+									"AULA": ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
+									
+								},
+								"D": {
+									"AULA": ["42", "43", "44", "45", "46", "47"],
+									"Cubiculos": ["0"]
+								},
+								"E": {
+									"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"],
+									"Sala CIC": ["1", "2", "3", "4"]
+								},
+								"F": {
+									"AULA": ["17"],
+									"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"]
+								},
+								"Externo":{
+									"I+D+I": ["Laboratorios"]
+								}
+								// Add more areas as needed
+							};
 
+							var areaSelect = document.getElementById("Id_Area");
+							areaSelect.innerHTML = "";
+
+							areas[edificio][areaType].forEach(function(area) {
+								var option = document.createElement("option");
+								option.value = area;
+								option.text = area;
+								areaSelect.appendChild(option);
+							});
+
+							// Update other fields
+							document.getElementById("Edificio").value = edificio;
+							document.getElementById("Tipo_Area").value = areaType;
+						}
+
+						function updateFields() {
+							var edificio = document.getElementById("Edificio").value;
+							var areaType = document.getElementById("Tipo_Area").value;
+							var area = document.getElementById("Id_Area").value;
+
+							// Update other fields
+							document.getElementById("Edificio").value = edificio;
+							document.getElementById("Tipo_Area").value = areaType;
+						}
+
+						// Initially fill the areas based on the selected type
+						var initialEdificio = document.getElementById("Edificio").value;
+						var initialType = document.getElementById("Tipo_Area").value;
+						fillAreas(initialEdificio, initialType);
+
+					</script>
 												
 					<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Verprestamo">			
 						<a style="text-decoration: none;background-color:#FFCD00;" href='<?php echo base_url();?>index.php/prestamo' class="thumbnail">

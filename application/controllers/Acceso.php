@@ -12,7 +12,7 @@ class Acceso extends CI_Controller {
 		$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
 	
 		$this->form_validation->set_rules('username', 'Nombre de usuario', 'required|xss_clean', array('required' => 'Debe proporcionar un %s.'));
-		$this->form_validation->set_rules('password', 'Contrase�a', 'required|xss_clean', array('required' => 'Debe proporcionar una %s.'));
+		$this->form_validation->set_rules('password', 'Contraseña', 'required|xss_clean', array('required' => 'Debe proporcionar una %s.'));
 	
 		if ($this->form_validation->run() == FALSE)	{
 			$this->load->view('acceso');
@@ -21,7 +21,7 @@ class Acceso extends CI_Controller {
 	
 			// Verificar si se obtuvieron datos del usuario
 			if (!$rowUsuario) {
-				MostrarNotificacion("El Nombre de usuario y la Contrase�a no son v�lidos.", "Error", true);
+				MostrarNotificacion("El Nombre de usuario y la Contraseña no son válidos.", "Error", true);
 				$this->load->view('acceso');
 				return;
 			}
@@ -69,7 +69,7 @@ class Acceso extends CI_Controller {
 		} else {
 			// Manejar el caso en que no haya sesi�n iniciada
 			http_response_code(401);
-			echo json_encode(array('error' => 'No se ha iniciado sesi�n'));
+			echo json_encode(array('error' => 'No se ha iniciado sesión'));
 		}
 	}
 	

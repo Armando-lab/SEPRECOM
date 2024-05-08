@@ -5,11 +5,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Devolucion_model extends CI_Model {			
 	
 	public function Obtener_Prestamo(){			
-		$qry = "SELECT devolucion.*, producto.nombre_producto
+		$qry = "SELECT devolucion.*, producto.nombre_producto, prestamo.fecha_prest,
+        cliente.nombre AS nombre
         FROM devolucion
         LEFT JOIN producto ON devolucion.id_producto = producto.id_producto
-        WHERE devolucion.id_prestamo IS NOT NULL;
-        ";
+        LEFT JOIN prestamo ON devolucion.id_solicitud = prestamo.id_solicitud
+        LEFT JOIN cliente ON prestamo.profesor = cliente.matricula
+        WHERE devolucion.id_prestamo IS NOT NULL;";
+
 		$resqry = $this->db->query($qry);										
 		if ($resqry->num_rows()>0){			
 			return $resqry; 
@@ -52,9 +55,9 @@ class Devolucion_model extends CI_Model {
 
 // En tu modelo Devolucion_model
 public function crearPrestamoConProductos() {
-    $this->db->trans_start(); // Iniciar transacción
+    $this->db->trans_start(); // Iniciar transacciï¿½n
 
-    // Obtener la última solicitud creada
+    // Obtener la ï¿½ltima solicitud creada
     $id_solicitud = $this->ObtenerUltimaSolicitud();
 
     // Obtener productos desde los inputs
@@ -64,7 +67,7 @@ public function crearPrestamoConProductos() {
 
     $productos = array();
 
-    // Verifica si cada input tiene un valor y agrégalo al array
+    // Verifica si cada input tiene un valor y agrï¿½galo al array
     if (!empty($equipo_solicitado1)) {
         $productos[] = $equipo_solicitado1;
     }
@@ -88,7 +91,7 @@ public function crearPrestamoConProductos() {
         $this->db->insert('devolucion', $prestamo_data);
     }
 
-    $this->db->trans_complete(); // Finalizar transacción
+    $this->db->trans_complete(); // Finalizar transacciï¿½n
 }
 
 
@@ -138,6 +141,12 @@ public function ObtenerUltimaSolicitudValida() {
         $resqry = $this->db->query($qry, array((int)$Id_prestamo, (int)$id_producto, $Encargado_Dev, $Fecha_Dev, $Obser, (int)$Id_solicitud, (int)$Id_prestamo));
     
         return ($this->db->affected_rows() == 1);
+    }
+
+    public function obtener_devoluciones() {
+        $query = $this->db->get('devolucion');
+        return $query->result_array();
+    
     }
     
 		

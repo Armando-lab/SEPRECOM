@@ -100,6 +100,8 @@ public function Obtener_Array_Nombre_prestador(){
 		return ($this->db->affected_rows()==1);
 		//return array(($this->db->affected_rows()==1),$Fecha_Nacimiento_Formateada);
 	}
+
+    
 		
 }
 ?>

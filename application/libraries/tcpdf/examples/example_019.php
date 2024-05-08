@@ -63,7 +63,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language dependent data:
 $lg = Array();
-$lg['a_meta_charset'] = 'ISO-8859-1';
+$lg['a_meta_charset'] = 'utf-8';
 $lg['a_meta_dir'] = 'ltr';
 $lg['a_meta_language'] = 'en';
 $lg['w_page'] = 'page';

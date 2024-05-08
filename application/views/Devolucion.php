@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -77,6 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										$('#Equipo_Solicitado').html(data[0].id_producto);
 										$('#id_producto').val(data[0].id_producto);
 										$('#Encargado2').val(data[0].encargado_devo);
+										$('#Fecha_prestamo').val(data[0].fecha_prest);
 										$('#Fecha_devolucion').html(data[0].fecha_devo);
 										$('#observacion1').val(data[0].observaciones);
 										$('#id_solicitud1').val(data[0].id_solicitud);
@@ -150,8 +151,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								});
 							});
 						</script>
+					<div class="filtro">
+						<label for="filtroEstado">Filtrar por Estado:</label>
+						<select id="filtroEstado">
+							<option value="">Todos</option>
+							<option value="devuelto">Devuelto</option>
+							<option value="Prestado">Prestado</option>
+						</select>
+					</div>
+					<div class="filtro">
+						<label for="fechaInicio">Fecha de Inicio:</label>
+						<input type="date" id="fechaInicio" name="fechaInicio">
+					</div>
 
+					<div class="filtro">
+						<label for="fechaFin">Fecha de Fin:</label>
+						<input type="date" id="fechaFin" name="fechaFin">
+					</div>
 				</div>
+				
+				
 
 				
 				<!-- Ventana modal del formulario para editar un registro -->	
@@ -309,7 +328,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='row'>
 									<div class='col-md-5'>
-										Id préstamo:
+										Numero de Prestamo:
 									</div>
 									<div class='col-md-8'>
 										<div class='form-group'>											
@@ -363,7 +382,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='row'>
 									<div class='col-md-5'>
-										Id de solicitud:
+										Numero de solicitud:
 									</div>
 									<div class='col-md-8'>
 										<div class='form-group'>
@@ -400,12 +419,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table id='tbSolicitudes' name='tbSolicitudes' class='display cell-border order-column dt-responsive'>
 					<thead>
 						<tr>							
-							<th>Id. préstamo					
+							<th>Numero de préstamo					
 							<th>Producto
 							<th>Encargado de devolución
+							<th>Fecha de Prestamo
 							<th>Fecha de devolución
 							<th>Observaciones
-							<th>Id de solicitud
+							<th>Numero de Solicitud
 							<th>Estado
 					</thead>
 					<tfoot>
@@ -480,6 +500,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								{ data: "id_prestamo", visible: false},
 								{ data: "nombre_producto" },
 								{ data: "encargado_devo" },
+								{ data: "fecha_prest"},
 								{ data: "fecha_devo" },
 								{ data: "observaciones" },
 								{ data: "id_solicitud" },
@@ -521,8 +542,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							
 						} 
-					);																							
+					);
 					
+					$('#fechaInicio, #fechaFin').on('change', function () {
+						var fechaInicio = $('#fechaInicio').val();
+						var fechaFin = $('#fechaFin').val();
+
+						 // Aplicar el filtro por rango de fechas en la columna de fecha de inicio
+						tbSolicitudes.column(3).search(fechaInicio).draw();
+
+						// Aplicar el filtro por rango de fechas en la columna de fecha de fin
+						tbSolicitudes.column(4).search(fechaFin).draw();
+					});
+
+					 // Aplicar el filtrado por Estado
+					 $('#filtroEstado').on('change', function () {
+						var filtro = $(this).val();
+						tbSolicitudes.column(7).search(filtro).draw();
+					});
+
+					// Aplicar el filtrado por Estado al iniciar la página
+					$('#filtroEstado').trigger('change');
+
 					// Apply the search
 					$('#tbSolicitudes').DataTable().columns().every( function () {
 						var that = this;
@@ -550,5 +591,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	require "owned/set_security_controller.php";
 	require "owned/notification_messages_controller.php";
 ?>
+				
 </body>
 </html>

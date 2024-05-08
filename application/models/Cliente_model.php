@@ -35,14 +35,14 @@ class Cliente_model extends CI_Model {
 	}
 
 	public function Obtener_Sig_Id_Usuario() {
-        // Verificar que la conexión a la base de datos esté establecida
+        // Verificar que la conexiï¿½n a la base de datos estï¿½ establecida
         if ($this->db !== null) {
             $qry = "SELECT COALESCE(max(matricula),0)+1 Sig_matricula from cliente";
             
             // Realizar la consulta
             $resqry = $this->db->query($qry);
     
-            // Verificar si la consulta se ejecutó correctamente
+            // Verificar si la consulta se ejecutï¿½ correctamente
             if ($resqry !== false && $resqry->num_rows() > 0) {
                 $regqry = $resqry->unbuffered_row();
                 return $regqry->Sig_matricula;
@@ -51,15 +51,15 @@ class Cliente_model extends CI_Model {
                 return 1;
             }
         } else {
-            // Manejar el caso de una conexión nula
-            return -1; // Puedes ajustar el valor de retorno según tus necesidades
+            // Manejar el caso de una conexiï¿½n nula
+            return -1; // Puedes ajustar el valor de retorno segï¿½n tus necesidades
         }
     }
 	
-	public function Crear_Usuario($nombreUsuario,$correo,$cargo,$roladmin,$contra){						
+	public function Crear_Usuario($nombreUsuario,$correo,$cargo,$roladmin){						
 		$Sig_matricula=$this->Obtener_Sig_Id_Usuario();		
-		$qry = "insert into cliente (matricula,nombre,correo,cargo,Rol_admin,contrasena) values (?,?,?,?,?,?)";
-		$resqry = $this->db->query($qry,array((int)$Sig_matricula,$nombreUsuario,$correo,$cargo,$roladmin,$contra));			
+		$qry = "insert into cliente (matricula,nombre,correo,cargo,Rol_admin,contrasena) values (?,?,?,?,?,'NEWTON')";
+		$resqry = $this->db->query($qry,array((int)$Sig_matricula,$nombreUsuario,$correo,$cargo,$roladmin));			
 		return ($this->db->affected_rows()>0);
 	}
 	

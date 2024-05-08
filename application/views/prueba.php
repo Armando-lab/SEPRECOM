@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- Espacio disponible para mostrar informaci?n del portal -->	
 		<div class='row'>
 			<div class='col-md-12'>
-				<h1>Opción de prueba</h1>
+				<h1>OpciÃ³n de prueba</h1>
 				<p>En esta vista usted podr?...</p>									
 			</div>	
 		</div>	

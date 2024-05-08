@@ -119,7 +119,7 @@ public function Obtener_Dataset_Prestamo() {
                 MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 				echo "@".Obtener_Contador_Notificaciones();
 				echo "@F";
-				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validaci�n:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
+				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
             } else {
                 $session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
 				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
@@ -154,11 +154,11 @@ public function Obtener_Dataset_Prestamo() {
 
                     if ($id_solicitud) {
                     $this->db->trans_commit();
-                    MostrarNotificacion("Se cre� la Solicitud y el prestamo exitosamente.", "OK", true);
+                    MostrarNotificacion("Se creó la Solicitud y el prestamo exitosamente.", "OK", true);
                     $Operacion_Creacion_Exitosa = true;
                     } else {
                         $this->db->trans_rollback();
-                        MostrarNotificacion("Ocurri� un error al intentar crear la solicitud y el prestamo.", "Error", true);
+                        MostrarNotificacion("Ocurrió un error al intentar crear la solicitud y el prestamo.", "Error", true);
                     }
 
                         echo "@" . Obtener_Contador_Notificaciones();
@@ -209,7 +209,7 @@ public function Obtener_Dataset_Prestamo() {
 	public function Crear_Institucion(){
 		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	
 			//los valores de tipo cadena deben decodificarse de utf8 para que lo almacena correctamente
-			$this->form_validation->set_rules('institucion', 'Nombre de la instituci�n', "required|xss_clean|strtoupper|utf8_decode",																							
+			$this->form_validation->set_rules('institucion', 'Nombre de la institución', "required|xss_clean|strtoupper|utf8_decode",																							
 												array(
 													'required' => 'Debe proporcionar un %s.'
 												)
@@ -219,7 +219,7 @@ public function Obtener_Dataset_Prestamo() {
 				MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 				echo "@".Obtener_Contador_Notificaciones();
 				echo "@F";
-				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validaci�n:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
+				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
 			}else{
 				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
 				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));					
@@ -231,11 +231,11 @@ public function Obtener_Dataset_Prestamo() {
 				
 				if ($Institucion_Creada){
 					$this->db->trans_commit();
-					MostrarNotificacion("Se cre� la instituci�n exitosamente","OK",true);
+					MostrarNotificacion("Se creó la institución exitosamente","OK",true);
 					$Operacion_Creacion_Exitosa=true;
 				}else{
 					$this->db->trans_rollback();
-					MostrarNotificacion("Ocurrio un error al intentar crear la instituci�n","Error",true);
+					MostrarNotificacion("Ocurrio un error al intentar crear la institución","Error",true);
 				}
 				
 				echo "@".Obtener_Contador_Notificaciones();
@@ -298,7 +298,7 @@ public function Obtener_Dataset_Prestamo() {
 				MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 				echo "@".Obtener_Contador_Notificaciones();
 				echo "@F";
-				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validaci�n:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
+				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
 			}else{
 				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
 				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));					
@@ -311,7 +311,7 @@ public function Obtener_Dataset_Prestamo() {
 				
 				if ($Solicitud_Editada){
 					$this->db->trans_commit();
-					MostrarNotificacion("Se edit� la solicitud exitosamente","OK",true);
+					MostrarNotificacion("Se editó la solicitud exitosamente","OK",true);
 					$Operacion_Edicion_Exitosa=true;
 				}else{
 					$this->db->trans_rollback();
@@ -329,6 +329,10 @@ public function Obtener_Dataset_Prestamo() {
 			redirect($this->router->default_controller);
 		}
 	}	
+
+
+	
+
 
 
 }
