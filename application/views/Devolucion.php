@@ -77,6 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										$('#Equipo_Solicitado').html(data[0].id_producto);
 										$('#id_producto').val(data[0].id_producto);
 										$('#Encargado2').val(data[0].encargado_devo);
+										$('#Fecha_prestamo').val(data[0].fecha_prest);
 										$('#Fecha_devolucion').html(data[0].fecha_devo);
 										$('#observacion1').val(data[0].observaciones);
 										$('#id_solicitud1').val(data[0].id_solicitud);
@@ -421,6 +422,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<th>Numero de préstamo					
 							<th>Producto
 							<th>Encargado de devolución
+							<th>Fecha de Prestamo
 							<th>Fecha de devolución
 							<th>Observaciones
 							<th>Numero de Solicitud
@@ -498,6 +500,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								{ data: "id_prestamo", visible: false},
 								{ data: "nombre_producto" },
 								{ data: "encargado_devo" },
+								{ data: "fecha_prest"},
 								{ data: "fecha_devo" },
 								{ data: "observaciones" },
 								{ data: "id_solicitud" },
