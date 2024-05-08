@@ -144,6 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div style="width: 100px; margin-top: 5px;" class='form-group'>
 											<select name="Tipo_Area" id="Tipo_Area" class="form-control" onchange="fillAreas(document.getElementById('Edificio').value, this.value)">
 												<option value="AULA">AULA</option>
+												<option value="LABORATORIO">LABORATORIO</option>
 											</select>
 										</div>
 									</div>
