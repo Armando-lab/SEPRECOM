@@ -209,6 +209,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 
+								<div class="row">
+									<div class="col-md-6">
+										<!-- Campo de b�squeda -->
+										<label for="busqueda">Buscar cliente:</label>
+										<input type="text" id="busqueda" class="form-control">
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col-md-6">
+										<!-- Selector para los clientes filtrados -->
+										<select id="selector" size="1" name="Nombre_Solicitante" class="form-control">
+											<?php foreach($array_cliente as $cliente): ?>
+												<option value="<?php echo $cliente; ?>"><?php echo $cliente; ?></option>
+											<?php endforeach; ?>
+										</select>
+									</div>
+								</div>
+
+													<!-- Script de JavaScript -->
+									<script>
+										$(document).ready(function(){
+											// Agrega un evento de cambio al campo de b�squeda
+											$('#busqueda').on('input', function(){
+												var busqueda = $(this).val().toLowerCase();
+												if (busqueda.trim() !== '') {
+													$('#selector').show(); // Muestra el selector si hay una b�squeda
+												} else {
+													$('#selector').hide(); // Oculta el selector si no hay b�squeda
+												}
+												$('#selector option').each(function() {
+													var cliente = $(this).text().toLowerCase();
+													if (cliente.includes(busqueda)) {
+														$(this).show();
+													} else {
+														$(this).hide();
+													}
+												});
+											});
+										});
+									</script>
+
 								
 
 								<div style="width: auto; display: flex; flex-wrap: wrap; align-items: flex-start;">
