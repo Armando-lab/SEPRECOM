@@ -81,60 +81,61 @@ class Producto extends CI_Controller {
 	}
 	
 	public function Crear_Producto(){
-		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	
-			//los valores de tipo cadena deben decodificarse de utf8 para que lo almacena correctamente
-			$this->form_validation->set_rules('Nombre_Producto', 'Nombre del producto', "required|xss_clean|strtoupper|utf8_decode",																							
+		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){    
+			// Los valores de tipo cadena deben decodificarse de utf8 para que se almacenen correctamente
+			$this->form_validation->set_rules('Nombre_Producto', 'Nombre del producto', "required|xss_clean|trim|utf8_decode",                                                                                            
 												array(
 													'required' => 'Debe proporcionar el %s.'
 												)
 											);
-			$this->form_validation->set_rules('Estado_p', 'Estado del producto', "xss_clean|strtoupper|utf8_decode",																							
+			$this->form_validation->set_rules('Estado_p', 'Estado del producto', "xss_clean|trim|utf8_decode");
+			$this->form_validation->set_rules('Num_serie', 'Numero de serie', "required|xss_clean|trim|utf8_decode",                                                                                            
 												array(
 													'required' => 'Debe proporcionar un %s.'
 												)
-											);
-			$this->form_validation->set_rules('Num_serie', 'Numero de serie', "required|xss_clean|strtoupper|utf8_decode",																							
-												array(
-													'required' => 'Debe proporcionar un %s.'
-												)
-											);									
-				
+											);                                    
+		
 			if ($this->form_validation->run() == FALSE){
 				MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 				echo "@".Obtener_Contador_Notificaciones();
 				echo "@F";
 				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
-			}else{
-				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
-				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));					
-				
+			} else {
+				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));                            
+				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));                    
+	
 				$Operacion_Creacion_Exitosa=false;
 				$this->db->trans_begin();
 				
 				$this->load->model('Producto_model');
-                $Producto_Creado = $this->Producto_model->Crear_Producto($this->input->post('Nombre_Producto'),$this->input->post('Estado_p'),$this->input->post('Num_serie'));
+				$Producto_Creado = $this->Producto_model->Crear_Producto(
+					$this->input->post('Nombre_Producto'),
+					$this->input->post('Estado_p'),
+					$this->input->post('Num_serie')
+				);
 				
 				
 				if ($Producto_Creado){
 					$this->db->trans_commit();
 					MostrarNotificacion("Se creó el producto exitosamente","OK",true);
 					$Operacion_Creacion_Exitosa=true;
-				}else{
+				} else {
 					$this->db->trans_rollback();
-					MostrarNotificacion("Ocurrio un error al intentar crear el producto","Error",true);
+					MostrarNotificacion("Ocurrió un error al intentar crear el producto","Error",true);
 				}
 				
 				echo "@".Obtener_Contador_Notificaciones();
 				if ($Operacion_Creacion_Exitosa){
 					echo "@T";
-				}else{
+				} else {
 					echo "@F";
 				}
 			}
-		}else{
+		} else {
 			redirect($this->router->default_controller);
 		}
 	}
+	
 	
 	public function Editar_Producto(){
 		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	
