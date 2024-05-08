@@ -108,7 +108,7 @@ class Usuarios extends CI_Controller {
 				MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 				echo "@".Obtener_Contador_Notificaciones();
 				echo "@F";
-				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
+				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validaciÃ³n:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
 			}else{
 				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
 				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));					
@@ -121,7 +121,7 @@ class Usuarios extends CI_Controller {
 				
 				if ($Usuario_Creada){
 					$this->db->trans_commit();
-					MostrarNotificacion("Se creó el usuario exitosamente","OK",true);
+					MostrarNotificacion("Se creÃ³ el usuario exitosamente","OK",true);
 					$Operacion_Creacion_Exitosa=true;
 				}else{
 					$this->db->trans_rollback();
@@ -143,7 +143,7 @@ class Usuarios extends CI_Controller {
 	public function Editar_Institucion(){
 		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	
 			//los valores de tipo cadena deben decodificarse de utf8 para que lo almacena correctamente
-			$this->form_validation->set_rules('e_institucion', 'Nombre de la institución', "required|xss_clean|strtoupper|utf8_decode",																							
+			$this->form_validation->set_rules('e_institucion', 'Nombre de la instituciÃ³n', "required|xss_clean|strtoupper|utf8_decode",																							
 												array(
 													'required' => 'Debe proporcionar un %s.'
 												)
@@ -153,7 +153,7 @@ class Usuarios extends CI_Controller {
 				MostrarNotificacion("Hay errores en los datos capturados, corrija e intente de nuevo por favor","Error",true);
 				echo "@".Obtener_Contador_Notificaciones();
 				echo "@F";
-				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validación:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
+				echo "@<div class='bg-danger' style='padding: 5px;'><b>Errores de validaciÃ³n:</b><br><font class='font_notif_error'>".validation_errors()."</font></div><br>";
 			}else{
 				$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
 				$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));					
@@ -165,11 +165,11 @@ class Usuarios extends CI_Controller {
 				
 				if ($Institucion_Editada){
 					$this->db->trans_commit();
-					MostrarNotificacion("Se editó la institución exitosamente","OK",true);
+					MostrarNotificacion("Se editÃ³ la instituciÃ³n exitosamente","OK",true);
 					$Operacion_Edicion_Exitosa=true;
 				}else{
 					$this->db->trans_rollback();
-					MostrarNotificacion("Ocurrio un error al intentar editar la institución","Error",true);
+					MostrarNotificacion("Ocurrio un error al intentar editar la instituciÃ³n","Error",true);
 				}
 				
 				echo "@".Obtener_Contador_Notificaciones();
