@@ -501,7 +501,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							columns: [								
 								{ data: "id_prestamo", visible: false},
 								{ data: "nombre_producto" },
-								{data: "profesor" },
+								{ data: "profesor" },
 								{ data: "encargado_devo" },
 								{ data: "fecha_prest"},
 								{ data: "fecha_devo" },
