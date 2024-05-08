@@ -498,6 +498,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								{ data: "id_prestamo", visible: false},
 								{ data: "nombre_producto" },
 								{ data: "encargado_devo" },
+								{data: "fecha_prest"},
 								{ data: "fecha_devo" },
 								{ data: "observaciones" },
 								{ data: "id_solicitud" },
@@ -546,7 +547,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						var fechaFin = $('#fechaFin').val();
 
 						// Aplicar el filtro por rango de fechas
-						tbSolicitudes.columns(3).search(fechaInicio + ' to ' + fechaFin).draw();
+						tbSolicitudes.columns(3).search(fechaFin).draw();
 					});
 
 					 // Aplicar el filtrado por Estado
