@@ -506,6 +506,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								{ data: "id_solicitud" },
 								{ data: "estado" }
 							],
+							"createdRow": function (row, data) {
+								// Obtiene el color de la fila
+								var color = data.color;
+
+								// Aplica el color de fondo a la fila
+								$(row).css('background-color', color);
+							}
 							"footerCallback": function ( row, data, start, end, display ) {
 								var api = this.api(), data;
 					 
@@ -543,6 +550,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							
 						} 
 					);
+
+					// Calcula el tiempo transcurrido para cada préstamo
+					foreach ($data as $row) {
+						$fechaPrestamo = new DateTime($row['fecha_prest']);
+						$fechaActual = new DateTime();
+						$diferencia = $fechaPrestamo->diff($fechaActual);
+						$tiempoTranscurrido = $diferencia->days; // Obtén el tiempo transcurrido en días
+						
+						// Asigna un color según el tiempo transcurrido
+						if ($tiempoTranscurrido <= 7) {
+							$row['color'] = 'green'; // Verde si el préstamo es reciente
+						} elseif ($tiempoTranscurrido <= 30) {
+							$row['color'] = 'yellow'; // Amarillo si el préstamo tiene menos de un mes
+						} else {
+							$row['color'] = 'red'; // Rojo si el préstamo es antiguo
+						}
+						
+						// Agrega la fila a los datos con el color asignado
+						$dataWithColor[] = $row;
+					};
+
 					
 					$('#fechaInicio, #fechaFin').on('change', function () {
 						var fechaInicio = $('#fechaInicio').val();
