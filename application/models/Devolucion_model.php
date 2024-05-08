@@ -143,7 +143,11 @@ public function ObtenerUltimaSolicitudValida() {
         return ($this->db->affected_rows() == 1);
     }
 
+    public function obtener_devoluciones() {
+        $query = $this->db->get('devolucion');
+        return $query->result_array();
     
+    }
     
 		
 }
