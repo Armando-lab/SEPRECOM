@@ -22,13 +22,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 	<style>
 		#tbSolicitudes td {
-			color: white; /* Texto blanco en las celdas del cuerpo */
-		}
+		color: white; /* Texto blanco en las celdas del cuerpo */
+	}
 
-		/* Estilo para los encabezados de la tabla */
-		#tbSolicitudes th {
-			color: black; /* Texto negro en los encabezados */
-		}
+	/* Estilo para los encabezados de la tabla */
+	#tbSolicitudes th {
+		color: black; /* Texto negro en los encabezados */
+	}
     </style>
 </head>
 <body>
@@ -576,11 +576,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						var fechaInicio = $('#fechaInicio').val();
 						var fechaFin = $('#fechaFin').val();
 
-						// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-						tbSolicitudes.column(3).search(fechaInicio, true, false).draw();
+						 // Aplicar el filtro por rango de fechas en la columna de fecha de inicio
+						tbSolicitudes.column(3).search(fechaInicio).draw();
 
 						// Aplicar el filtro por rango de fechas en la columna de fecha de fin
-						tbSolicitudes.column(4).search(fechaFin, true, false).draw();
+						tbSolicitudes.column(4).search(fechaFin).draw();
 					});
 
 					 // Aplicar el filtrado por Estado
