@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class='col-md-4'></div>
 			<div class='col-md-4' style='text-align: center;'>
 				<h4 class="form-signin-heading"><strong><?php echo $this->config->item('mycfg_nombre_aplicacion'); ?></strong><br>
-				<small>Haga clic en el botón para proporcionar la información de acceso de su Cuenta de EMail Institucional</small></h4><br>
+				<small>Haga clic en el botï¿½n para proporcionar la informaciï¿½n de acceso de su Cuenta de EMail Institucional</small></h4><br>
 			</div>
 			<div class='col-md-4'></div>
 		</div>

@@ -347,7 +347,7 @@ class CI_Email {
 	 *
 	 * @var	string[]
 	 */
-	protected $_base_charsets	= array('us-ascii', 'iso-2022-');
+	protected $_base_charsets	= array('us-ascii', 'utf-8');
 
 	/**
 	 * Bit depths
