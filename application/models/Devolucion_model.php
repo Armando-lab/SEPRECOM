@@ -5,10 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Devolucion_model extends CI_Model {			
 	
 	public function Obtener_Prestamo(){			
-		$qry = "SELECT devolucion.*, producto.nombre_producto, prestamo.fecha_prest
+		$qry = "SELECT devolucion.*, producto.nombre_producto, prestamo.fecha_prest,
+        cliente.nombre AS nombre
         FROM devolucion
         LEFT JOIN producto ON devolucion.id_producto = producto.id_producto
         LEFT JOIN prestamo ON devolucion.id_solicitud = prestamo.id_solicitud
+        LEFT JOIN cliente ON prestamo.matricula_profesor = cliente.id
         WHERE devolucion.id_prestamo IS NOT NULL;";
 
 		$resqry = $this->db->query($qry);										
