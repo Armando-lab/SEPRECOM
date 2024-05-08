@@ -184,6 +184,29 @@ class Devolucion extends CI_Controller {
 			redirect($this->router->default_controller);
 		}
 	}
+	
+	// Calcula el tiempo transcurrido para cada préstamo y asigna un color
+	foreach ($data as $row) {
+		$fechaPrestamo = new DateTime($row['fecha_prest']);
+		$fechaActual = new DateTime();
+		$diferencia = $fechaPrestamo->diff($fechaActual);
+		$tiempoTranscurrido = $diferencia->days; // Obtén el tiempo transcurrido en días
+		
+		// Asigna un color según el tiempo transcurrido
+		if ($tiempoTranscurrido <= 7) {
+			$row['color'] = 'green'; // Verde si el préstamo es reciente
+		} elseif ($tiempoTranscurrido <= 30) {
+			$row['color'] = 'yellow'; // Amarillo si el préstamo tiene menos de un mes
+		} else {
+			$row['color'] = 'red'; // Rojo si el préstamo es antiguo
+		}
+		
+		// Agrega la fila a los datos con el color asignado
+		$dataWithColor[] = $row;
+	}
+
+	// Luego, pasa los datos con el color asignado a la vista para que se muestren en la tabla
+	$this->load->view('Devolucion.php', array('data' => $dataWithColor));
 
 
 }
