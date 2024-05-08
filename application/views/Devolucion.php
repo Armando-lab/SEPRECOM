@@ -505,7 +505,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								{ data: "observaciones" },
 								{ data: "id_solicitud" },
 								{ data: "estado" }
-							],
+							]
+							
+							},
 							"createdRow": function (row, data) {
 								// Obtener el tiempo transcurrido para el préstamo
 								var fechaPrestamo = new Date(data.fecha_prest);
@@ -524,7 +526,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								// Aplicar el color de fondo a la fila
 								$(row).css('background-color', color);
-							},
 							},
 							"footerCallback": function ( row, data, start, end, display ) {
 								var api = this.api(), data;
