@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Seguridad_SIIA_Model extends CI_Model {	
 
 	public function Usuario_Existe($Username,$Password){				
-		$qry = "select * from login where Username=? and Password=?";					
+		$qry = "select * from si_users where Username=? and Password=?";					
 		$resqry = $this->db->query($qry, array($Username,$Password));										
 		if ($resqry->num_rows()>0){
 			return true; 
@@ -15,7 +15,7 @@ class Seguridad_SIIA_Model extends CI_Model {
 	}
 
 	public function Obtener_Datos_Usuario($Username,$Password){			
-		$qry = "select * from login where nombre=? and contrasena=?";		
+		$qry = "select * from cliente where nombre=? and contrasena=?";		
 		$resqry = $this->db->query($qry, array( $Username,$Password));								
 		
 		if ($resqry->num_rows()>0){
@@ -27,7 +27,7 @@ class Seguridad_SIIA_Model extends CI_Model {
 	}
 
 	public function Obtener_Usuario(){			
-		$qry = "select * from login  where  pfc_User = ?";
+		$qry = "select * from Si_Users  where  pfc_User = ?";
 		$resqry = $this->db->query($qry);										
 		if ($resqry->num_rows()>0){			
 			return $resqry; 
@@ -37,7 +37,7 @@ class Seguridad_SIIA_Model extends CI_Model {
 	}
 
 	public function Obtener_Rol_Usuario($username) {
-        $qry = "select description FROM login WHERE Full_Name = ?";
+        $qry = "select description FROM Si_Users WHERE Full_Name = ?";
         $resqry = $this->db->query($qry, array($username));
 
 		if ($resqry->num_rows()>0){
@@ -313,7 +313,6 @@ class Seguridad_SIIA_Model extends CI_Model {
 			go
 		*/
 		$Menu_HTML="";		
-		$Menu_HTML.=$this->Crear_Opcion("Dashboard",$Active,$SubActive,"Dashboard","Dashboard",$arrOpcionesMenuInvisibles);
 		$Menu_HTML.=$this->Crear_Opcion("Principal",$Active,$SubActive,"principal","Principal",$arrOpcionesMenuInvisibles);				
 		$Menu_HTML.=$this->Crear_Menu_Dropdown("Catalogos",$Active,$SubActive,"Catálogos",$arrOpcionesMenuInvisibles,
 												array(

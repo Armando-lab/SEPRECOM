@@ -20,18 +20,22 @@ class Prestamo_model extends CI_Model {
 
     
 	
-    public function Obtener_Array_Nombre_prestador(){
-        $resqry = $this->Obtener_Prestamo();												
-        if ($resqry->num_rows() > 0){			
-            $array = array();
-            while ($row = $resqry->unbuffered_row('array')){
-                $array[$row["profesor"]] = $row["nombre"];
-            }
-            return $array; 
-        } else {			
-            return 0;
-        }		
-    }
+public function Obtener_Array_Nombre_prestador(){
+    $resqry = $this->Obtener_Prestamo();												
+    
+    if ($resqry !== false && is_array($resqry)){			
+        $array = array();
+        
+        // Si $resqry es un array de objetos stdClass
+        foreach ($resqry as $row) {
+            $array[$row->profesor] = $row->nombre;
+        }
+
+        return $array; 
+    } else {			
+        return 0;
+    }		
+}
 
 	
 	public function Eliminar_Solicitud($Id_solicitud){												
@@ -97,14 +101,5 @@ class Prestamo_model extends CI_Model {
 		//return array(($this->db->affected_rows()==1),$Fecha_Nacimiento_Formateada);
 	}
 		
-    public function obtener_prestamos_y_devoluciones() {
-        // Realiza la consulta para obtener los pr�stamos y las devoluciones
-        $this->db->select('prestamo.fecha_prest');
-        $this->db->from('prestamo');
-        $this->db->join('devolucion', 'prestamo.id_solicitud = devolucion.id_solicitud', 'left');
-        $query = $this->db->get();
-        
-        return $query->result_array();
-    }
 }
 ?>
