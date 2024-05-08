@@ -126,102 +126,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 
-								<?php
-									// Define las asignaciones de áreas para cada número de área
-									$area_assignments = array(
-										"1" => array("Edificio" => "B", "Tipo_Area" => "AULA"),
-										"2" => array("Edificio" => "B", "Tipo_Area" => "AULA"),
-										"3" => array("Edificio" => "B", "Tipo_Area" => "AULA"),
-										"4" => array("Edificio" => "B", "Tipo_Area" => "AULA"),
-										"5" => array("Edificio" => "B", "Tipo_Area" => "AULA"),
-										"42" => array("Edificio" => "D", "Tipo_Area" => "AULA"),
-										"43" => array("Edificio" => "D", "Tipo_Area" => "AULA"),
-										"44" => array("Edificio" => "D", "Tipo_Area" => "AULA"),
-										"45" => array("Edificio" => "D", "Tipo_Area" => "AULA"),
-										"46" => array("Edificio" => "D", "Tipo_Area" => "AULA"),
-										"47" => array("Edificio" => "D", "Tipo_Area" => "AULA"),
-										"25" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"26" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"27" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"28" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"29" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"30" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"31" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"32" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"33" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"34" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"35" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"36" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"37" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"38" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"39" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"40" => array("Edificio" => "E", "Tipo_Area" => "AULA"),
-										"17" => array("Edificio" => "F", "Tipo_Area" => "AULA")
-										// Añade más asignaciones de áreas según sea necesario
-									);
-
-									// Función para imprimir un ComboBox
-									function ComboBox($name, $id, $class, $onChange, $selectedIndex, $isMultiple, $size, $options, $style, $attrs, $prompt, $selected)
-									{
-										echo "<select name='$name' id='$id' class='$class' $onChange>";
-
-										// Si hay un prompt, añádelo como la primera opción
-										if ($prompt !== "")
-											echo "<option value=''>$prompt</option>";
-
-										// Iterar sobre las opciones y crear elementos de opción
-										foreach ($options as $value => $text) {
-											// Verificar si esta opción está seleccionada
-											$isSelected = ($selected == $value) ? 'selected' : '';
-
-											echo "<option value='$value' $isSelected>$text</option>";
-										}
-
-										echo "</select>";
-									}
-
-									// Obtener el número de área seleccionado
-									$selected_area = isset($_POST['Id_Area']) ? $_POST['Id_Area'] : '';
-
-									// Obtener los datos del área seleccionada
-									$edificio = isset($area_assignments[$selected_area]) ? $area_assignments[$selected_area]['Edificio'] : '';
-									$tipo_area = isset($area_assignments[$selected_area]) ? $area_assignments[$selected_area]['Tipo_Area'] : '';
-								?>
-
 								<div style="width: auto; display: flex; flex-wrap: wrap; align-items: flex-start;">
 									<div style="flex: 0 0 auto; margin-right: 10px;">
 										<div>Edificio:</div>
 										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<?php ComboBox("Edificio","Edificio","form-control","",1,false,1,array("B"=>"B","D"=>"D","E"=>"E","F"=>"F"),"","","","Elige un edificio"); ?>
+											<?php ComboBox("Edificio","Edificio","form-control","",1,false,1,array("A"=>"A","B"=>"B","C"=>"C","D"=>"D","F"=>"F","G"=>"G"),"","","","Elige un edificio"); ?>
 										</div>
 									</div>
 									
 									<div style="flex: 0 0 auto; margin-right: 10px;">
 										<div>Tipo Área:</div>
 										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<?php ComboBox("Tipo_Area","Tipo_Area","form-control","",1,false,1,array("AULA"=>"AULA","LABORATORIO"=>"LABORATORIO"),"","","","Elige el área"); ?>
+											<?php ComboBox("Tipo_Area","Tipo_Area","form-control","",1,false,1,array("AULA"=>"AULA","SALA CIC"=>"SALA CIC","EXTERNA"=>"EXTERNA","I+D+I"=>"I+D+I","LABORATORIO"=>"LABORATORIO","CUBICULO"=>"CUBICULO","COORDINACION"=>"COORDINACION","SITE"=>"SITE"),"","","","Elige el area"); ?>
 										</div>
 									</div>
 
 									<div style="flex: 0 0 auto; margin-right: 10px;">
-										<div>Número de Área:</div>
+										<div>Numero de Área:</div>
 										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<?php ComboBox("Id_Area","Id_Area","form-control","onchange='this.form.submit()'",1,false,1,array("1" => "1","2" => "2","3" => "3","4" => "4","5" => "5","42" => "42","43" => "43","44" => "44","45" => "45","46" => "46","47" => "47","25" => "25","26" => "26","27" => "27","28" => "28","29" => "29","30" => "30","31" => "31","32" => "32","33" => "33","34" => "34","35" => "35","36" => "36","37" => "37","38" => "38","39" => "39","40" => "40","17" => "17"),"","","","Selecciona el número de área", $selected_area); ?>
+											<?php ComboBox("Id_Area","Id_Area","form-control","",1,false,1,array("1" => "1","2" => "2","3" => "3","4" => "4","5" => "5","6" => "6","7" => "7","8" => "8","9" => "9","10" => "10","11" => "11","12" => "12","13" => "13","14" => "14","15" => "15","16" => "16","17" => "17","18" => "18","19" => "19","20" => "20","21" => "21","22" => "22","23" => "23","24" => "24","25" => "25","26" => "26","27" => "27","28" => "28","29" => "29","30" => "30","31" => "31","32" => "32","33" => "33","34" => "34","35" => "35","36" => "36","37" => "37","38" => "38","39" => "39","40" => "40","41" => "41","42" => "42","43" => "43","44" => "44","45" => "45","46" => "46","47" => "47","48"=>"48"),"","","","id del area"); ?>
+											
 										</div>
 									</div>
 								</div>
-
-									<?php
-									// Imprimir los datos seleccionados si existen
-									if ($edificio && $tipo_area) {
-										echo "<div style='margin-top: 10px;'>";
-										echo "Edificio seleccionado: $edificio<br>";
-										echo "Tipo de área seleccionado: $tipo_area<br>";
-										echo "Número de área seleccionado: $selected_area<br>";
-										echo "</div>";
-									}
-									?>
-
 
 								<div class='row'>
 									<div class='col-md-8'>
