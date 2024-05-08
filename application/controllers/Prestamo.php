@@ -332,6 +332,15 @@ public function Obtener_Dataset_Prestamo() {
 
 
 	
+	public function __construct() {
+        parent::__construct();
+        $this->load->model('Prestamo_model');
+    }
+
+    public function mostrar_prestamos() {
+        $data['prestamos'] = $this->Prestamo_model->obtener_prestamos_y_devoluciones();
+        $this->load->view('Devolucion', $data);
+    }
 
 
 }
