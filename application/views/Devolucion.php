@@ -461,6 +461,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<script>
 			var tbSolicitudes;
 			$(document).ready(function() {
+				"ordering": false
 				$.fn.dataTable.ext.errMode = 'throw';
 				tbSolicitudes = $('#tbSolicitudes').DataTable({
 					dom: 'Blfiprtip',
