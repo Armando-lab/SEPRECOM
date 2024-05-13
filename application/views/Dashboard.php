@@ -68,7 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<h3 style="color:#FFFFFF">PrÃ©stamos con atraso!</h3>	
 							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/atraso.png" alt="...">
                             <h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosVencidos; ?></h1>
-                            <p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>		  
 						</a>
 						<div class="w-100"></div>
 						<div class="row">							
@@ -80,7 +79,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<h3 style="color:#FFFFFF">ArtÃ­culo mÃ¡s prestado</h3>
 							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/popular.png" alt="...">
                             <h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $articuloMasPrestado; ?></h1>			  
-							<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>		  
 						</a>
 						<div class="w-100"></div>
 						<div class="row">							
@@ -116,7 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $(document).ready(function(){
         // Datos de ejemplo (puedes obtener estos datos desde tu backend)
         var datos = {
-            labels: ["Préstamos activos", "Préstamos vencidos", "Total de préstamos"],
+            labels: ["Prï¿½stamos activos", "Prï¿½stamos vencidos", "Total de prï¿½stamos"],
             datasets: [{
                 label: 'Cantidad',
                 data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $totalPrestamos; ?>],
@@ -134,17 +132,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }]
         };
 
-        // Configuración de la gráfica
+        // Configuraciï¿½n de la grï¿½fica
         var config = {
             type: 'bar',
             data: datos,
             options: {
                 options: {
-                    // Tamaño del canvas
+                    // Tamaï¿½o del canvas
                     responsive: true, // Permite que el canvas se ajuste al contenedor
-                    maintainAspectRatio: false, // Evita que la relación de aspecto sea constante
-                    width: 50, // Ancho del canvas en píxeles
-                    height: 50, // Alto del canvas en píxeles
+                    maintainAspectRatio: false, // Evita que la relaciï¿½n de aspecto sea constante
+                    width: 50, // Ancho del canvas en pï¿½xeles
+                    height: 50, // Alto del canvas en pï¿½xeles
                     scales: {
                         y: {
                             beginAtZero: true
@@ -154,7 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         };
 
-        // Crear la instancia de la gráfica en el elemento canvas con el id 'grafica'
+        // Crear la instancia de la grï¿½fica en el elemento canvas con el id 'grafica'
         var ctx = document.getElementById('grafica').getContext('2d');
         new Chart(ctx, config);
     });
