@@ -551,19 +551,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						var fechaActual = new Date();
 						var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
 
-						// Aplicar color según el tiempo transcurrido
-						var color;
-						if (tiempoTranscurrido <= 1) {
-							color = '#52BE80'; // Verde pastel si el pr�stamo es reciente
-						} else if (tiempoTranscurrido <= 2) {
-							color = '#F4D03F'; // Amarillo pastel si el pr�stamo tiene menos de un mes
-						} else {
-							color = '#EC7063'; // Rosa pastel si el pr�stamo es antiguo
-						}
+						// Aplicar color solo si el estado no es "devuelto"
+						if (data.estado !== "devuelto") {
+							var color;
+							if (tiempoTranscurrido <= 1) {
+								color = '#52BE80'; // Verde pastel si el préstamo es reciente
+							} else if (tiempoTranscurrido <= 2) {
+								color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de un mes
+							} else {
+								color = '#EC7063'; // Rosa pastel si el préstamo es antiguo
+							}
 
-						// Aplicar el color de fondo a la fila
-						$(row).css('background-color', color);
+							// Aplicar el color de fondo a la fila
+							$(row).css('background-color', color);
+						}
 					},
+
 					"footerCallback": function(row, data, start, end, display) {
 						var api = this.api(),
 							data;
