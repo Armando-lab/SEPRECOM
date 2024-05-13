@@ -68,7 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<h3 style="color:#FFFFFF">Préstamos con atraso!</h3>	
 							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/atraso.png" alt="...">
                             <h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosVencidos; ?></h1>
-                            <p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>		  
 						</a>
 						<div class="w-100"></div>
 						<div class="row">							
@@ -80,7 +79,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<h3 style="color:#FFFFFF">Artículo más prestado</h3>
 							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/popular.png" alt="...">
                             <h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $articuloMasPrestado; ?></h1>			  
-							<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>		  
 						</a>
 						<div class="w-100"></div>
 						<div class="row">							
@@ -116,20 +114,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $(document).ready(function(){
         // Datos de ejemplo (puedes obtener estos datos desde tu backend)
         var datos = {
-            labels: ["Préstamos activos", "Préstamos vencidos", "Artáculo más prestado", "Total de prstamos"],
+            labels: ["Pr�stamos activos", "Pr�stamos vencidos", "Total de pr�stamos"],
             datasets: [{
                 label: 'Cantidad',
-                data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $articuloMasPrestado; ?>, <?php echo $totalPrestamos; ?>],
+                data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $totalPrestamos; ?>],
                 backgroundColor: [
                     '#327ab4',
                     '#d75250',
-                    '#5fb760',
                     '#ecac54'
                 ],
                 borderColor: [
                     '#327ab4',
                     '#d75250',
-                    '#5fb760',
                     '#ecac54'
                 ],
                 borderWidth: 1

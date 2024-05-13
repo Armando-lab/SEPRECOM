@@ -165,34 +165,194 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 
 								<div class='row'>
-									<div class='col-md-8'>
-										Equipo o accesorio solicitado:
-									</div>
-									<br>
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php 
-											ComboBox("Equipo_Solicitado1","Equipo_Solicitado1","form-control","",1,false,1,$array_producto,"","","","Elige un equipo o accesorio");												
-?>
+								<br>
+								<div class='col-md-8'>
+									<div class='form-group'>
+										<div class="row">
+											<div class="col-md-9">
+												<!-- Campo de búsqueda -->
+												<label for="busqueda1">Equipo o accesorio solicitado:</label>
+												<input type="text" id="busqueda1" name="Equipo_Solicitado1" class="form-control" placeholder="Selecciona un producto">
+												<input type="hidden" id="producto_id1" name="producto_id1"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
+											</div>
 										</div>
-									</div>
-
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php 
-											ComboBox("Equipo_Solicitado2","Equipo_Solicitado2","form-control","",1,false,1,$array_producto,"","","","Elige un equipo o accesorio");												
-?>
-										</div>
-									</div>
-
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php 
-											ComboBox("Equipo_Solicitado3","Equipo_Solicitado3","form-control","",1,false,1,$array_producto,"","","","Elige un equipo o accesorio");												
-?>
+										<div class="row mt-3">
+											<div class="col-md-6">
+												<!-- Selector para los productos filtrados -->
+												<select id="selector1" size="1" class="form-control">
+													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<?php foreach ($array_producto as $id => $nombre) : ?>
+														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
+													<?php endforeach; ?>
+												</select>
+											</div>
 										</div>
 									</div>
 								</div>
+
+								<script>
+									$(document).ready(function() {
+										// Agregar evento de cambio al selector
+										$('#selector1').on('change', function() {
+											var selectedProduct = $(this).val(); // Obtener el ID del producto seleccionado
+											var selectedProductName = $(this).find(':selected').text(); // Obtener el nombre del producto seleccionado
+											$('#busqueda1').val(selectedProductName); // Rellenar el input con el nombre del producto
+											$('#producto_id1').val(selectedProduct); // Asignar el ID del producto al campo oculto
+
+											// Cambiar el nombre del campo oculto solo si no ha sido cambiado previamente
+											if ($('#producto_id1').attr('name') !== 'Equipo_Solicitado1') {
+												$('#producto_id1').attr('name', 'Equipo_Solicitado1');
+											}
+										});
+
+										// Agregar evento de búsqueda al input
+										$('#busqueda1').on('input', function() {
+											var busqueda1 = $(this).val().toLowerCase();
+											if (busqueda1.trim() !== '') {
+												$('#selector1').show(); // Muestra el selector si hay una búsqueda
+											} else {
+												$('#selector1').hide(); // Oculta el selector si no hay búsqueda
+											}
+											$('#selector1 option').each(function() {
+												var producto = $(this).text().toLowerCase();
+												if (producto.includes(busqueda1)) {
+													$(this).show();
+												} else {
+													$(this).hide();
+												}
+											});
+										});
+									});
+								</script>
+
+
+								<div class='col-md-8'>
+									<div class='form-group'>
+										<div class="row">
+											<div class="col-md-9">
+												<!-- Campo de búsqueda -->
+												<label for="busqueda2">Equipo o accesorio solicitado:</label>
+												<input type="text" id="busqueda2" name="Equipo_Solicitado2" class="form-control" placeholder="Selecciona un producto">
+												<input type="hidden" id="producto_id2" name="producto_id2"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
+											</div>
+										</div>
+										<div class="row mt-3">
+											<div class="col-md-6">
+												<!-- Selector para los productos filtrados -->
+												<select id="selector2" size="1" class="form-control">
+													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<?php foreach ($array_producto as $id => $nombre) : ?>
+														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
+													<?php endforeach; ?>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<script>
+									$(document).ready(function() {
+										// Ocultar el selector al cargar la página
+										$('#selector2').hide();
+
+										// Agregar evento de cambio al selector
+										$('#selector2').on('change', function() {
+											var selectedProduct = $(this).val(); // Obtener el ID del producto seleccionado
+											var selectedProductName = $(this).find(':selected').text(); // Obtener el nombre del producto seleccionado
+											$('#busqueda2').val(selectedProductName); // Rellenar el input con el nombre del producto
+											$('#producto_id2').val(selectedProduct); // Asignar el ID del producto al campo oculto
+
+											// Cambiar el nombre del campo oculto solo si no ha sido cambiado previamente
+											if ($('#producto_id2').attr('name') !== 'Equipo_Solicitado2') {
+												$('#producto_id2').attr('name', 'Equipo_Solicitado2');
+											}
+										});
+
+										// Agregar evento de búsqueda al input
+										$('#busqueda2').on('input', function() {
+											var busqueda2 = $(this).val().toLowerCase();
+											if (busqueda2.trim() !== '') {
+												$('#selector2').show(); // Muestra el selector si hay una búsqueda
+											} else {
+												$('#selector2').hide(); // Oculta el selector si no hay búsqueda
+											}
+											$('#selector2 option').each(function() {
+												var producto2 = $(this).text().toLowerCase();
+												if (producto2.includes(busqueda2)) {
+													$(this).show();
+												} else {
+													$(this).hide();
+												}
+											});
+										});
+									});
+								</script>
+
+								<div class='col-md-8'>
+									<div class='form-group'>
+										<div class="row">
+											<div class="col-md-9">
+												<!-- Campo de búsqueda -->
+												<label for="busqueda3">Equipo o accesorio solicitado:</label>
+												<input type="text" id="busqueda3" name="Equipo_Solicitado3" class="form-control" placeholder="Selecciona un producto">
+												<input type="hidden" id="producto_id3" name="producto_id3"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
+											</div>
+										</div>
+										<div class="row mt-3">
+											<div class="col-md-6">
+												<!-- Selector para los productos filtrados -->
+												<select id="selector3" size="1" class="form-control">
+													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<?php foreach ($array_producto as $id => $nombre) : ?>
+														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
+													<?php endforeach; ?>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<script>
+									$(document).ready(function() {
+										// Ocultar el selector al cargar la página
+										$('#selector3').hide();
+
+										// Agregar evento de cambio al selector
+										$('#selector3').on('change', function() {
+											var selectedProduct = $(this).val(); // Obtener el ID del producto seleccionado
+											var selectedProductName = $(this).find(':selected').text(); // Obtener el nombre del producto seleccionado
+											$('#busqueda3').val(selectedProductName); // Rellenar el input con el nombre del producto
+											$('#producto_id3').val(selectedProduct); // Asignar el ID del producto al campo oculto
+
+											// Cambiar el nombre del campo oculto solo si no ha sido cambiado previamente
+											if ($('#producto_id3').attr('name') !== 'Equipo_Solicitado3') {
+												$('#producto_id3').attr('name', 'Equipo_Solicitado3');
+											}
+										});
+
+										// Agregar evento de búsqueda al input
+										$('#busqueda3').on('input', function() {
+											var busqueda3 = $(this).val().toLowerCase();
+											if (busqueda3.trim() !== '') {
+												$('#selector3').show(); // Muestra el selector si hay una búsqueda
+											} else {
+												$('#selector3').hide(); // Oculta el selector si no hay búsqueda
+											}
+											$('#selector3 option').each(function() {
+												var producto2 = $(this).text().toLowerCase();
+												if (producto2.includes(busqueda3)) {
+													$(this).show();
+												} else {
+													$(this).hide();
+												}
+											});
+										});
+									});
+								</script>
+
+
+
+							</div>
 
 								<div class='row'>
 									<div class='col-md-4'>
