@@ -554,7 +554,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						// Aplicar color según el estado
 						var color;
 						if (data.estado === "devuelto") {
-							color = '#D3D3D3'; // Gris si el estado es "devuelto"
+							color = '#428bca'; // Gris si el estado es "devuelto"
 						} else {
 							if (tiempoTranscurrido <= 1) {
 								color = '#52BE80'; // Verde pastel si el préstamo es reciente
