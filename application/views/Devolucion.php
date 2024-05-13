@@ -554,11 +554,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						// Aplicar color seg√∫n el tiempo transcurrido
 						var color;
 						if (tiempoTranscurrido <= 1) {
-							color = '#52BE80'; // Verde pastel si el prÈstamo es reciente
+							color = '#52BE80'; // Verde pastel si el prÔøΩstamo es reciente
 						} else if (tiempoTranscurrido <= 2) {
-							color = '#F4D03F'; // Amarillo pastel si el prÈstamo tiene menos de un mes
+							color = '#F4D03F'; // Amarillo pastel si el prÔøΩstamo tiene menos de un mes
 						} else {
-							color = '#EC7063'; // Rosa pastel si el prÈstamo es antiguo
+							color = '#EC7063'; // Rosa pastel si el prÔøΩstamo es antiguo
 						}
 
 						// Aplicar el color de fondo a la fila
@@ -603,15 +603,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				});
 
 				$('#fechaInicio, #fechaFin').on('change', function() {
-					var fechaInicio = $('#fechaInicio').val();
-					var fechaFin = $('#fechaFin').val();
+    var fechaInicio = $('#fechaInicio').val();
+    var fechaFin = $('#fechaFin').val();
 
-					// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-					tbSolicitudes.column(3).search(fechaInicio).draw();
+    // Aplicar el filtro por rango de fechas en la columna de fecha de inicio
+    tbSolicitudes.column(3).search(fechaInicio).draw();
+});
 
-					// Aplicar el filtro por rango de fechas en la columna de fecha de fin
-					tbSolicitudes.column(4).search(fechaFin).draw();
-				});
 
 				// Aplicar el filtrado por Estado
 				$('#filtroEstado').on('change', function() {
