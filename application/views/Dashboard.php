@@ -116,37 +116,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $(document).ready(function(){
         // Datos de ejemplo (puedes obtener estos datos desde tu backend)
         var datos = {
-            labels: ["PrÃ©stamos activos", "PrÃ©stamos vencidos", "ArtÃ¡culo mÃ¡s prestado", "Total de prstamos"],
+            labels: ["Préstamos activos", "Préstamos vencidos", "Total de préstamos"],
             datasets: [{
                 label: 'Cantidad',
-                data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $articuloMasPrestado; ?>, <?php echo $totalPrestamos; ?>],
+                data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $totalPrestamos; ?>],
                 backgroundColor: [
                     '#327ab4',
                     '#d75250',
-                    '#5fb760',
                     '#ecac54'
                 ],
                 borderColor: [
                     '#327ab4',
                     '#d75250',
-                    '#5fb760',
                     '#ecac54'
                 ],
                 borderWidth: 1
             }]
         };
 
-        // Configuraciï¿½n de la grï¿½fica
+        // Configuración de la gráfica
         var config = {
             type: 'bar',
             data: datos,
             options: {
                 options: {
-                    // Tamaï¿½o del canvas
+                    // Tamaño del canvas
                     responsive: true, // Permite que el canvas se ajuste al contenedor
-                    maintainAspectRatio: false, // Evita que la relaciï¿½n de aspecto sea constante
-                    width: 50, // Ancho del canvas en pï¿½xeles
-                    height: 50, // Alto del canvas en pï¿½xeles
+                    maintainAspectRatio: false, // Evita que la relación de aspecto sea constante
+                    width: 50, // Ancho del canvas en píxeles
+                    height: 50, // Alto del canvas en píxeles
                     scales: {
                         y: {
                             beginAtZero: true
@@ -156,7 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         };
 
-        // Crear la instancia de la grï¿½fica en el elemento canvas con el id 'grafica'
+        // Crear la instancia de la gráfica en el elemento canvas con el id 'grafica'
         var ctx = document.getElementById('grafica').getContext('2d');
         new Chart(ctx, config);
     });
