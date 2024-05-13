@@ -603,12 +603,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				});
 
 				$('#fechaInicio, #fechaFin').on('change', function() {
-    var fechaInicio = $('#fechaInicio').val();
-    var fechaFin = $('#fechaFin').val();
+					var fechaInicio = $('#fechaInicio').val();
+					var fechaFin = $('#fechaFin').val();
 
-    // Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-    tbSolicitudes.column(3).search(fechaInicio).draw();
-});
+					// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
+					tbSolicitudes.column(3).search(fechaInicio).draw();
+				});
 
 
 				// Aplicar el filtrado por Estado
