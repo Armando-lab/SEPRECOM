@@ -87,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div style='width: 480px;' class='modal-content'>
 							<div style="background-color: #000053;" class='modal-header'>
 								<!--<button style="background-color: #FFCD00;" type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>-->
-									<h4 style="color: white;" class='modal-title'>Hola</h4>
+									<h4 style="color: white;" class='modal-title'>Datos del préstamo</h4>
 							</div>
 							<div class='modal-body'>
 <?php 
