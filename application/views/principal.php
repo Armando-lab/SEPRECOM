@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 					<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Rprestamo">			
 						<a style="text-decoration: none;background-color:#FFCD00;" class="thumbnail">
-							<h4 style="color:#000053">Solicitar tamo</h4>	
+							<h4 style="color:#000053">Solicitar préstamo</h4>	
 							<img style="width: 100px; padding: 10px;background-color:#000053; border-radius: 15px;" src="<?php echo base_url(); ?>application/views/imagenes/catalogo.png" alt="...">		  
 							<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aquí para realizar un préstamo.</p>
 						</a>			  				  
@@ -87,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div style='width: 480px;' class='modal-content'>
 							<div style="background-color: #000053;" class='modal-header'>
 								<!--<button style="background-color: #FFCD00;" type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>-->
-									<h4 style="color: white;" class='modal-title'>Datos del stamo</h4>
+									<h4 style="color: white;" class='modal-title'>Datos del préstamo</h4>
 							</div>
 							<div class='modal-body'>
 <?php 
