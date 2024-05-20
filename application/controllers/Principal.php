@@ -14,7 +14,8 @@ class Principal extends CI_Controller {
 			$this->db->close();							
 			$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($rowPerfil->Dbname,$this->Seguridad_SIIA_Model->Desencriptar($rowPerfil->Password)));
 			*/
-			
+			$this->load->model('Prestamo_model');
+			$data['array_prestador']=$this->Prestamo_model->Obtener_Array_Nombre_prestador();
 
 			$this->load->model('producto_model');
 			$data['array_producto']=$this->producto_model->Obtener_Array_Nombre_Producto();
