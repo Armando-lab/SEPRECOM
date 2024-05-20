@@ -63,19 +63,18 @@ class Dashboard_model extends CI_Model {
     }
 
     public function obtener_prestamos_profesores_vencidos() {
-        // Define la consulta SQL
+        // Preparar la consulta SQL
         $this->db->select('id_solicitud, profesor');
         $this->db->from('prestamo');
-        $this->db->where('DATE_ADD(fecha_prest, INTERVAL -3 DAY) <', 'CURDATE()', FALSE);
+        $this->db->where('DATE_ADD(fecha_prest, INTERVAL 3 DAY) <', 'CURDATE()', FALSE);
 
-        // Ejecuta la consulta
         $query = $this->db->get();
 
-        // Verifica si la consulta devuelve resultados
+        // Verificar si hay resultados
         if ($query->num_rows() > 0) {
             return $query->result_array(); // Devuelve los resultados como un array de arrays
         } else {
-            return ; // Devuelve un array vacío si no hay resultados
+            return []; // Devuelve un array vacío si no hay resultados
         }
     }
 }
