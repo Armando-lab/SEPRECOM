@@ -550,29 +550,31 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							disable: true // Deshabilitar reordenación de filas cuando en modo de selección
 						},
 						orderCellsTop: true,
-					"createdRow": function(row, data) {
-						// Obtener el tiempo transcurrido para el préstamo
-						var fechaPrestamo = new Date(data.fecha_prest);
-						var fechaActual = new Date();
-						var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
 
-						// Aplicar color según el estado
-						var color;
-						if (data.estado === "devuelto") {
-							color = '#428bca'; // Gris si el estado es "devuelto"
-						} else {
-							if (tiempoTranscurrido <= 1) {
-								color = '#52BE80'; // Verde pastel si el préstamo es reciente
-							} else if (tiempoTranscurrido <= 2) {
-								color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de un mes
+						createdRow: function(row, data) {
+							// Obtener el tiempo transcurrido para el préstamo
+							var fechaPrestamo = new Date(data.fecha_prest);
+							var fechaActual = new Date();
+							var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
+
+							// Aplicar color según el estado
+							var color;
+							if (data.estado === "devuelto") {
+								color = '#428bca'; // Gris si el estado es "devuelto"
 							} else {
-								color = '#EC7063'; // Rosa pastel si el préstamo es antiguo
+								if (tiempoTranscurrido <= 1) {
+									color = '#52BE80'; // Verde pastel si el préstamo es reciente
+								} else if (tiempoTranscurrido <= 2) {
+									color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de un mes
+								} else {
+									color = '#EC7063'; // Rosa pastel si el préstamo es antiguo
+								}
 							}
-						}
 
-						// Aplicar el color de fondo a la fila
-						$(row).css('background-color', color);
-					},
+							// Aplicar el color de fondo a las celdas de la fila
+							$(row).find('td').css('background-color', color);
+						},
+
 
 					"footerCallback": function(row, data, start, end, display) {
 						var api = this.api(),
