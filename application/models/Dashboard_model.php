@@ -63,7 +63,7 @@ class Dashboard_model extends CI_Model {
     }
 
     public function obtener_prestamos_profesores_vencidos() {
-        $this->db->select('P.id_solicitud, C.nombre AS nombre');
+        $this->db->select('P.id_solicitud, C.nombre AS nombre_profesor');
         $this->db->from('prestamo P');
         $this->db->join('cliente C', 'P.profesor = C.matricula');
         $this->db->where('DATE_ADD(P.fecha_prest, INTERVAL 3 DAY) <', 'CURDATE()', FALSE);
