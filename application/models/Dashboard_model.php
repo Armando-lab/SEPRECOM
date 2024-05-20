@@ -68,7 +68,7 @@ class Dashboard_model extends CI_Model {
         $this->db->from('prestamo');
         
         // Filtra para obtener solo los préstamos vencidos
-        $this->db->where('DATE_ADD(fecha_prest, INTERVAL -3 DAY) < NOW()');
+        $this->db->where('DATE_ADD(fecha_prest, INTERVAL 3 DAY) < NOW()');
 
         $query = $this->db->get();
 
