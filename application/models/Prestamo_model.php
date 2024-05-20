@@ -23,7 +23,7 @@ class Prestamo_model extends CI_Model {
 public function Obtener_Array_Nombre_prestador(){
     $resqry = $this->Obtener_Prestamo();												
     
-    if ($resqry !== false && is_array($resqry)){			
+    if ($resqry !== false && is_array($resqry)){
         $array = array();
         
         // Si $resqry es un array de objetos stdClass
