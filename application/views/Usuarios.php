@@ -410,7 +410,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 				</div>			
-
+				<div class="row">
+					<div class="col-md-4">
+						<label for="filtroRol">Filtrar por Rol:</label>
+						<select id="filtroRol" class="form-control">
+							<option value="">Todos</option>
+							<option value="Profesor">Profesor</option>
+							<option value="Usuario">Usuario</option>
+						</select>
+					</div>
+				</div>
 				
 				
 				<!-- Tabla din?mica para mostrar los registros del cat?logo -->	
@@ -421,9 +430,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<th>Nombre
 							<th>Correo
 							<th>Cargo
-							<th>Rol de administrador:
-								<input type="text" id="filtroRol" class="form-control input-sm" placeholder="Filtrar por rol">
-							</th>
+							<th>Rol de administrador
 							<th>Contraseña
 										
 					</thead>
