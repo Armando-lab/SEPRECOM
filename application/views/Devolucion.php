@@ -174,6 +174,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="filtro">
 				<label for="filtroEstado">Filtrar por Estado:</label>
 				<select id="filtroEstado">
+					<option value="">Todos</option>
 					<option value="devuelto">Devuelto</option>
 					<option value="Prestado">Prestado</option>
 				</select>
@@ -544,39 +545,29 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							data: "estado"
 						}
 					],
-						order: [[3, 'desc']],
-						
-						createdRow: function(row, data) {
-						// Obtener la fecha de préstamo y la fecha actual
+					"createdRow": function(row, data) {
+						// Obtener el tiempo transcurrido para el préstamo
 						var fechaPrestamo = new Date(data.fecha_prest);
 						var fechaActual = new Date();
-
-						// Calcular la diferencia en días entre la fecha actual y la fecha de préstamo
 						var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
-
-						// Definir los umbrales de tiempo para cada color
-						var verdeLimite = 1; // Verde para préstamos de hasta 1 día
-						var amarilloLimite = 2; // Amarillo para préstamos de hasta 2 días
 
 						// Aplicar color según el estado
 						var color;
 						if (data.estado === "devuelto") {
 							color = '#428bca'; // Gris si el estado es "devuelto"
 						} else {
-							if (tiempoTranscurrido <= verdeLimite) {
+							if (tiempoTranscurrido <= 1) {
 								color = '#52BE80'; // Verde pastel si el préstamo es reciente
-							} else if (tiempoTranscurrido <= amarilloLimite) {
-								color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de dos días
+							} else if (tiempoTranscurrido <= 2) {
+								color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de un mes
 							} else {
-								color = '#EC7063'; // Rosa pastel si el préstamo tiene tres días o más
+								color = '#EC7063'; // Rosa pastel si el préstamo es antiguo
 							}
 						}
 
-						// Aplicar el color de fondo a las celdas de la fila
-						$(row).find('td').css('background-color', color);
+						// Aplicar el color de fondo a la fila
+						$(row).css('background-color', color);
 					},
-
-
 
 					"footerCallback": function(row, data, start, end, display) {
 						var api = this.api(),
@@ -620,58 +611,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
 
-					// Limpiar todos los filtros personalizados previos
-					$.fn.dataTable.ext.search = [];
-
-					// Aplicar el filtro personalizado por rango de fechas
-					$.fn.dataTable.ext.search.push(
-						function(settings, data, dataIndex) {
-							var fecha = data[3] || ''; // Obtener la fecha de la columna 3 (suponiendo que la fecha esté en la columna 3)
-							fecha = fecha.trim(); // Eliminar espacios en blanco al principio y al final
-
-							// Verificar si la fecha está dentro del rango especificado
-							if ((fechaInicio === '' || fecha >= fechaInicio) && (fechaFin === '' || fecha <= fechaFin)) {
-								return true; // La fecha está dentro del rango
-							}
-							return false; // La fecha está fuera del rango
-						}
-					);
-
-					// Volver a dibujar la tabla para aplicar el filtro personalizado
-					tbSolicitudes.draw();
+					// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
+					tbSolicitudes.column(3).search(fechaInicio + '|' + fechaFin, true, false).draw();
 				});
 
 
 
-
-
-
-				// Aplicar filtro por Estado cuando cambie el valor del filtroEstado
+				// Aplicar el filtrado por Estado
 				$('#filtroEstado').on('change', function() {
 					var filtro = $(this).val();
-					tbSolicitudes.column(7).search(filtro).draw(); // Filtrar por estado en la columna 7 y dibujar la tabla
+					tbSolicitudes.column(7).search(filtro).draw();
 				});
-
-				// Establecer el valor predeterminado del filtroEstado como "prestado" al iniciar la página
-				$('#filtroEstado').val('Prestado');
 
 				// Aplicar el filtrado por Estado al iniciar la página
 				$('#filtroEstado').trigger('change');
 
-				// Aplicar búsqueda en tiempo real para cada columna de la tabla
+				// Apply the search
 				$('#tbSolicitudes').DataTable().columns().every(function() {
 					var that = this;
 
-					// Cuando cambia el valor en un campo de entrada de texto en el encabezado de la columna
 					$('input', this.header()).on('keyup change', function() {
-						if (that.search() !== this.value) { // Si el valor de búsqueda ha cambiado
+						if (that.search() !== this.value) {
 							that
-								.search(this.value) // Aplicar la búsqueda
-								.draw(); // Dibujar la tabla
+								.search(this.value)
+								.draw();
 						}
 					});
 				});
-
 
 			});
 		</script>
