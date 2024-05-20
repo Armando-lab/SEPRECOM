@@ -28,7 +28,7 @@ public function Obtener_Array_Nombre_prestador(){
         
         // Si $resqry es un array de objetos stdClass
         foreach ($resqry as $row) {
-            $array[$row->profesor] = $row->nombre;
+            $array[$row->nombre] = $row->profesor;
         }
 
         return $array; 
