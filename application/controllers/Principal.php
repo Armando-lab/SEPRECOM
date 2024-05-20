@@ -54,6 +54,37 @@ class Principal extends CI_Controller {
 			redirect($this->router->default_controller);
 		}														
 	}
+
+	public function mostrar_prestamos_vencidos() {
+        // Verifica si el usuario está logueado usando los datos de sesión
+        if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
+
+            $this->load->model('Dashboard_model');
+            // Obtener los préstamos vencidos desde el modelo
+            $resPrestamos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
+
+            // Preparar los datos para JSON
+            if (!empty($resPrestamos)) {
+                $output = [];
+                foreach ($resPrestamos as $row) {
+                    foreach ($row as $key => $value) {
+                        // Codificar las cadenas en UTF-8 para asegurar la correcta visualización de caracteres especiales
+                        if (is_string($value)) {
+                            $row[$key] = utf8_encode($value);
+                        }
+                    }
+                    $output[] = $row;
+                }
+                print(json_encode(array("data" => $output)));
+            } else {
+                // Devolver un array vacío si no hay préstamos vencidos
+                print(json_encode(array("data" => [])));
+            }
+        } else {
+            // Redirigir al controlador por defecto si el usuario no está logueado
+            redirect($this->router->default_controller);
+        }
+    }
 		
 }
 ?>
