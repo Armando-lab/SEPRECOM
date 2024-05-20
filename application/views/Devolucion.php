@@ -615,41 +615,40 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 				});
-				
 				$('#fechaInicio, #fechaFin').on('change', function() {
-					var fechaInicio = $('#fechaInicio').val();
-					var fechaFin = $('#fechaFin').val();
+				var fechaInicio = $('#fechaInicio').val();
+				var fechaFin = $('#fechaFin').val();
 
-					// Si la fecha de inicio está vacía, asignar la fecha actual
-					if (fechaInicio === '') {
-						var fechaActual = new Date();
-						var dia = ('0' + fechaActual.getDate()).slice(-2);
-						var mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2);
-						var anio = fechaActual.getFullYear();
-						fechaInicio = anio + '-' + mes + '-' + dia;
-						$('#fechaInicio').val(fechaInicio); // Actualizar el valor en el campo de fecha de inicio
-					}
+				// Si la fecha de inicio está vacía, asignar la fecha actual
+				if (fechaInicio === '') {
+					var fechaActual = new Date();
+					var dia = ('0' + fechaActual.getDate()).slice(-2);
+					var mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2);
+					var anio = fechaActual.getFullYear();
+					fechaInicio = anio + '-' + mes + '-' + dia;
+					$('#fechaInicio').val(fechaInicio); // Actualizar el valor en el campo de fecha de inicio
+				}
 
-					// Limpiar todos los filtros personalizados previos
-					$.fn.dataTable.ext.search = [];
+				// Limpiar todos los filtros personalizados previos
+				$.fn.dataTable.ext.search = [];
 
-					// Aplicar el filtro personalizado por rango de fechas
-					$.fn.dataTable.ext.search.push(
-						function(settings, data, dataIndex) {
-							var fecha = data[3] || ''; // Obtener la fecha de la columna 3 (suponiendo que la fecha esté en la columna 3)
-							fecha = fecha.trim(); // Eliminar espacios en blanco al principio y al final
+				// Aplicar el filtro personalizado por rango de fechas
+				$.fn.dataTable.ext.search.push(
+					function(settings, data, dataIndex) {
+						var fecha = data[3] || ''; // Obtener la fecha de la columna 3 (suponiendo que la fecha esté en la columna 3)
+						fecha = fecha.trim(); // Eliminar espacios en blanco al principio y al final
 
-							// Verificar si la fecha está dentro del rango especificado
-							if ((fechaInicio === '' || fecha >= fechaInicio) && (fechaFin === '' || fecha <= fechaFin)) {
-								return true; // La fecha está dentro del rango
-							}
-							return false; // La fecha está fuera del rango
+						// Verificar si la fecha está dentro del rango especificado
+						if ((fechaInicio === '' || fecha >= fechaInicio) && (fechaFin === '' || fecha <= fechaFin)) {
+							return true; // La fecha está dentro del rango
 						}
-					);
+						return false; // La fecha está fuera del rango
+					}
+				);
 
-					// Volver a dibujar la tabla para aplicar el filtro personalizado
-					tbSolicitudes.draw();
-				});
+				// Volver a dibujar la tabla para aplicar el filtro personalizado
+				tbSolicitudes.draw();
+			});
 
 
 				// Aplicar filtro por Estado cuando cambie el valor del filtroEstado
