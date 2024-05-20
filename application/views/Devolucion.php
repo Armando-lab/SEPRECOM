@@ -615,10 +615,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 				});
-
+				
 				$('#fechaInicio, #fechaFin').on('change', function() {
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
+
+					// Si la fecha de inicio está vacía, asignar la fecha actual
+					if (fechaInicio === '') {
+						var fechaActual = new Date();
+						var dia = ('0' + fechaActual.getDate()).slice(-2);
+						var mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2);
+						var anio = fechaActual.getFullYear();
+						fechaInicio = anio + '-' + mes + '-' + dia;
+						$('#fechaInicio').val(fechaInicio); // Actualizar el valor en el campo de fecha de inicio
+					}
 
 					// Limpiar todos los filtros personalizados previos
 					$.fn.dataTable.ext.search = [];
@@ -641,9 +651,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					tbSolicitudes.draw();
 				});
 
-
-
-
+				// Llamar al evento 'change' al cargar la página para aplicar el filtro por defecto
+				$('#fechaInicio').trigger('change');
 
 
 				// Aplicar filtro por Estado cuando cambie el valor del filtroEstado
