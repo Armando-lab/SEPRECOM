@@ -91,10 +91,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Verprestamo">
 				<a style="text-decoration: none;background-color:#d75250;" data-toggle="modal" data-target="#modalPrestamosVencidos" id="modalPrestamos" class="thumbnail">
-					<h3 style="color:#FFFFFF">Préstamos con atraso!</h3>
+					<h3 style="color:#FFFFFF">PrÃ©stamos con atraso!</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/atraso.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosVencidos; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -217,10 +217,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Vperfil">
 				<a style="text-decoration: none;background-color:#5fb760;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
-					<h3 style="color:#FFFFFF">Artículo más prestado</h3>
+					<h3 style="color:#FFFFFF">ArtÃ­culo mÃ¡s prestado</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/popular.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $articuloMasPrestado; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -229,10 +229,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Vperfil">
 				<a style="text-decoration: none;background-color:#ecac54;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
-					<h3 style="color:#FFFFFF">Total de préstamos</h3>
+					<h3 style="color:#FFFFFF">Total de prÃ©stamos</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/total.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $totalPrestamos; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -245,7 +245,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="modalLabelPrestamosVencidos">Préstamos Vencidos</h5>
+						<h5 class="modal-title" id="modalLabelPrestamosVencidos">PrÃ©stamos Vencidos</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -388,7 +388,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de búsqueda -->
+												<!-- Campo de bï¿½squeda -->
 												<label for="busqueda1">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda1" name="Equipo_Solicitado1" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id1" name="producto_id1"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -398,7 +398,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector1" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciï¿½n por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -423,13 +423,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de búsqueda al input
+										// Agregar evento de bï¿½squeda al input
 										$('#busqueda1').on('input', function() {
 											var busqueda1 = $(this).val().toLowerCase();
 											if (busqueda1.trim() !== '') {
-												$('#selector1').show(); // Muestra el selector si hay una búsqueda
+												$('#selector1').show(); // Muestra el selector si hay una bï¿½squeda
 											} else {
-												$('#selector1').hide(); // Oculta el selector si no hay búsqueda
+												$('#selector1').hide(); // Oculta el selector si no hay bï¿½squeda
 											}
 											$('#selector1 option').each(function() {
 												var producto = $(this).text().toLowerCase();
@@ -448,7 +448,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de búsqueda -->
+												<!-- Campo de bï¿½squeda -->
 												<label for="busqueda2">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda2" name="Equipo_Solicitado2" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id2" name="producto_id2"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -458,7 +458,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector2" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciï¿½n por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -470,7 +470,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Ocultar el selector al cargar la página
+										// Ocultar el selector al cargar la pï¿½gina
 										$('#selector2').hide();
 
 										// Agregar evento de cambio al selector
@@ -486,13 +486,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de búsqueda al input
+										// Agregar evento de bï¿½squeda al input
 										$('#busqueda2').on('input', function() {
 											var busqueda2 = $(this).val().toLowerCase();
 											if (busqueda2.trim() !== '') {
-												$('#selector2').show(); // Muestra el selector si hay una búsqueda
+												$('#selector2').show(); // Muestra el selector si hay una bï¿½squeda
 											} else {
-												$('#selector2').hide(); // Oculta el selector si no hay búsqueda
+												$('#selector2').hide(); // Oculta el selector si no hay bï¿½squeda
 											}
 											$('#selector2 option').each(function() {
 												var producto2 = $(this).text().toLowerCase();
@@ -510,7 +510,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de búsqueda -->
+												<!-- Campo de bï¿½squeda -->
 												<label for="busqueda3">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda3" name="Equipo_Solicitado3" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id3" name="producto_id3"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -520,7 +520,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector3" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciï¿½n por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -532,7 +532,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Ocultar el selector al cargar la página
+										// Ocultar el selector al cargar la pï¿½gina
 										$('#selector3').hide();
 
 										// Agregar evento de cambio al selector
@@ -548,13 +548,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de búsqueda al input
+										// Agregar evento de bï¿½squeda al input
 										$('#busqueda3').on('input', function() {
 											var busqueda3 = $(this).val().toLowerCase();
 											if (busqueda3.trim() !== '') {
-												$('#selector3').show(); // Muestra el selector si hay una búsqueda
+												$('#selector3').show(); // Muestra el selector si hay una bï¿½squeda
 											} else {
-												$('#selector3').hide(); // Oculta el selector si no hay búsqueda
+												$('#selector3').hide(); // Oculta el selector si no hay bï¿½squeda
 											}
 											$('#selector3 option').each(function() {
 												var producto2 = $(this).text().toLowerCase();
