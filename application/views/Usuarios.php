@@ -521,20 +521,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											i : 0;
 								};
 							},
-							// Agrega un evento change al campo de selección para filtrar la tabla por rol
-							$('#filtroRol').on('change', function () {
-								var filtro = $(this).val();
-								
-								// Itera sobre cada fila de la tabla y muestra/oculta según el rol seleccionado
-								$('#tbCliente tbody tr').each(function () {
-									var rol = $(this).find('td:eq(4)').text().trim();
-									
-									if (filtro === '' || filtro === 'Usuario' || rol === filtro) {
-										$(this).show();
-									} else {
-										$(this).hide();
-									}
-								});
+							
+							
 
 							
 						} 
@@ -552,6 +540,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							}
 						} );
 					} );
+
+					// Agrega un evento change al campo de selección para filtrar la tabla por rol
+					$('#filtroRol').on('change', function () {
+						var filtro = $(this).val();
+						
+						// Itera sobre cada fila de la tabla y muestra/oculta según el rol seleccionado
+						$('#tbCliente tbody tr').each(function () {
+							var rol = $(this).find('td:eq(4)').text().trim();
+							
+							if (filtro === '' || filtro === 'Usuario' || rol === filtro) {
+								$(this).show();
+							} else {
+								$(this).hide();
+							}
+						});
+					});
+
 					
 				} );	
 								
