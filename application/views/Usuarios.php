@@ -414,7 +414,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="col-md-4">
 						<label for="filtroRol">Filtrar por Rol:</label>
 						<select id="filtroRol" class="form-control">
-							<option value="">Todos</option>
 							<option value="Profesor">Profesor</option>
 							<option value="Usuario">Usuario</option>
 						</select>
