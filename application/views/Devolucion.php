@@ -615,6 +615,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 				});
+				
 				$('#fechaInicio, #fechaFin').on('change', function() {
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
