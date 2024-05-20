@@ -74,7 +74,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							</h1>
 						</div>
 						<div class="col-md-2">
-							<img style="width: 70%; margin-right:150%;" src="<?php echo base_url('application/views/imagenes/waving-287_256.gif'); ?>" alt="Descripción del SVG">
+							<!-- SVG inline -->
+							<?php echo file_get_contents(base_url('application/images/views/undraw_hello_re_3evm.svg')); ?>
 						</div>
 					</div>
 				</div>
