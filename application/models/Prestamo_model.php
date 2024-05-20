@@ -7,7 +7,7 @@ class Prestamo_model extends CI_Model {
     public function Obtener_Prestamo(){			
         $qry = "SELECT P.*, C.nombre AS profesor
         FROM prestamo P
-        JOIN cliente C ON P.profesor = C.nombre
+        JOIN cliente C ON P.nombre = C.profesor
         WHERE P.id_solicitud IS NOT NULL";
     
         $resqry = $this->db->query($qry);										
