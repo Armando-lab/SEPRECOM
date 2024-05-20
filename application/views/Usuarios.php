@@ -434,70 +434,70 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</tbody>
 				</table>
 				 <!-- Contenedor para la tabla de usuarios con rol de administrador -->
-				 <div class='container main_div_container'>
-					<div class='row'>
-						<div class='col-md-12'>        
-							<h1>Usuarios con Rol de Administrador</h1>
-							<table id='tbUsuariosAdmin' class='display cell-border order-column dt-responsive'>
-								<!-- Encabezados de la tabla -->
-								<thead>
-									<tr>
-										<th>Matrícula</th>
-										<th>Nombre</th>
-										<th>Correo</th>
-										<th>Cargo</th>
-										<th>Rol de Administrador</th>
-									</tr>
-								</thead>
-								<tbody>
-									<!-- Aquí se mostrarán los usuarios con rol de administrador -->
-									<?php foreach($usuarios_admin as $usuario): ?>
-									<tr>
-										<td><?php echo $usuario['matricula']; ?></td>
-										<td><?php echo $usuario['nombre']; ?></td>
-										<td><?php echo $usuario['correo']; ?></td>
-										<td><?php echo $usuario['cargo']; ?></td>
-										<td><?php echo $usuario['Rol_admin']; ?></td>
-									</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
-						</div>  
-					</div>  
-				</div>
+    <div class='container main_div_container'>
+        <div class='row'>
+            <div class='col-md-12'>        
+                <h1>Usuarios con Rol de Administrador</h1>
+                <table id='tbUsuariosAdmin' class='display cell-border order-column dt-responsive'>
+                    <!-- Encabezados de la tabla -->
+                    <thead>
+                        <tr>
+                            <th>Matrícula</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Cargo</th>
+                            <th>Rol de Administrador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se mostrarán los usuarios con rol de administrador -->
+                        <?php foreach($usuarios_admin as $usuario): ?>
+                        <tr>
+                            <td><?php echo $usuario['matricula']; ?></td>
+                            <td><?php echo $usuario['nombre']; ?></td>
+                            <td><?php echo $usuario['correo']; ?></td>
+                            <td><?php echo $usuario['cargo']; ?></td>
+                            <td><?php echo $usuario['Rol_admin']; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>  
+        </div>  
+    </div>
 
-				<!-- Contenedor para la tabla de usuarios sin rol de administrador -->
-				<div class='container main_div_container'>
-					<div class='row'>
-						<div class='col-md-12'>        
-							<h1>Usuarios sin Rol de Administrador</h1>
-							<table id='tbUsuariosNoAdmin' class='display cell-border order-column dt-responsive'>
-								<!-- Encabezados de la tabla -->
-								<thead>
-									<tr>
-										<th>Matrícula</th>
-										<th>Nombre</th>
-										<th>Correo</th>
-										<th>Cargo</th>
-										<th>Rol de Administrador</th>
-									</tr>
-								</thead>
-								<tbody>
-									<!-- Aquí se mostrarán los usuarios sin rol de administrador -->
-									<?php foreach($usuarios_no_admin as $usuario): ?>
-									<tr>
-										<td><?php echo $usuario['matricula']; ?></td>
-										<td><?php echo $usuario['nombre']; ?></td>
-										<td><?php echo $usuario['correo']; ?></td>
-										<td><?php echo $usuario['cargo']; ?></td>
-										<td><?php echo $usuario['Rol_admin']; ?></td>
-									</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
-						</div>  
-					</div>  
-				</div>
+    <!-- Contenedor para la tabla de usuarios sin rol de administrador -->
+    <div class='container main_div_container'>
+        <div class='row'>
+            <div class='col-md-12'>        
+                <h1>Usuarios sin Rol de Administrador</h1>
+                <table id='tbUsuariosNoAdmin' class='display cell-border order-column dt-responsive'>
+                    <!-- Encabezados de la tabla -->
+                    <thead>
+                        <tr>
+                            <th>Matrícula</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Cargo</th>
+                            <th>Rol de Administrador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se mostrarán los usuarios sin rol de administrador -->
+                        <?php foreach($usuarios_no_admin as $usuario): ?>
+                        <tr>
+                            <td><?php echo $usuario['matricula']; ?></td>
+                            <td><?php echo $usuario['nombre']; ?></td>
+                            <td><?php echo $usuario['correo']; ?></td>
+                            <td><?php echo $usuario['cargo']; ?></td>
+                            <td><?php echo $usuario['Rol_admin']; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>  
+        </div>  
+    </div>
 
 
 <script>
