@@ -162,7 +162,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								}
 					],
 					columnDefs: [
-								{ responsivePriority: 1, targets: 0 },
+								{ responsivePriority: 1, targets: 1 },
 								{ responsivePriority: 1, targets: 1 }								
 					],
 
