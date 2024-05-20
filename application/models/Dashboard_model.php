@@ -63,20 +63,19 @@ class Dashboard_model extends CI_Model {
     }
 
 
-    public function obtener_prestamos_profesores_vencidos(){			
-        $qry = "
-            SELECT P.id_solicitud, C.nombre AS nombre_profesor
-            FROM prestamo P
-            JOIN cliente C ON P.profesor = C.matricula
-            WHERE DATE_ADD(P.fecha_prest, INTERVAL -3 DAY) < CURDATE()
-        ";
+    public function obtener_prestamos_profesores_vencidos() {
+        $this->db->select('P.id_solicitud, C.nombre AS nombre_profesor');
+        $this->db->from('prestamo P');
+        $this->db->join('cliente C', 'P.profesor = C.matricula');
+        $this->db->where('DATE_ADD(P.fecha_prest, INTERVAL -3 DAY) <', 'CURDATE()', FALSE);
+
+        $query = $this->db->get();
         
-        $resqry = $this->db->query($qry);										
-        if ($resqry->num_rows() > 0) {			
-            return $resqry->result(); 
-        } else {			
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
             return 0;
-        }		
+        }
     }
     
     
