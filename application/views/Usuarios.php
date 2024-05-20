@@ -421,7 +421,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<th>Nombre
 							<th>Correo
 							<th>Cargo
-							<th>Rol de administrador
+							<th>Rol de administrador:
+								<input type="text" id="filtroRol" class="form-control input-sm" placeholder="Filtrar por rol">
+							</th>
 							<th>Contraseña
 										
 					</thead>
