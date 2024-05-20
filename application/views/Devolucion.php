@@ -620,6 +620,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
 
+					// Si no hay fecha de inicio, establecerla como la fecha actual
+					if (fechaInicio === '') {
+						var fechaActual = new Date();
+						var dia = fechaActual.getDate();
+						var mes = fechaActual.getMonth() + 1; // Los meses van de 0 a 11, por lo que sumamos 1
+						var año = fechaActual.getFullYear();
+
+						// Formatear la fecha al formato "YYYY-MM-DD"
+						if (dia < 10) {
+							dia = '0' + dia;
+						}
+						if (mes < 10) {
+							mes = '0' + mes;
+						}
+
+						fechaInicio = año + '-' + mes + '-' + dia;
+					}
+
 					// Limpiar todos los filtros personalizados previos
 					$.fn.dataTable.ext.search = [];
 
@@ -640,11 +658,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					// Volver a dibujar la tabla para aplicar el filtro personalizado
 					tbSolicitudes.draw();
 				});
-
-
-
-
-
 
 				// Aplicar filtro por Estado cuando cambie el valor del filtroEstado
 				$('#filtroEstado').on('change', function() {
