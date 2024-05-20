@@ -32,6 +32,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			color: black;
 			/* Texto negro en los encabezados */
 		}
+		.semaphore {
+			margin-top: 10px;
+		}
+
+		.color-box {
+			width: 20px;
+			height: 20px;
+			display: inline-block;
+			margin-right: 5px;
+		}
+
+		.semaphore span {
+			font-size: 14px;
+			vertical-align: middle;
+		}
+
 	</style>
 </head>
 
@@ -456,6 +472,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</tbody>
 		</table>
 
+		<!-- Simbología del semáforo -->
+		<div class="semaphore">
+			<div class="color-box" style="background-color: #52BE80;"></div>
+			<span>Menos de 1 día de préstamo</span>
+		</div>
+		<div class="semaphore">
+			<div class="color-box" style="background-color: #F4D03F;"></div>
+			<span>Entre 1 y 2 días de préstamo</span>
+		</div>
+		<div class="semaphore">
+			<div class="color-box" style="background-color: #EC7063;"></div>
+			<span>Más de 2 días de préstamo</span>
+		</div>
+
 
 		<script>
 			var tbSolicitudes;
@@ -615,7 +645,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 				});
-				
+
 				$('#fechaInicio, #fechaFin').on('change', function() {
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
