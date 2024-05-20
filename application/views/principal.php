@@ -87,10 +87,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4">
 				<a style="text-decoration: none;background-color:#327ab4;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
-					<h3 style="color:#FFFFFF">Préstamos activos</h3>
+					<h3 style="color:#FFFFFF">PrÃ©stamos activos</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/activo.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosActivos; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; " data-darkreader-inline-color="">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; " data-darkreader-inline-color="">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -101,10 +101,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4">
 				<a style="text-decoration: none;background-color:#d75250;" data-toggle="modal" data-target="#modalPrestamosVencidos" id="modalPrestamos" class="thumbnail">
-					<h3 style="color:#FFFFFF">Préstamos con atraso!</h3>
+					<h3 style="color:#FFFFFF">PrÃ©stamos con atraso!</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/atraso.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosVencidos; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -123,10 +123,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Vperfil">
 				<a style="text-decoration: none;background-color:#ecac54;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
-					<h3 style="color:#FFFFFF">Total de préstamos</h3>
+					<h3 style="color:#FFFFFF">Total de prÃ©stamos</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/total.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $totalPrestamos; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -139,7 +139,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="modalLabelPrestamosVencidos">Préstamos Vencidos</h5>
+						<h5 class="modal-title" id="modalLabelPrestamosVencidos">PrÃ©stamos Vencidos</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -177,16 +177,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 		<div style="margin-left: 30px; margin-bottom:60px;">
-			<h3>¿Qué deseas realizar?</h4>
+			<h3>Â¿QuÃ© deseas realizar?</h4>
 		</div>
 
 		<div class="row">
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Rprestamo">
 				<a style="text-decoration: none;background-color:#FFCD00;" class="thumbnail">
-					<h4 style="color:#000053">Solicitar pr�stamo</h4>
+					<h4 style="color:#000053">Solicitar préstamo</h4>
 					<img style="width: 100px; padding: 10px;background-color:#000053; border-radius: 15px;" src="<?php echo base_url(); ?>application/views/imagenes/catalogo.png" alt="...">
-					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aqu� para realizar un pr�stamo.</p>
+					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aquí para realizar un préstamo.</p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -199,7 +199,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div style='width: 480px;' class='modal-content'>
 						<div style="background-color: #000053;" class='modal-header'>
 							<!--<button style="background-color: #FFCD00;" type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>-->
-							<h4 style="color: white;" class='modal-title'>Datos del pr�stamo</h4>
+							<h4 style="color: white;" class='modal-title'>Datos del préstamo</h4>
 						</div>
 						<div class='modal-body'>
 							<?php
@@ -227,7 +227,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 							<div class="row">
 								<div class="col-md-6">
-									<!-- Campo de b�squeda -->
+									<!-- Campo de búsqueda -->
 									<label for="busqueda">Buscar cliente:</label>
 									<input type="text" id="busqueda" class="form-control">
 								</div>
@@ -246,13 +246,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<!-- Script de JavaScript -->
 							<script>
 								$(document).ready(function() {
-									// Agrega un evento de cambio al campo de b�squeda
+									// Agrega un evento de cambio al campo de búsqueda
 									$('#busqueda').on('input', function() {
 										var busqueda = $(this).val().toLowerCase();
 										if (busqueda.trim() !== '') {
-											$('#selector').show(); // Muestra el selector si hay una b�squeda
+											$('#selector').show(); // Muestra el selector si hay una búsqueda
 										} else {
-											$('#selector').hide(); // Oculta el selector si no hay b�squeda
+											$('#selector').hide(); // Oculta el selector si no hay búsqueda
 										}
 										$('#selector option').each(function() {
 											var cliente = $(this).text().toLowerCase();
@@ -282,7 +282,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</div>
 
 								<div style="flex: 0 0 auto; margin-right: 10px;">
-									<div>Tipo Área:</div>
+									<div>Tipo Ãrea:</div>
 									<div style="width: 100px; margin-top: 5px;" class='form-group'>
 										<select name="Tipo_Area" id="Tipo_Area" class="form-control" onchange="fillAreas(document.getElementById('Edificio').value, this.value)">
 											<option value="AULA">AULA</option>
@@ -294,7 +294,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</div>
 
 								<div style="flex: 0 0 auto; margin-right: 10px;">
-									<div>Número de Área:</div>
+									<div>NÃºmero de Ãrea:</div>
 									<div style="width: 100px; margin-top: 5px;" class='form-group'>
 										<select name="Id_Area" id="Id_Area" class="form-control" onchange="updateFields()">
 											<!-- Options will be filled by JavaScript -->
@@ -308,7 +308,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de b�squeda -->
+												<!-- Campo de búsqueda -->
 												<label for="busqueda1">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda1" name="Equipo_Solicitado1" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id1" name="producto_id1"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -318,7 +318,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector1" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opci�n por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -343,13 +343,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de b�squeda al input
+										// Agregar evento de búsqueda al input
 										$('#busqueda1').on('input', function() {
 											var busqueda1 = $(this).val().toLowerCase();
 											if (busqueda1.trim() !== '') {
-												$('#selector1').show(); // Muestra el selector si hay una b�squeda
+												$('#selector1').show(); // Muestra el selector si hay una búsqueda
 											} else {
-												$('#selector1').hide(); // Oculta el selector si no hay b�squeda
+												$('#selector1').hide(); // Oculta el selector si no hay búsqueda
 											}
 											$('#selector1 option').each(function() {
 												var producto = $(this).text().toLowerCase();
@@ -368,7 +368,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de b�squeda -->
+												<!-- Campo de búsqueda -->
 												<label for="busqueda2">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda2" name="Equipo_Solicitado2" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id2" name="producto_id2"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -378,7 +378,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector2" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opci�n por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -390,7 +390,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Ocultar el selector al cargar la p�gina
+										// Ocultar el selector al cargar la página
 										$('#selector2').hide();
 
 										// Agregar evento de cambio al selector
@@ -406,13 +406,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de b�squeda al input
+										// Agregar evento de búsqueda al input
 										$('#busqueda2').on('input', function() {
 											var busqueda2 = $(this).val().toLowerCase();
 											if (busqueda2.trim() !== '') {
-												$('#selector2').show(); // Muestra el selector si hay una b�squeda
+												$('#selector2').show(); // Muestra el selector si hay una búsqueda
 											} else {
-												$('#selector2').hide(); // Oculta el selector si no hay b�squeda
+												$('#selector2').hide(); // Oculta el selector si no hay búsqueda
 											}
 											$('#selector2 option').each(function() {
 												var producto2 = $(this).text().toLowerCase();
@@ -430,7 +430,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de b�squeda -->
+												<!-- Campo de búsqueda -->
 												<label for="busqueda3">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda3" name="Equipo_Solicitado3" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id3" name="producto_id3"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -440,7 +440,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector3" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opci�n por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -452,7 +452,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Ocultar el selector al cargar la p�gina
+										// Ocultar el selector al cargar la página
 										$('#selector3').hide();
 
 										// Agregar evento de cambio al selector
@@ -468,13 +468,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de b�squeda al input
+										// Agregar evento de búsqueda al input
 										$('#busqueda3').on('input', function() {
 											var busqueda3 = $(this).val().toLowerCase();
 											if (busqueda3.trim() !== '') {
-												$('#selector3').show(); // Muestra el selector si hay una b�squeda
+												$('#selector3').show(); // Muestra el selector si hay una búsqueda
 											} else {
-												$('#selector3').hide(); // Oculta el selector si no hay b�squeda
+												$('#selector3').hide(); // Oculta el selector si no hay búsqueda
 											}
 											$('#selector3 option').each(function() {
 												var producto2 = $(this).text().toLowerCase();
@@ -588,9 +588,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Verprestamo">
 				<a style="text-decoration: none;background-color:#FFCD00;" href='<?php echo base_url(); ?>index.php/prestamo' class="thumbnail">
-					<h4 style="color:#000053">Ver pr�stamos</h4>
+					<h4 style="color:#000053">Ver préstamos</h4>
 					<img style="width: 100px; padding: 10px;background-color:#000053; border-radius: 15px;" src="<?php echo base_url(); ?>application/views/imagenes/ver.png" alt="...">
-					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aqu� para observar registro de pr�stamos.</p>
+					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aquí para observar registro de préstamos.</p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -599,9 +599,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Vperfil">
 				<a style="text-decoration: none;background-color:#FFCD00;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
-					<h4 style="color:#000053">Realizar devoluci�n</h4>
+					<h4 style="color:#000053">Realizar devolución</h4>
 					<img style="width: 100px; padding: 10px;background-color:#000053; border-radius: 15px;" src="<?php echo base_url(); ?>application/views/imagenes/devolucion-de-producto.png" alt="...">
-					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aqu� para realizar la devoluci�n.</p>
+					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aquí para realizar la devolución.</p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -641,7 +641,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							$("#btnGuardarSolicitud").prop("disabled", false).html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
 						},
 						error: function() {
-							alert("Ocurrió un error al procesar la petición servidor.");
+							alert("OcurriÃ³ un error al procesar la peticiÃ³n servidor.");
 							$("#btnGuardarSolicitud").prop("disabled", false).html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
 						}
 					});
@@ -657,12 +657,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-		<!-- Tu propio script para generar la gr�fica de barras -->
+		<!-- Tu propio script para generar la grï¿½fica de barras -->
 		<script>
 			$(document).ready(function() {
 				// Datos de ejemplo (puedes obtener estos datos desde tu backend)
 				var datos = {
-					labels: ["Préstamos activos", "Préstamos vencidos", "Total de préstamos"],
+					labels: ["PrÃ©stamos activos", "PrÃ©stamos vencidos", "Total de prÃ©stamos"],
 					datasets: [{
 						label: 'Cantidad',
 						data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $totalPrestamos; ?>],
@@ -680,17 +680,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					}]
 				};
 
-				// Configuraci�n de la gr�fica
+				// Configuraciï¿½n de la grï¿½fica
 				var config = {
 					type: 'bar',
 					data: datos,
 					options: {
 						options: {
-							// Tama�o del canvas
+							// Tamaï¿½o del canvas
 							responsive: true, // Permite que el canvas se ajuste al contenedor
-							maintainAspectRatio: false, // Evita que la relaci�n de aspecto sea constante
-							width: 50, // Ancho del canvas en p�xeles
-							height: 50, // Alto del canvas en p�xeles
+							maintainAspectRatio: false, // Evita que la relaciï¿½n de aspecto sea constante
+							width: 50, // Ancho del canvas en pï¿½xeles
+							height: 50, // Alto del canvas en pï¿½xeles
 							scales: {
 								y: {
 									beginAtZero: true
@@ -700,7 +700,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					}
 				};
 
-				// Crear la instancia de la gr�fica en el elemento canvas con el id 'grafica'
+				// Crear la instancia de la grï¿½fica en el elemento canvas con el id 'grafica'
 				var ctx = document.getElementById('grafica').getContext('2d');
 				new Chart(ctx, config);
 			});
