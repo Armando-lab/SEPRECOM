@@ -9,7 +9,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
+	<!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 	<title>Principal</title>
+	
 
 	
 <?php
@@ -64,6 +68,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<h1 style="font-style: italic;">Bienvenido, <font color='#000053'><?php echo $session_data['full_name']; ?></font></h1>
 				</div>						
 			</div>	
+		</div>
+
+		<div class="row">
+					
+					<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Rprestamo" >			
+						<a style="text-decoration: none;background-color:#327ab4;" href='<?php echo base_url();?>index.php/devolucion' class="thumbnail">
+							<h3 style="color:#FFFFFF">Préstamos activos</h3>	
+							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/activo.png" alt="...">
+                            <h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosActivos; ?></h1>		  
+							<p style="text-align: center; margin: 10px; color: #FFFFFF; " data-darkreader-inline-color="">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+						</a>			  				  
+						<div class="w-100"></div>
+						<div class="row">							
+						</div>
+					</div>
+
+
+												
+					<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Verprestamo">			
+						<a style="text-decoration: none;background-color:#d75250;" data-toggle="modal" data-target="#modalPrestamosVencidos" id="modalPrestamos"  class="thumbnail">
+							<h3 style="color:#FFFFFF">Préstamos con atraso!</h3>	
+							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/atraso.png" alt="...">
+                            <h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosVencidos; ?></h1>
+						</a>
+						<div class="w-100"></div>
+						<div class="row">							
+						</div>			  				  
+					</div>
+
+					<div style="text-align: center; cursor: pointer;" class="col-md-3" id="Vperfil">			
+						<a style="text-decoration: none;background-color:#5fb760;" href='<?php echo base_url();?>index.php/devolucion' class="thumbnail">
+							<h3 style="color:#FFFFFF">Artículo más prestado</h3>
+							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/popular.png" alt="...">
+                            <h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $articuloMasPrestado; ?></h1>			  
+						</a>
+						<div class="w-100"></div>
+						<div class="row">							
+						</div>			  				  
+					</div>	
+                    
+                    <div style="text-align: center; cursor: pointer;" class="col-md-3" id="Vperfil">			
+						<a style="text-decoration: none;background-color:#ecac54;" href='<?php echo base_url();?>index.php/devolucion' class="thumbnail">
+							<h3 style="color:#FFFFFF">Total de préstamos</h3>
+							<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/total.png" alt="...">
+                            <h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $totalPrestamos; ?></h1>	  
+							<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+						</a>
+						<div class="w-100"></div>
+						<div class="row">							
+						</div>			  				  
+					</div>	
 		</div>
 
 		<div style="margin-left: 30px; margin-bottom:60px;"><h3>¿Qué deseas realizar?</h4></div>
