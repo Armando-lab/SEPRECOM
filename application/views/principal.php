@@ -87,10 +87,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4">
 				<a style="text-decoration: none;background-color:#327ab4;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
-					<h3 style="color:#FFFFFF">PrÃ©stamos activos</h3>
+					<h3 style="color:#FFFFFF">Préstamos activos</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/activo.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosActivos; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; " data-darkreader-inline-color="">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; " data-darkreader-inline-color="">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -101,10 +101,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4">
 				<a style="text-decoration: none;background-color:#d75250;" data-toggle="modal" data-target="#modalPrestamosVencidos" id="modalPrestamos" class="thumbnail">
-					<h3 style="color:#FFFFFF">PrÃ©stamos con atraso!</h3>
+					<h3 style="color:#FFFFFF">Préstamos con atraso!</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/atraso.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $prestamosVencidos; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -123,10 +123,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Vperfil">
 				<a style="text-decoration: none;background-color:#ecac54;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
-					<h3 style="color:#FFFFFF">Total de prÃ©stamos</h3>
+					<h3 style="color:#FFFFFF">Total de Préstamos</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/total.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $totalPrestamos; ?></h1>
-					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver mÃ¡s detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
+					<p style="text-align: center; margin: 10px; color: #FFFFFF; ">ver más detalles <span class='glyphicon glyphicon-arrow-right'></span></p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -139,7 +139,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="modalLabelPrestamosVencidos">PrÃ©stamos Vencidos</h5>
+						<h5 class="modal-title" id="modalLabelPrestamosVencidos">Préstamos Vencidos</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -177,7 +177,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 		<div style="margin-left: 30px; margin-bottom:60px;">
-			<h3>Â¿QuÃ© deseas realizar?</h4>
+			<h3>¿ Qué deseas realizar?</h4>
 		</div>
 
 		<div class="row">
