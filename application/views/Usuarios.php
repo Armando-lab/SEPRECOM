@@ -541,21 +541,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						} );
 					} );
 
-					// Agrega un evento change al campo de selección para filtrar la tabla por rol
-					$('#filtroRol').on('change', function () {
-						var filtro = $(this).val();
-						
+					// Función para aplicar el filtro en la tabla
+					function aplicarFiltro(filtro) {
 						// Itera sobre cada fila de la tabla y muestra/oculta según el rol seleccionado
 						$('#tbCliente tbody tr').each(function () {
-							var rol = $(this).find('td:eq(5)').text().trim();
+							var rol = $(this).find('td:eq(4)').text().trim();
 							
-							if (filtro === '' || filtro === 'Usuario' || rol === filtro) {
+							if (filtro === 'Usuario') {
+								if (rol !== '') {
+									$(this).show();
+								} else {
+									$(this).hide();
+								}
+							} else if (filtro === rol || filtro === '') {
 								$(this).show();
 							} else {
 								$(this).hide();
 							}
 						});
+					}
+
+					// Establecer filtro predeterminado a "Profesor"
+					$('#filtroRol').val('Profesor');
+
+					// Aplicar filtro inicial
+					aplicarFiltro('Profesor');
+
+					// Agregar evento change al campo de selección para aplicar el filtro
+					$('#filtroRol').on('change', function () {
+						var filtro = $(this).val();
+						aplicarFiltro(filtro);
 					});
+
+
 
 					
 				} );	
