@@ -615,28 +615,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 				});
-
 				$('#fechaInicio, #fechaFin').on('change', function() {
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
 
-					// Si no hay fecha de inicio, establecerla como la fecha actual
+					// Si la fecha de inicio está vacía, asignar la fecha actual
 					if (fechaInicio === '') {
 						var fechaActual = new Date();
-						var dia = fechaActual.getDate();
-						var mes = fechaActual.getMonth() + 1; // Los meses van de 0 a 11, por lo que sumamos 1
-						var año = fechaActual.getFullYear();
-
-						// Formatear la fecha al formato "YYYY-MM-DD"
-						if (dia < 10) {
-							dia = '0' + dia;
-						}
-						if (mes < 10) {
-							mes = '0' + mes;
-						}
-
-						fechaInicio = año + '-' + mes + '-' + dia;
-						$('#fechaInicio').val(fechaInicio); // Establecer la fecha actual en el campo de fecha de inicio
+						var dia = ('0' + fechaActual.getDate()).slice(-2);
+						var mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2);
+						var anio = fechaActual.getFullYear();
+						fechaInicio = anio + '-' + mes + '-' + dia;
+						$('#fechaInicio').val(fechaInicio); // Actualizar el valor en el campo de fecha de inicio
 					}
 
 					// Limpiar todos los filtros personalizados previos
