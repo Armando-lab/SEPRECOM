@@ -285,7 +285,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 
 			<!-- Ventana modal del formulario para realizar el registro de prestamo -->
-			<div class='modal fade' id='modalPrestamo'>
+			<div class='modal fade' id='modalRealizarPrestamo'>
 				<div class='modal-dialog'>
 					<div style='width: 480px;' class='modal-content'>
 						<div style="background-color: #000053;" class='modal-header'>
@@ -588,7 +588,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					$("#Rprestamo").click(function() {
 						frmPrestamo.reset();
 						//se muestra la ventana modal del formulario
-						$('#modalPrestamo').modal();
+						$('#modalRealizarPrestamo').modal();
 						//se blanquea el div de errores del formulario
 						$("#div_col_val_errors").html("");
 					});
