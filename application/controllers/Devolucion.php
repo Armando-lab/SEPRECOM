@@ -11,6 +11,7 @@ class Devolucion extends CI_Controller {
 			
 			$data['menu']=$this->Seguridad_SIIA_Model->Crear_Menu_Usuario($this->config->item('mycfg_id_aplicacion'),$session_data['default_pfc'],"Procesos","Préstamos");						
 			
+			
 			$this->load->view('Devolucion',$data);			
 			
 		}else{
@@ -217,6 +218,7 @@ class Devolucion extends CI_Controller {
 			redirect($this->router->default_controller);
 		}
 	}
+
 	
 	
 	
