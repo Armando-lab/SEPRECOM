@@ -610,6 +610,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
 
+					// Limpiar todos los filtros personalizados previos
+					$.fn.dataTable.ext.search = [];
+
 					// Aplicar el filtro personalizado por rango de fechas
 					$.fn.dataTable.ext.search.push(
 						function(settings, data, dataIndex) {
@@ -627,6 +630,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					// Volver a dibujar la tabla para aplicar el filtro personalizado
 					tbSolicitudes.draw();
 				});
+
 
 
 
