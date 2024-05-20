@@ -122,7 +122,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Vperfil">
-				<a style="text-decoration: none;background-color:#ecac54;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
+				<a style="text-decoration: none;background-color:#ecac54;"  class="thumbnail">
 					<h3 style="color:#FFFFFF">Total de Préstamos</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/total.png" alt="...">
 					<h1 class="card-text" style="text-align: center; margin: 10px; color: #FFFFFF; --darkreader-inline-color: #bbb3a7;"><?php echo $totalPrestamos; ?></h1>
