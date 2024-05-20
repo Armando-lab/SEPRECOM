@@ -313,7 +313,7 @@ class Seguridad_SIIA_Model extends CI_Model {
 			go
 		*/
 		$Menu_HTML="";		
-		$Menu_HTML.=$this->Crear_Opcion("team_view",$Active,$SubActive,"team_view","team_view",$arrOpcionesMenuInvisibles);
+		$Menu_HTML.=$this->Crear_Opcion("team_view",$Active,$SubActive,"Team","team_view",$arrOpcionesMenuInvisibles);
 
 		$Menu_HTML.=$this->Crear_Opcion("Principal",$Active,$SubActive,"principal","Principal",$arrOpcionesMenuInvisibles);				
 		$Menu_HTML.=$this->Crear_Menu_Dropdown("Catalogos",$Active,$SubActive,"Catálogos",$arrOpcionesMenuInvisibles,
