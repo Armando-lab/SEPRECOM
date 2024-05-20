@@ -66,7 +66,7 @@ class Dashboard_model extends CI_Model {
         // Define la consulta SQL
         $this->db->select('id_solicitud, profesor');
         $this->db->from('prestamo');
-        $this->db->where('DATE_ADD(fecha_prest, INTERVAL 3 DAY) <', 'CURDATE()', FALSE);
+        $this->db->where('DATE_ADD(fecha_prest, INTERVAL -3 DAY) <', 'CURDATE()', FALSE);
 
         // Ejecuta la consulta
         $query = $this->db->get();
