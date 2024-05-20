@@ -617,32 +617,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-				// Aplicar filtro por Estado cuando cambie el valor del filtroEstado
+				// Aplicar el filtrado por Estado
 				$('#filtroEstado').on('change', function() {
 					var filtro = $(this).val();
-					tbSolicitudes.column(7).search(filtro).draw(); // Filtrar por estado en la columna 7 y dibujar la tabla
+					tbSolicitudes.column(7).search(filtro).draw();
 				});
-
-				// Establecer el valor predeterminado del filtroEstado como "prestado" al iniciar la página
-				$('#filtroEstado').val('prestado');
 
 				// Aplicar el filtrado por Estado al iniciar la página
 				$('#filtroEstado').trigger('change');
 
-				// Aplicar búsqueda en tiempo real para cada columna de la tabla
+				// Apply the search
 				$('#tbSolicitudes').DataTable().columns().every(function() {
 					var that = this;
 
-					// Cuando cambia el valor en un campo de entrada de texto en el encabezado de la columna
 					$('input', this.header()).on('keyup change', function() {
-						if (that.search() !== this.value) { // Si el valor de búsqueda ha cambiado
+						if (that.search() !== this.value) {
 							that
-								.search(this.value) // Aplicar la búsqueda
-								.draw(); // Dibujar la tabla
+								.search(this.value)
+								.draw();
 						}
 					});
 				});
-
 
 			});
 		</script>
