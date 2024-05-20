@@ -610,14 +610,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
 
-					// Formatear las fechas al formato yyyy-mm-dd (formato reconocido por DataTables)
-					fechaInicio = fechaInicio ? moment(fechaInicio, 'DD/MM/YYYY').format('YYYY-MM-DD') : '';
-					fechaFin = fechaFin ? moment(fechaFin, 'DD/MM/YYYY').format('YYYY-MM-DD') : '';
-
 					// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
 					tbSolicitudes.column(3).search(fechaInicio + '|' + fechaFin, true, false).draw();
 				});
-
 
 
 
