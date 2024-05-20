@@ -64,8 +64,8 @@ class Dashboard_model extends CI_Model {
 
     public function obtener_prestamos_profesores_vencidos() {
         $this->db->select('id_solicitud, profesor');
-        $this->db->from('prestamos');
-        $this->db->where('DATE_ADD(fecha_prestamo, INTERVAL 3 DAY) <', 'CURDATE()', FALSE);
+        $this->db->from('prestamo');
+        $this->db->where('DATE_ADD(fecha_prest, INTERVAL 3 DAY) <', 'CURDATE()', FALSE);
         $query = $this->db->get();
         return $query;
     }
