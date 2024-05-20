@@ -39,7 +39,7 @@ class Team_model extends CI_Controller {
             // Añade más miembros aquí
         ];
 
-        $this->$load->view('team_view', $data);
+        $this->load->view('team_view', $data);
     }
 }
 ?>
