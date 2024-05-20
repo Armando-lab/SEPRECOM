@@ -67,11 +67,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<div class='row'>
 			<div class='col-md-12'>
 				<div class="jumbotron">
-					<h1 style="font-style: italic;">Bienvenido, <font color='#000053'><?php echo $session_data['full_name']; ?></font>
-					</h1>
+					<div class="row">
+						<div class="col-md-10">
+							<h1 style="font-style: italic;">
+								Bienvenido, <font color='#000053'><?php echo $session_data['full_name']; ?></font>
+							</h1>
+						</div>
+						<div class="col-md-2">
+							<img src="<?php echo base_url('application/imagenes/undraw_hello_re_3evm.svg'); ?>" alt="Descripci�n del SVG">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+
 
 		<div class="row">
 
@@ -89,7 +98,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-			<div style="text-align: center; cursor: pointer;" class="col-md-4" >
+			<div style="text-align: center; cursor: pointer;" class="col-md-4">
 				<a style="text-decoration: none;background-color:#d75250;" data-toggle="modal" data-target="#modalPrestamosVencidos" id="modalPrestamos" class="thumbnail">
 					<h3 style="color:#FFFFFF">Préstamos con atraso!</h3>
 					<img style="width: 100px;" src="<?php echo base_url(); ?>application/views/imagenes/atraso.png" alt="...">
@@ -124,8 +133,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 		</div>
 
-				<!-- Vista de prestamos vencidos -->
-				<div class="modal fade" id="modalPrestamosVencidos" tabindex="-1" role="dialog" aria-labelledby="modalLabelPrestamosVencidos" aria-hidden="true">
+		<!-- Vista de prestamos vencidos -->
+		<div class="modal fade" id="modalPrestamosVencidos" tabindex="-1" role="dialog" aria-labelledby="modalLabelPrestamosVencidos" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -137,24 +146,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="modal-body">
 						<!-- Tabla de DataTables -->
 						<table id='tbPrestamosVencidos' name='tbPrestamosVencidos' class='display cell-border order-column dt-responsive'>
-						<thead>
-						<tr>
-							<th>Id solicitud
-							<th>Profesor							
-					</thead>
-					<tfoot>
-						<tr>																										
-							<th>						
-							<th>					
-					</tfoot>
-					
-					
-					<tbody>															
-					</tbody>
+							<thead>
+								<tr>
+									<th>Id solicitud
+									<th>Profesor
+							</thead>
+							<tfoot>
+								<tr>
+									<th>
+									<th>
+							</tfoot>
+
+
+							<tbody>
+							</tbody>
 						</table>
 					</div>
 					<div class='modal-footer'>
-								<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>
+						<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>
 					</div>
 				</div>
 			</div>
@@ -172,7 +181,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<div class="row">
 
-		<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Rprestamo">
+			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Rprestamo">
 				<a style="text-decoration: none;background-color:#FFCD00;" class="thumbnail">
 					<h4 style="color:#000053">Solicitar pr�stamo</h4>
 					<img style="width: 100px; padding: 10px;background-color:#000053; border-radius: 15px;" src="<?php echo base_url(); ?>application/views/imagenes/catalogo.png" alt="...">
@@ -642,147 +651,154 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<!---->
 
-<!-- Chart.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+		<!-- Chart.js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
 
 
-<!-- Tu propio script para generar la gr�fica de barras -->
-<script>
-	$(document).ready(function() {
-		// Datos de ejemplo (puedes obtener estos datos desde tu backend)
-		var datos = {
-			labels: ["Préstamos activos", "Préstamos vencidos", "Total de préstamos"],
-			datasets: [{
-				label: 'Cantidad',
-				data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $totalPrestamos; ?>],
-				backgroundColor: [
-					'#327ab4',
-					'#d75250',
-					'#ecac54'
-				],
-				borderColor: [
-					'#327ab4',
-					'#d75250',
-					'#ecac54'
-				],
-				borderWidth: 1
-			}]
-		};
+		<!-- Tu propio script para generar la gr�fica de barras -->
+		<script>
+			$(document).ready(function() {
+				// Datos de ejemplo (puedes obtener estos datos desde tu backend)
+				var datos = {
+					labels: ["Préstamos activos", "Préstamos vencidos", "Total de préstamos"],
+					datasets: [{
+						label: 'Cantidad',
+						data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $totalPrestamos; ?>],
+						backgroundColor: [
+							'#327ab4',
+							'#d75250',
+							'#ecac54'
+						],
+						borderColor: [
+							'#327ab4',
+							'#d75250',
+							'#ecac54'
+						],
+						borderWidth: 1
+					}]
+				};
 
-		// Configuraci�n de la gr�fica
-		var config = {
-			type: 'bar',
-			data: datos,
-			options: {
-				options: {
-					// Tama�o del canvas
-					responsive: true, // Permite que el canvas se ajuste al contenedor
-					maintainAspectRatio: false, // Evita que la relaci�n de aspecto sea constante
-					width: 50, // Ancho del canvas en p�xeles
-					height: 50, // Alto del canvas en p�xeles
-					scales: {
-						y: {
-							beginAtZero: true
+				// Configuraci�n de la gr�fica
+				var config = {
+					type: 'bar',
+					data: datos,
+					options: {
+						options: {
+							// Tama�o del canvas
+							responsive: true, // Permite que el canvas se ajuste al contenedor
+							maintainAspectRatio: false, // Evita que la relaci�n de aspecto sea constante
+							width: 50, // Ancho del canvas en p�xeles
+							height: 50, // Alto del canvas en p�xeles
+							scales: {
+								y: {
+									beginAtZero: true
+								}
+							}
 						}
 					}
-				}
-			}
-		};
+				};
 
-		// Crear la instancia de la gr�fica en el elemento canvas con el id 'grafica'
-		var ctx = document.getElementById('grafica').getContext('2d');
-		new Chart(ctx, config);
-	});
-</script>
+				// Crear la instancia de la gr�fica en el elemento canvas con el id 'grafica'
+				var ctx = document.getElementById('grafica').getContext('2d');
+				new Chart(ctx, config);
+			});
+		</script>
 
-<script>
+		<script>
 			$(document).ready(function() {
 				$.fn.dataTable.ext.errMode = 'throw';
-				tbPrestamosVencidos = $('#tbPrestamosVencidos').DataTable(
-						{																									
-							dom : 'Blfiprtip',																																																	
-							language: {
-								processing:     "Procesando...",
-								search:         "Buscar:",
-								lengthMenu:     "Mostrar _MENU_ registro(s) a la vez",
-								info:           "Mostrando _START_ a _END_ de _TOTAL_ registro(s)",
-								infoEmpty:      "Mostrando 0 a 0 de 0 registros",
-								infoFiltered:   "(Filtrados de _MAX_ registros en total)",
-								infoPostFix:    "",
-								loadingRecords: "Cargando...",
-								zeroRecords:    "No hay registros para mostrar",
-								emptyTable:     "No hay datos disponibles en la tabla",
-								paginate: {
-									first:      "Primero",
-									previous:   "Anterior",
-									next:       "Siguiente",
-									last:       "Ultimo"
-								},
-								aria: {
-									sortAscending:  ": Ordenar ascendentemente",
-									sortDescending: ": Ordenar descendentemente"
-								},
-								select: {
-									rows: {
-										_: " - %d registros seleccionados",
-										0: "",
-										1: " - 1 registro seleccionado"
-									}
-								}
-							},											
-							"pageLength": 10,
-							"lengthMenu": [ 5,10, 25, 50, 100, 250, 500, 1000, 5000, 10000],
-							responsive: true,
-							select: {
-								style: 'os'
-							},
-							buttons: [
-								{
-									extend: 'copyHtml5',
-									text: '<span class="glyphicon glyphicon-indent-left"></span> Copiar registros'
-								},								
-								{
-									extend: 'excelHtml5',
-									text: '<span class="glyphicon glyphicon-export"></span> Exportar a Excel'
-								}
+				tbPrestamosVencidos = $('#tbPrestamosVencidos').DataTable({
+					dom: 'Blfiprtip',
+					language: {
+						processing: "Procesando...",
+						search: "Buscar:",
+						lengthMenu: "Mostrar _MENU_ registro(s) a la vez",
+						info: "Mostrando _START_ a _END_ de _TOTAL_ registro(s)",
+						infoEmpty: "Mostrando 0 a 0 de 0 registros",
+						infoFiltered: "(Filtrados de _MAX_ registros en total)",
+						infoPostFix: "",
+						loadingRecords: "Cargando...",
+						zeroRecords: "No hay registros para mostrar",
+						emptyTable: "No hay datos disponibles en la tabla",
+						paginate: {
+							first: "Primero",
+							previous: "Anterior",
+							next: "Siguiente",
+							last: "Ultimo"
+						},
+						aria: {
+							sortAscending: ": Ordenar ascendentemente",
+							sortDescending: ": Ordenar descendentemente"
+						},
+						select: {
+							rows: {
+								_: " - %d registros seleccionados",
+								0: "",
+								1: " - 1 registro seleccionado"
+							}
+						}
+					},
+					"pageLength": 10,
+					"lengthMenu": [5, 10, 25, 50, 100, 250, 500, 1000, 5000, 10000],
+					responsive: true,
+					select: {
+						style: 'os'
+					},
+					buttons: [{
+							extend: 'copyHtml5',
+							text: '<span class="glyphicon glyphicon-indent-left"></span> Copiar registros'
+						},
+						{
+							extend: 'excelHtml5',
+							text: '<span class="glyphicon glyphicon-export"></span> Exportar a Excel'
+						}
 					],
-					columnDefs: [
-								{ responsivePriority: 1, targets: 1 },
-								{ responsivePriority: 1, targets: 1 }								
+					columnDefs: [{
+							responsivePriority: 1,
+							targets: 1
+						},
+						{
+							responsivePriority: 1,
+							targets: 1
+						}
 					],
 
-					ajax: '<?php echo base_url();?>index.php/Devolucion/mostrar_prestamos_vencidos',
+					ajax: '<?php echo base_url(); ?>index.php/Devolucion/mostrar_prestamos_vencidos',
 					autoWidth: false,
-					columns: [
-						{data: 'id_solicitud'},
-						{data: 'nombre_profesor'}
+					columns: [{
+							data: 'id_solicitud'
+						},
+						{
+							data: 'nombre_profesor'
+						}
 					],
-					"footerCallback": function ( row, data, start, end, display ) {
-								var api = this.api(), data;
-					 
-								// Remove the formatting to get only the number data
-								var numericVal = function ( i ) {
-									return typeof i === 'string' ?
-										i.replace(/[\$,]/g, '')*1 :
-										typeof i === 'number' ?
-											i : 0;
-								};
-							}
+					"footerCallback": function(row, data, start, end, display) {
+						var api = this.api(),
+							data;
+
+						// Remove the formatting to get only the number data
+						var numericVal = function(i) {
+							return typeof i === 'string' ?
+								i.replace(/[\$,]/g, '') * 1 :
+								typeof i === 'number' ?
+								i : 0;
+						};
+					}
 				});
 
 				// Apply the search
-				$('#tbPrestamosVencidos').DataTable().columns().every( function () {
-						var that = this;
-				 
-						$( 'input', this.header() ).on( 'keyup change', function () {				
-							if ( that.search() !== this.value ) {
-								that
-									.search( this.value )
-									.draw();
-							}
-						} );
-					} );
+				$('#tbPrestamosVencidos').DataTable().columns().every(function() {
+					var that = this;
+
+					$('input', this.header()).on('keyup change', function() {
+						if (that.search() !== this.value) {
+							that
+								.search(this.value)
+								.draw();
+						}
+					});
+				});
 			});
 		</script>
 
