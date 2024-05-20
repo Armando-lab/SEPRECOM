@@ -545,12 +545,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						}
 					],
 						order: [[3, 'desc']],
-						rowReorder: {
-							selector: 'td:first-child', // Selector para el área de agarre de reordenación
-							disable: true // Deshabilitar reordenación de filas cuando en modo de selección
-						},
-						orderCellsTop: true,
-
+						
 						createdRow: function(row, data) {
 						// Obtener la fecha de préstamo y la fecha actual
 						var fechaPrestamo = new Date(data.fecha_prest);
