@@ -14,9 +14,20 @@ class Principal extends CI_Controller {
 			$this->db->close();							
 			$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($rowPerfil->Dbname,$this->Seguridad_SIIA_Model->Desencriptar($rowPerfil->Password)));
 			*/
+			$this->load->model('Prestamo_model');
+			$data['array_prestador']=$this->Prestamo_model->Obtener_Array_Nombre_prestador();
 
 			$this->load->model('producto_model');
 			$data['array_producto']=$this->producto_model->Obtener_Array_Nombre_Producto();
+
+			 // Cargar modelo del dashboard
+			 $this->load->model('Dashboard_model');
+
+			 // Obtener datos del dashboard
+			 $data['prestamosActivos'] = $this->Dashboard_model->obtener_prestamos_activos();
+			 $data['prestamosVencidos'] = $this->Dashboard_model->obtener_prestamos_vencidos();
+			 $data['articuloMasPrestado'] = $this->Dashboard_model->obtener_articulo_mas_prestado();
+			 $data['totalPrestamos'] = $this->Dashboard_model->obtener_total_prestamos();
 
 			$this->load->model('cliente_model');
 			$data['array_cliente']=$this->cliente_model->Obtener_Array_Nombre_Cliente();
@@ -45,6 +56,7 @@ class Principal extends CI_Controller {
 			redirect($this->router->default_controller);
 		}														
 	}
+	
 		
 }
 ?>

@@ -11,7 +11,7 @@ class Producto extends CI_Controller {
 			
 			$data['menu']=$this->Seguridad_SIIA_Model->Crear_Menu_Usuario($this->config->item('mycfg_id_aplicacion'),$session_data['default_pfc'],"Catalogos","Productos");						
 			
-			$this->load->view('Producto',$data);			
+			$this->load->view('Producto',$data);	
 			
 		}else{
 			redirect($this->router->default_controller);
@@ -28,7 +28,7 @@ class Producto extends CI_Controller {
 			$resProducto=$this->Producto_model->Obtener_Producto();										
 			
 			if ($resProducto){
-				while ($rowProducto=$resProducto->unbuffered_row('array')){				
+				while ($rowProducto=$resProducto->unbuffered_row('array')){
 					foreach ($rowProducto as $key=>$value){
 						//las cadenas se deben encodear a utf8 para que el datatable muestre bien los caracteres como acentos y ?
 						if (gettype($rowProducto[$key])=="string"){													

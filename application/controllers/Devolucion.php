@@ -11,6 +11,7 @@ class Devolucion extends CI_Controller {
 			
 			$data['menu']=$this->Seguridad_SIIA_Model->Crear_Menu_Usuario($this->config->item('mycfg_id_aplicacion'),$session_data['default_pfc'],"Procesos","PrÃ©stamos");						
 			
+			
 			$this->load->view('Devolucion',$data);			
 			
 		}else{
@@ -184,6 +185,41 @@ class Devolucion extends CI_Controller {
 			redirect($this->router->default_controller);
 		}
 	}
+
+	public function mostrar_prestamos_vencidos() {
+		if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
+			// Carga la configuración de la base de datos dinámicamente
+			$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values(
+				$this->config->item('mycfg_usuario_conexion'), 
+				$this->config->item('mycfg_pwd_usuario_conexion')
+			));
+	
+			$this->load->model('Dashboard_model');
+	
+			// Obtiene los datos del modelo
+			$prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
+	
+			// Preparar la salida JSON
+			$output = array(); // Cambio aquí
+			foreach ($prestamosVencidos as $prestamo) {
+				foreach ($prestamo as $key => $value) {
+					// Codificar las cadenas en UTF-8
+					if (gettype($value) === "string") {
+						$prestamo[$key] = utf8_encode($value);
+					}
+				}
+				$output[] = $prestamo;
+			}
+	
+			// Devolver los datos en formato JSON para DataTables
+			echo json_encode(array("data" => $output)); // Cambio aquí
+		} else {
+			// Redirige al usuario a la página de inicio si no está logueado
+			redirect($this->router->default_controller);
+		}
+	}
+
+	
 	
 	
 

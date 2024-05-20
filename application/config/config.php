@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //$config['base_url'] = 'https://seprecom.tech/CICASSISTANCE/SEPRECOM_TEST/SEPRECOM/';
 
-$config['base_url'] = 'https://seprecom.tech/SEPRECOM/';
+$config['base_url'] = 'http://seprecom.tech/CICASSISTANCE/SEPRECOM_TEST/SEPRECOM';
 
 /*
 |--------------------------------------------------------------------------
@@ -226,7 +226,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------
@@ -558,7 +558,7 @@ $config['mycfg_pwd_usuario_conexion'] = 'OtkpqWv8@e';
 */
 $config['mycfg_client_id'] = '1077782167869-q59fhuq7e6dlg9qr7a34pu25e9hg02ks.apps.googleusercontent.com';
 $config['mycfg_client_secret'] = 'pmkU-kxZ7x45Md88G2gdzExK';
-$config['mycfg_redirect_uri'] = 'https://seprecom.tech/SEPRECOM/';
+$config['mycfg_redirect_uri'] = 'http://seprecom.tech/CICASSISTANCE/SEPRECOM_TEST/SEPRECOM';
 $config['mycfg_auth_uri'] = 'https://accounts.google.com/o/oauth2/auth';
 $config['mycfg_token_uri'] = 'https://accounts.google.com/o/oauth2/token';
 /*

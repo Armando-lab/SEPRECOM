@@ -43,7 +43,8 @@ class Dashboard extends CI_Controller {
     
         // Cargar la vista modal con los datos obtenidos
         $this->load->view('Dashboard', $data);
-    }    
+    } 
+
     
     
     

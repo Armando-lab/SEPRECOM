@@ -410,7 +410,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 				</div>			
-
+				<div class="row">
+					<div class="col-md-4">
+						<label for="filtroRol">Filtrar por Rol:</label>
+						<select id="filtroRol" class="form-control">
+							<option value="Profesor">Profesor</option>
+							<option value="Usuario">Usuario</option>
+						</select>
+					</div>
+				</div>
 				
 				
 				<!-- Tabla din?mica para mostrar los registros del cat?logo -->	
@@ -433,6 +441,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tbody>															
 					</tbody>
 				</table>
+
 
 
 <script>
@@ -511,29 +520,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										typeof i === 'number' ?
 											i : 0;
 								};
-								/*
-								// Total over all pages
-								total = api
-									.column( 1 )
-									.data()
-									.reduce( function (a, b) {
-										return numericVal(a) + numericVal(b);
-									}, 0 );
-					 
-								// Total over this page
-								pageTotal = api
-									.column( 1, { page: 'current'} )
-									.data()
-									.reduce( function (a, b) {
-										return numericVal(a) + numericVal(b);
-									}, 0 );
-					 
-								// Update footer data
-								$( api.column( 1 ).footer() ).html(
-									pageTotal +' (de '+ total +')'
-								);
-								*/
-							}
+							},
+							
+							
 
 							
 						} 
@@ -551,6 +540,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							}
 						} );
 					} );
+
+					// Función para aplicar el filtro en la tabla
+					function aplicarFiltro(filtro) {
+						// Itera sobre cada fila de la tabla y muestra/oculta según el rol seleccionado
+						$('#tbCliente tbody tr').each(function () {
+							var rol = $(this).find('td:eq(4)').text().trim();
+							
+							if (filtro === 'Usuario') {
+								if (rol !== '') {
+									$(this).show();
+								} else {
+									$(this).hide();
+								}
+							} else if (filtro === rol || filtro === '') {
+								$(this).show();
+							} else {
+								$(this).hide();
+							}
+						});
+					}
+
+					// Establecer filtro predeterminado a "Profesor"
+					$('#filtroRol').val('Profesor');
+
+					// Aplicar filtro inicial
+					aplicarFiltro('Profesor');
+
+					// Agregar evento change al campo de selección para aplicar el filtro
+					$('#filtroRol').on('change', function () {
+						var filtro = $(this).val();
+						aplicarFiltro(filtro);
+					});
+
+
+
 					
 				} );	
 								
