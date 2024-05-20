@@ -7,7 +7,7 @@ class Prestamo_model extends CI_Model {
     public function Obtener_Prestamo(){			
         $qry = "SELECT P.*, C.nombre AS profesor
         FROM prestamo P
-        JOIN cliente C ON P.nombre = C.nombre
+        JOIN cliente C ON P.nombre = C.profesor
         WHERE P.id_solicitud IS NOT NULL";
     
         $resqry = $this->db->query($qry);										
@@ -23,12 +23,12 @@ class Prestamo_model extends CI_Model {
 public function Obtener_Array_Nombre_prestador(){
     $resqry = $this->Obtener_Prestamo();												
     
-    if ($resqry !== false && is_array($resqry)){
+    if ($resqry !== false && is_array($resqry)){			
         $array = array();
         
         // Si $resqry es un array de objetos stdClass
         foreach ($resqry as $row) {
-            $array[$row->nombre] = $row->profesor;
+            $array[$row->profesor] = $row->nombre;
         }
 
         return $array; 
