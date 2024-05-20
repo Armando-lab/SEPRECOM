@@ -19,7 +19,7 @@ class Dashboard_model extends CI_Model {
         $fecha_actual = date('Y-m-d H:i:s');
     
         // Calcular la fecha de vencimiento (24 horas después de la fecha de préstamo)
-        $fecha_vencimiento = date('Y-m-d H:i:s', strtotime('-24 hours', strtotime($fecha_actual)));
+        $fecha_vencimiento = date('Y-m-d H:i:s', strtotime('-72 hours', strtotime($fecha_actual)));
     
         // Realizar la consulta para obtener los préstamos vencidos
         $this->db->where('fecha_prest <', $fecha_vencimiento);
