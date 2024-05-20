@@ -170,7 +170,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					autoWidth: false,
 					columns: [
 						{data: 'id_solicitud'},
-						{data: 'profesor'}
+						{data: 'nombre_profesor'}
 					],
 					"footerCallback": function ( row, data, start, end, display ) {
 								var api = this.api(), data;
