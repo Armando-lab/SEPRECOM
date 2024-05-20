@@ -662,7 +662,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			$(document).ready(function() {
 				// Datos de ejemplo (puedes obtener estos datos desde tu backend)
 				var datos = {
-					labels: ["PrÃ©stamos activos", "PrÃ©stamos vencidos", "Total de prÃ©stamos"],
+					labels: ["Préstamos activos", "Préstamos vencidos", "Total de préstamos"],
 					datasets: [{
 						label: 'Cantidad',
 						data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $totalPrestamos; ?>],
