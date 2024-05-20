@@ -174,7 +174,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="filtro">
 				<label for="filtroEstado">Filtrar por Estado:</label>
 				<select id="filtroEstado">
-					<option value="">Todos</option>
 					<option value="devuelto">Devuelto</option>
 					<option value="Prestado">Prestado</option>
 				</select>
@@ -617,27 +616,32 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-				// Aplicar el filtrado por Estado
+				// Aplicar filtro por Estado cuando cambie el valor del filtroEstado
 				$('#filtroEstado').on('change', function() {
 					var filtro = $(this).val();
-					tbSolicitudes.column(7).search(filtro).draw();
+					tbSolicitudes.column(7).search(filtro).draw(); // Filtrar por estado en la columna 7 y dibujar la tabla
 				});
+
+				// Establecer el valor predeterminado del filtroEstado como "prestado" al iniciar la página
+				$('#filtroEstado').val('Prestado');
 
 				// Aplicar el filtrado por Estado al iniciar la página
 				$('#filtroEstado').trigger('change');
 
-				// Apply the search
+				// Aplicar búsqueda en tiempo real para cada columna de la tabla
 				$('#tbSolicitudes').DataTable().columns().every(function() {
 					var that = this;
 
+					// Cuando cambia el valor en un campo de entrada de texto en el encabezado de la columna
 					$('input', this.header()).on('keyup change', function() {
-						if (that.search() !== this.value) {
+						if (that.search() !== this.value) { // Si el valor de búsqueda ha cambiado
 							that
-								.search(this.value)
-								.draw();
+								.search(this.value) // Aplicar la búsqueda
+								.draw(); // Dibujar la tabla
 						}
 					});
 				});
+
 
 			});
 		</script>
