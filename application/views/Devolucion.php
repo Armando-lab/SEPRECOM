@@ -607,12 +607,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				});
 
 				$('#fechaInicio, #fechaFin').on('change', function() {
-					var fechaInicio = $('#fechaInicio').val();
-					var fechaFin = $('#fechaFin').val();
+				var fechaInicio = $('#fechaInicio').val();
+				var fechaFin = $('#fechaFin').val();
 
-					// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-					tbSolicitudes.column(3).search(fechaInicio + '|' + fechaFin, true, false).draw();
-				});
+				// Crear una expresión regular para el rango de fechas
+				var regex = '^' + fechaInicio + '$|^' + fechaFin + '$|^' + fechaInicio + '\\|.*$|^.*\\|' + fechaFin + '$';
+
+				// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
+				tbSolicitudes.column(3).search(regex, true, false).draw();
+			});
+
 
 
 
