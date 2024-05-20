@@ -35,7 +35,7 @@ class Team_model extends CI_Controller {
                 'name' => 'Armando L Tun Hernandez',
                 'role' => 'Backend',
                 'image' => 'Armando.jpeg'
-            ],
+            ]
             // Añade más miembros aquí
         ];
 
