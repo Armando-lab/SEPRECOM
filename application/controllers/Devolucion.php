@@ -206,13 +206,10 @@ class Devolucion extends CI_Controller {
             $output = array();
             if ($prestamosVencidos) {
                 foreach ($prestamosVencidos as $prestamo) {
-                    foreach ($prestamo as $key => $value) {
-                        // Codificar las cadenas en UTF-8
-                        if (is_string($value)) {
-                            $prestamo->$key = utf8_encode($value);
-                        }
-                    }
-                    $output[] = $prestamo;
+                    $row = array();
+                    $row['id_solicitud'] = $prestamo->id_solicitud;
+                    $row['nombre_profesor'] = utf8_encode($prestamo->nombre_profesor);  // Encodificar como UTF-8
+                    $output[] = $row;
                 }
             }
 
