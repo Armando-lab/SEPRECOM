@@ -545,7 +545,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					function aplicarFiltro(filtro) {
 						// Itera sobre cada fila de la tabla y muestra/oculta según el rol seleccionado
 						$('#tbCliente tbody tr').each(function () {
-							var rol = $(this).find('td:eq(4)').text().trim();
+							var rol = $(this).find('td:eq(5)').text().trim();
 							
 							if (filtro === 'Usuario') {
 								if (rol !== '') {
