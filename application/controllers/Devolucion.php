@@ -187,37 +187,39 @@ class Devolucion extends CI_Controller {
 	}
 
 	public function mostrar_prestamos_vencidos() {
-		if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
-			// Carga la configuración de la base de datos dinámicamente
-			$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values(
-				$this->config->item('mycfg_usuario_conexion'), 
-				$this->config->item('mycfg_pwd_usuario_conexion')
-			));
-	
-			$this->load->model('Dashboard_model');
-	
-			// Obtiene los datos del modelo
-			$prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
-	
-			// Preparar la salida JSON
-			$output = array(); // Cambio aquí
-			foreach ($prestamosVencidos as $prestamo) {
-				foreach ($prestamo as $key => $value) {
-					// Codificar las cadenas en UTF-8
-					if (gettype($value) === "string") {
-						$prestamo[$key] = utf8_encode($value);
-					}
-				}
-				$output[] = $prestamo;
-			}
-	
-			// Devolver los datos en formato JSON para DataTables
-			echo json_encode(array("data" => $output)); // Cambio aquí
-		} else {
-			// Redirige al usuario a la página de inicio si no está logueado
-			redirect($this->router->default_controller);
-		}
-	}
+        if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
+            // Carga la configuración de la base de datos dinámicamente
+            $this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values(
+                $this->config->item('mycfg_usuario_conexion'), 
+                $this->config->item('mycfg_pwd_usuario_conexion')
+            ));
+
+            $this->load->model('Dashboard_model');
+
+            // Obtiene los datos del modelo
+            $prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
+
+            // Log para depuración
+            log_message('info', 'Prestamos vencidos: ' . print_r($prestamosVencidos, TRUE));
+
+            // Preparar la salida JSON
+            $output = array();
+            if ($prestamosVencidos) {
+                foreach ($prestamosVencidos as $prestamo) {
+                    $row = array();
+                    $row['id_solicitud'] = $prestamo->id_solicitud;
+                    $row['nombre_profesor'] = utf8_encode($prestamo->nombre_profesor);  // Encodificar como UTF-8
+                    $output[] = $row;
+                }
+            }
+
+            // Devolver los datos en formato JSON para DataTables
+            echo json_encode(array("data" => $output));
+        } else {
+            // Redirige al usuario a la página de inicio si no está logueado
+            redirect($this->router->default_controller);
+        }
+    }
 
 	
 	
