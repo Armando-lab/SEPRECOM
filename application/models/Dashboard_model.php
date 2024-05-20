@@ -67,15 +67,16 @@ class Dashboard_model extends CI_Model {
         $this->db->select('id_solicitud, profesor');
         $this->db->from('prestamo');
         $this->db->where('DATE_ADD(fecha_prest, INTERVAL 3 DAY) <', 'CURDATE()', FALSE);
-
+    
         $query = $this->db->get();
-
+    
         // Verificar si hay resultados
         if ($query->num_rows() > 0) {
             return $query->result_array(); // Devuelve los resultados como un array de arrays
         } else {
-            return []; // Devuelve un array vacío si no hay resultados
+            return array(); // Devuelve un array vacío si no hay resultados
         }
     }
+    
 }
 ?>
