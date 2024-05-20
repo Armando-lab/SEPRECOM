@@ -552,28 +552,35 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						orderCellsTop: true,
 
 						createdRow: function(row, data) {
-							// Obtener el tiempo transcurrido para el préstamo
-							var fechaPrestamo = new Date(data.fecha_prest);
-							var fechaActual = new Date();
-							var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
+						// Obtener la fecha de préstamo y la fecha actual
+						var fechaPrestamo = new Date(data.fecha_prest);
+						var fechaActual = new Date();
 
-							// Aplicar color según el estado
-							var color;
-							if (data.estado === "devuelto") {
-								color = '#428bca'; // Gris si el estado es "devuelto"
+						// Calcular la diferencia en días entre la fecha actual y la fecha de préstamo
+						var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
+
+						// Definir los umbrales de tiempo para cada color
+						var verdeLimite = 1; // Verde para préstamos de hasta 1 día
+						var amarilloLimite = 2; // Amarillo para préstamos de hasta 2 días
+
+						// Aplicar color según el estado
+						var color;
+						if (data.estado === "devuelto") {
+							color = '#428bca'; // Gris si el estado es "devuelto"
+						} else {
+							if (tiempoTranscurrido <= verdeLimite) {
+								color = '#52BE80'; // Verde pastel si el préstamo es reciente
+							} else if (tiempoTranscurrido <= amarilloLimite) {
+								color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de dos días
 							} else {
-								if (tiempoTranscurrido <= 1) {
-									color = '#52BE80'; // Verde pastel si el préstamo es reciente
-								} else if (tiempoTranscurrido <= 2) {
-									color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de un mes
-								} else {
-									color = '#EC7063'; // Rosa pastel si el préstamo es antiguo
-								}
+								color = '#EC7063'; // Rosa pastel si el préstamo tiene tres días o más
 							}
+						}
 
-							// Aplicar el color de fondo a las celdas de la fila
-							$(row).find('td').css('background-color', color);
-						},
+						// Aplicar el color de fondo a las celdas de la fila
+						$(row).find('td').css('background-color', color);
+					},
+
 
 
 					"footerCallback": function(row, data, start, end, display) {
