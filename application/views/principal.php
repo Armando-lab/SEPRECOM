@@ -185,7 +185,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<div class="row">
 
-			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Rprestamo">
+		<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Rprestamo">
 				<a style="text-decoration: none;background-color:#FFCD00;" class="thumbnail">
 					<h4 style="color:#000053">Solicitar préstamo</h4>
 					<img style="width: 100px; padding: 10px;background-color:#000053; border-radius: 15px;" src="<?php echo base_url(); ?>application/views/imagenes/catalogo.png" alt="...">
