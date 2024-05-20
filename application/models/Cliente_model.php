@@ -13,7 +13,6 @@ class Cliente_model extends CI_Model {
 			return 0;
 		}		
 	}
-    
     public function Obtener_Usuarios_Por_Rol($rol){
         $qry = "SELECT * FROM cliente WHERE Rol_admin = ?";
         $resqry = $this->db->query($qry, array($rol));                                        

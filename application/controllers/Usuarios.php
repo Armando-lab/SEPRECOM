@@ -5,22 +5,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Usuarios extends CI_Controller {	
 
 	public function index(){
-        if($this->session->userdata($this->config->item('mycfg_session_object_name'))){   
-            $session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));                           
-            $this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));            
-            
-            $data['menu']=$this->Seguridad_SIIA_Model->Crear_Menu_Usuario($this->config->item('mycfg_id_aplicacion'),$session_data['default_pfc'],"Catalogos","Usuarios");                       
-            
-            // Obtener usuarios con rol de administrador
-            $data['usuarios_admin'] = $this->Cliente_model->Obtener_Usuarios_Por_Rol('admin');
-            // Obtener usuarios sin rol de administrador
-            $data['usuarios_no_admin'] = $this->Cliente_model->Obtener_Usuarios_Por_Rol('no_admin');
-
-            $this->load->view('Usuarios',$data);            
-        }else{
-            redirect($this->router->default_controller);
-        }   
-    }
+		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	
+			$session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));							
+			$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));			
+			
+			$data['menu']=$this->Seguridad_SIIA_Model->Crear_Menu_Usuario($this->config->item('mycfg_id_aplicacion'),$session_data['default_pfc'],"Catalogos","Usuarios");						
+			
+			$this->load->view('Usuarios',$data);			
+			
+		}else{
+			redirect($this->router->default_controller);
+		}	
+	}
     
     public function Obtener_Dataset_Cliente(){
 		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	
