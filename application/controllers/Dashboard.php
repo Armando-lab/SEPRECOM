@@ -45,13 +45,20 @@ class Dashboard extends CI_Controller {
         $this->load->view('Dashboard', $data);
     }
     
-    // En tu controlador Prestamos
-public function mostrar_prestamos_vencidos() {
-    $this->load->model('Prestamo_model');
-    $prestamosVencidos = $this->Prestamo_model->obtener_prestamos_profesores_vencidos();
-    $data = array('data' => $prestamosVencidos);
-    echo json_encode($data);
-}
+    public function mostrar_prestamos_vencidos() {
+        // Obtiene los préstamos vencidos del modelo
+        $data['prestamos_vencidos'] = $this->Prestamo_model->obtener_prestamos_profesores_vencidos();
+
+        // Verifica si hay datos
+        if ($data['prestamos_vencidos']) {
+            // Carga una vista y pasa los datos de los préstamos vencidos
+            $this->load->view('prestamos_vencidos_view', $data);
+        } else {
+            // Puedes manejar el caso de no haber datos de alguna manera específica
+            // Por ejemplo, cargar una vista con un mensaje específico
+            echo "No hay préstamos vencidos para mostrar.";
+        }
+    }
 
     
     
