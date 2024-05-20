@@ -36,17 +36,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			margin-top: 10px;
 		}
 
-		.color-box {
+		.color-circle {
 			width: 20px;
 			height: 20px;
+			border-radius: 50%; /* Esto hace que el div sea un círculo */
 			display: inline-block;
-			margin-right: 5px;
+			margin-right: 10px;
 		}
 
 		.semaphore span {
 			font-size: 14px;
 			vertical-align: middle;
 		}
+
 
 	</style>
 </head>
@@ -472,19 +474,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</tbody>
 		</table>
 
+
 		<!-- Simbología del semáforo -->
 		<div class="semaphore">
-			<div class="color-box" style="background-color: #52BE80;"></div>
+			<div class="color-circle" style="background-color: #52BE80;"></div>
 			<span>Menos de 1 día de préstamo</span>
 		</div>
 		<div class="semaphore">
-			<div class="color-box" style="background-color: #F4D03F;"></div>
+			<div class="color-circle" style="background-color: #F4D03F;"></div>
 			<span>Entre 1 y 2 días de préstamo</span>
 		</div>
 		<div class="semaphore">
-			<div class="color-box" style="background-color: #EC7063;"></div>
+			<div class="color-circle" style="background-color: #EC7063;"></div>
 			<span>Más de 2 días de préstamo</span>
 		</div>
+
+
 
 
 		<script>
