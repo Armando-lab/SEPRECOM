@@ -623,7 +623,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				});
 
 				// Establecer el valor predeterminado del filtroEstado como "prestado" al iniciar la página
-				$('#filtroEstado').val('prestado');
+				$('#filtroEstado').val('Prestado');
 
 				// Aplicar el filtrado por Estado al iniciar la página
 				$('#filtroEstado').trigger('change');
