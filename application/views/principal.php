@@ -588,9 +588,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Verprestamo">
 				<a style="text-decoration: none;background-color:#FFCD00;" href='<?php echo base_url(); ?>index.php/prestamo' class="thumbnail">
-					<h4 style="color:#000053">Ver prÃ©stamos</h4>
+					<h4 style="color:#000053">Ver préstamos</h4>
 					<img style="width: 100px; padding: 10px;background-color:#000053; border-radius: 15px;" src="<?php echo base_url(); ?>application/views/imagenes/ver.png" alt="...">
-					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aquÃ­ para observar registro de prÃ©stamos.</p>
+					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aquí para observar registro de préstamos.</p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
@@ -599,9 +599,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div style="text-align: center; cursor: pointer;" class="col-md-4" id="Vperfil">
 				<a style="text-decoration: none;background-color:#FFCD00;" href='<?php echo base_url(); ?>index.php/devolucion' class="thumbnail">
-					<h4 style="color:#000053">Realizar devoluciÃ³n</h4>
+					<h4 style="color:#000053">Realizar devolución</h4>
 					<img style="width: 100px; padding: 10px;background-color:#000053; border-radius: 15px;" src="<?php echo base_url(); ?>application/views/imagenes/devolucion-de-producto.png" alt="...">
-					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aquÃ­ para realizar la devoluciÃ³n.</p>
+					<p style="text-align: center; margin: 10px; color: #000053; --darkreader-inline-color: #bbb3a7;" data-darkreader-inline-color="">Haga clic aquí para realizar la devolución.</p>
 				</a>
 				<div class="w-100"></div>
 				<div class="row">
