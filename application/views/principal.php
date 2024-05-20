@@ -181,7 +181,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								{ responsivePriority: 1, targets: 1 }								
 					],
 
-					ajax: '<?php echo base_url(); ?>index.php/Dashboard/mostrar_prestamos_vencidos',
+					ajax: '<?php echo base_url();?>index.php/Dashboard/mostrar_prestamos_vencidos',
 					autoWidth: false,
 					columns: [
 						{data: 'id_solicitud'},
