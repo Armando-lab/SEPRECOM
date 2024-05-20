@@ -636,6 +636,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						}
 
 						fechaInicio = año + '-' + mes + '-' + dia;
+						$('#fechaInicio').val(fechaInicio); // Establecer la fecha actual en el campo de fecha de inicio
 					}
 
 					// Limpiar todos los filtros personalizados previos
@@ -658,6 +659,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					// Volver a dibujar la tabla para aplicar el filtro personalizado
 					tbSolicitudes.draw();
 				});
+
 
 				// Aplicar filtro por Estado cuando cambie el valor del filtroEstado
 				$('#filtroEstado').on('change', function() {
