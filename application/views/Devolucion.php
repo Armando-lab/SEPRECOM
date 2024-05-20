@@ -488,6 +488,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="color-circle" style="background-color: #EC7063;"></div>
 			<span>Más de 2 días de préstamo</span>
 		</div>
+		<div class="semaphore">
+			<div class="color-circle" style="background-color: #428bca;"></div>
+			<span>Devuelto</span>
+		</div>
+
 
 
 
