@@ -194,30 +194,29 @@ class Devolucion extends CI_Controller {
 				$this->config->item('mycfg_pwd_usuario_conexion')
 			));
 	
+			// Carga el modelo
 			$this->load->model('Dashboard_model');
 	
 			// Obtiene los datos del modelo
 			$prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
 	
 			// Preparar la salida JSON
-			$output = array(); // Cambio aquí
+			$output = array();
 			foreach ($prestamosVencidos as $prestamo) {
-				foreach ($prestamo as $key => $value) {
-					// Codificar las cadenas en UTF-8
-					if (gettype($value) === "string") {
-						$prestamo[$key] = utf8_encode($value);
-					}
-				}
-				$output[] = $prestamo;
+				$row = array();
+				$row['id_solicitud'] = $prestamo->id_solicitud;
+				$row['nombre_profesor'] = $prestamo->nombre_profesor;
+				$output[] = $row;
 			}
 	
 			// Devolver los datos en formato JSON para DataTables
-			echo json_encode(array("data" => $output)); // Cambio aquí
+			echo json_encode(array("data" => $output));
 		} else {
 			// Redirige al usuario a la página de inicio si no está logueado
 			redirect($this->router->default_controller);
 		}
 	}
+	
 
 	
 	
