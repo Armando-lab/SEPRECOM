@@ -913,7 +913,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							autoWidth: false,							
 							columns: [								
 								{ data: "id_solicitud" },
-								{ data: "nombre" },
+								{ data: "profesor" },
 								{ data: "Edificio" },
 								{ data: "Tipo_Area" },
 								{ data: "Num_Area" },
