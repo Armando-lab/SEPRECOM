@@ -200,19 +200,21 @@ class Devolucion extends CI_Controller {
 			$prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
 	
 			// Preparar la salida JSON
-			$output = array(); // Cambio aquí
-			foreach ($prestamosVencidos as $prestamo) {
-				foreach ($prestamo as $key => $value) {
-					// Codificar las cadenas en UTF-8
-					if (gettype($value) === "string") {
-						$prestamo[$key] = utf8_encode($value);
+			$output = array();
+			if ($prestamosVencidos) {
+				foreach ($prestamosVencidos as $prestamo) {
+					foreach ($prestamo as $key => $value) {
+						// Codificar las cadenas en UTF-8
+						if (is_string($value)) {
+							$prestamo->$key = utf8_encode($value);
+						}
 					}
+					$output[] = $prestamo;
 				}
-				$output[] = $prestamo;
 			}
 	
 			// Devolver los datos en formato JSON para DataTables
-			echo json_encode(array("data" => $output)); // Cambio aquí
+			echo json_encode(array("data" => $output));
 		} else {
 			// Redirige al usuario a la página de inicio si no está logueado
 			redirect($this->router->default_controller);
