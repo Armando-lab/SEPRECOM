@@ -544,6 +544,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							data: "estado"
 						}
 					],
+						order: [[4, 'desc']]
+					,
 					"createdRow": function(row, data) {
 						// Obtener el tiempo transcurrido para el préstamo
 						var fechaPrestamo = new Date(data.fecha_prest);
