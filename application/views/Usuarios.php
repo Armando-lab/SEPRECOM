@@ -520,29 +520,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										typeof i === 'number' ?
 											i : 0;
 								};
-								/*
-								// Total over all pages
-								total = api
-									.column( 1 )
-									.data()
-									.reduce( function (a, b) {
-										return numericVal(a) + numericVal(b);
-									}, 0 );
-					 
-								// Total over this page
-								pageTotal = api
-									.column( 1, { page: 'current'} )
-									.data()
-									.reduce( function (a, b) {
-										return numericVal(a) + numericVal(b);
-									}, 0 );
-					 
-								// Update footer data
-								$( api.column( 1 ).footer() ).html(
-									pageTotal +' (de '+ total +')'
-								);
-								*/
-							}
+							},
+							// Agrega un evento change al campo de selección para filtrar la tabla por rol
+							$('#filtroRol').on('change', function () {
+								var filtro = $(this).val();
+								
+								// Itera sobre cada fila de la tabla y muestra/oculta según el rol seleccionado
+								$('#tbCliente tbody tr').each(function () {
+									var rol = $(this).find('td:eq(4)').text().trim();
+									
+									if (filtro === '' || filtro === 'Usuario' || rol === filtro) {
+										$(this).show();
+									} else {
+										$(this).hide();
+									}
+								});
 
 							
 						} 
