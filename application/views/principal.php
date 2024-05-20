@@ -643,8 +643,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<!---->
 
 
-
-
 <script>
 			$(document).ready(function() {
 				$.fn.dataTable.ext.errMode = 'throw';
@@ -745,5 +743,68 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	require "owned/notification_messages_controller.php";
 	?>
 </body>
+
+				<!-- Chart.js -->
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Tu propio script para generar la gr�fica de barras -->
+<script>
+	$(document).ready(function() {
+		// Datos de ejemplo (puedes obtener estos datos desde tu backend)
+		var datos = {
+			labels: ["Préstamos activos", "Préstamos vencidos", "Total de préstamos"],
+			datasets: [{
+				label: 'Cantidad',
+				data: [<?php echo $prestamosActivos; ?>, <?php echo $prestamosVencidos; ?>, <?php echo $totalPrestamos; ?>],
+				backgroundColor: [
+					'#327ab4',
+					'#d75250',
+					'#ecac54'
+				],
+				borderColor: [
+					'#327ab4',
+					'#d75250',
+					'#ecac54'
+				],
+				borderWidth: 1
+			}]
+		};
+
+		// Configuraci�n de la gr�fica
+		var config = {
+			type: 'bar',
+			data: datos,
+			options: {
+				options: {
+					// Tama�o del canvas
+					responsive: true, // Permite que el canvas se ajuste al contenedor
+					maintainAspectRatio: false, // Evita que la relaci�n de aspecto sea constante
+					width: 50, // Ancho del canvas en p�xeles
+					height: 50, // Alto del canvas en p�xeles
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			}
+		};
+
+		// Crear la instancia de la gr�fica en el elemento canvas con el id 'grafica'
+		var ctx = document.getElementById('grafica').getContext('2d');
+		new Chart(ctx, config);
+	});
+</script>
+
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </html>
