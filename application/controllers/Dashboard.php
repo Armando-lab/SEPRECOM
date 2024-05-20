@@ -46,23 +46,20 @@ class Dashboard extends CI_Controller {
     }
     
     public function mostrar_prestamos_vencidos() {
-        // Verificar si el usuario está logueado
+
+        $this->load->model('Dashboard_model');
         if ($this->session->userdata('logged_in')) {
-
-            $this->load->model('Dashboard_model');
-            $data['prestamos_vencidos'] = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
-
-            if (!empty($data['prestamos_vencidos'])) {
-                // Aquí podrías cargar una vista o simplemente devolver los datos como JSON
-                echo json_encode($data['prestamos_vencidos']);
+            $prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
+    
+            if (!empty($prestamosVencidos)) {
+                echo json_encode(array("data" => $prestamosVencidos));
             } else {
-                echo json_encode([]);
+                echo json_encode(array("data" => []));
             }
         } else {
-            // Redirigir al usuario a la página de login si no está logueado
             redirect('login');
         }
-    }
+    }    
 
     
     
