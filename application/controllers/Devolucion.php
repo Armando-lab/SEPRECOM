@@ -187,30 +187,26 @@ class Devolucion extends CI_Controller {
 	}
 
 	public function mostrar_prestamos_vencidos() {
-		// Verifica si el usuario está autenticado
 		if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
-			// Carga el modelo Dashboard_model
+			// Carga la configuración de la base de datos dinámicamente
+			$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values(
+				$this->config->item('mycfg_usuario_conexion'), 
+				$this->config->item('mycfg_pwd_usuario_conexion')
+			));
+	
 			$this->load->model('Dashboard_model');
 	
-			// Obtiene los préstamos vencidos del modelo
-			$prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
+			// Obtiene los datos del modelo
+			$data['prestamosVencidos'] = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
 	
-			// Verifica si se obtuvieron préstamos vencidos
-			if ($prestamosVencidos !== false) {
-				// Prepara la respuesta JSON
-				$response['data'] = $prestamosVencidos;
-			} else {
-				// No se encontraron préstamos vencidos
-				$response['error'] = 'No se encontraron préstamos vencidos.';
-			}
+			// Carga la vista y pasa los datos
+			$this->load->view('mostrar_prestamos_vencidos', $data);
 		} else {
-			// El usuario no está autenticado, redirige a la página de inicio de sesión
-			$response['error'] = 'No estás autenticado.';
+			// Redirige al usuario a la página de inicio si no está logueado
+			redirect($this->router->default_controller);
 		}
+	}
 	
-		// Devuelve la respuesta en formato JSON
-		echo json_encode($response);
-	}	
 
 	
 	
