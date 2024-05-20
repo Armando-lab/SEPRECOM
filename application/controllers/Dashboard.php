@@ -43,23 +43,7 @@ class Dashboard extends CI_Controller {
     
         // Cargar la vista modal con los datos obtenidos
         $this->load->view('Dashboard', $data);
-    }
-    
-    public function mostrar_prestamos_vencidos() {
-
-        $this->load->model('Dashboard_model');
-        if ($this->session->userdata('logged_in')) {
-            $prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
-    
-            if (!empty($prestamosVencidos)) {
-                echo json_encode(array("data" => $prestamosVencidos));
-            } else {
-                echo json_encode(array("data" => []));
-            }
-        } else {
-            redirect('login');
-        }
-    }    
+    } 
 
     
     
