@@ -435,6 +435,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</table>
 
 
+
 <script>
 				var tbCliente;
 				$(document).ready( function () {
