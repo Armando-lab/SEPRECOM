@@ -150,6 +150,42 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 		</div>
 
+				<!-- Vista de prestamos vencidos -->
+				<div class="modal fade" id="modalPrestamosVencidos" tabindex="-1" role="dialog" aria-labelledby="modalLabelPrestamosVencidos" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalLabelPrestamosVencidos">Préstamos Vencidos</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<!-- Tabla de DataTables -->
+						<table id='tbPrestamosVencidos' name='tbPrestamosVencidos' class='display cell-border order-column dt-responsive'>
+						<thead>
+						<tr>
+							<th>Id solicitud
+							<th>Profesor							
+					</thead>
+					<tfoot>
+						<tr>																										
+							<th>						
+							<th>					
+					</tfoot>
+					
+					
+					<tbody>															
+					</tbody>
+						</table>
+					</div>
+					<div class='modal-footer'>
+								<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<canvas id="grafica"></canvas>
 
 
@@ -667,6 +703,95 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<!---->
 
+		<script>
+			$(document).ready(function() {
+				$.fn.dataTable.ext.errMode = 'throw';
+				tbPrestamosVencidos = $('#tbPrestamosVencidos').DataTable(
+						{																									
+							dom : 'Blfiprtip',																																																	
+							language: {
+								processing:     "Procesando...",
+								search:         "Buscar:",
+								lengthMenu:     "Mostrar _MENU_ registro(s) a la vez",
+								info:           "Mostrando _START_ a _END_ de _TOTAL_ registro(s)",
+								infoEmpty:      "Mostrando 0 a 0 de 0 registros",
+								infoFiltered:   "(Filtrados de _MAX_ registros en total)",
+								infoPostFix:    "",
+								loadingRecords: "Cargando...",
+								zeroRecords:    "No hay registros para mostrar",
+								emptyTable:     "No hay datos disponibles en la tabla",
+								paginate: {
+									first:      "Primero",
+									previous:   "Anterior",
+									next:       "Siguiente",
+									last:       "Ultimo"
+								},
+								aria: {
+									sortAscending:  ": Ordenar ascendentemente",
+									sortDescending: ": Ordenar descendentemente"
+								},
+								select: {
+									rows: {
+										_: " - %d registros seleccionados",
+										0: "",
+										1: " - 1 registro seleccionado"
+									}
+								}
+							},											
+							"pageLength": 10,
+							"lengthMenu": [ 5,10, 25, 50, 100, 250, 500, 1000, 5000, 10000],
+							responsive: true,
+							select: {
+								style: 'os'
+							},
+							buttons: [
+								{
+									extend: 'copyHtml5',
+									text: '<span class="glyphicon glyphicon-indent-left"></span> Copiar registros'
+								},								
+								{
+									extend: 'excelHtml5',
+									text: '<span class="glyphicon glyphicon-export"></span> Exportar a Excel'
+								}
+					],
+					columnDefs: [
+								{ responsivePriority: 1, targets: 0 },
+								{ responsivePriority: 1, targets: 1 }								
+					],
+
+					ajax: '<?php echo base_url(); ?>index.php/Prestamos/mostrar_prestamos_vencidos',
+					autoWidth: false,
+					columns: [
+						{data: 'id_solicitud'},
+						{data: 'profesor'}
+					],
+					"footerCallback": function ( row, data, start, end, display ) {
+								var api = this.api(), data;
+					 
+								// Remove the formatting to get only the number data
+								var numericVal = function ( i ) {
+									return typeof i === 'string' ?
+										i.replace(/[\$,]/g, '')*1 :
+										typeof i === 'number' ?
+											i : 0;
+								};
+							}
+				});
+
+				// Apply the search
+				$('#tbPrestamosVencidos').DataTable().columns().every( function () {
+						var that = this;
+				 
+						$( 'input', this.header() ).on( 'keyup change', function () {				
+							if ( that.search() !== this.value ) {
+								that
+									.search( this.value )
+									.draw();
+							}
+						} );
+					} );
+			});
+		</script>
 
 
 
