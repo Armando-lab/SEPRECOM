@@ -73,7 +73,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								Bienvenido, <font color='#000053'><?php echo $session_data['full_name']; ?></font>
 							</h1>
 						</div>
-						<div class="col-md-1">
+						<div class="col-md-4">
 							<img src="<?php echo base_url('application/views/imagenes/undraw_hello_re_3evm.svg'); ?>" alt="Descripción del SVG">
 						</div>
 					</div>
