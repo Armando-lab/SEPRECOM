@@ -544,8 +544,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							data: "estado"
 						}
 					],
-						order: [[4, 'desc']]
-					,
+						order: [[3, 'desc']],
+						rowReorder: {
+							selector: 'td:first-child', // Selector para el área de agarre de reordenación
+							disable: true // Deshabilitar reordenación de filas cuando en modo de selección
+						},
 					"createdRow": function(row, data) {
 						// Obtener el tiempo transcurrido para el préstamo
 						var fechaPrestamo = new Date(data.fecha_prest);
