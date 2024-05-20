@@ -46,33 +46,21 @@ class Dashboard extends CI_Controller {
     }
     
     public function mostrar_prestamos_vencidos() {
-        // Verifica si el usuario está logueado usando los datos de sesión
-        if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
+        // Verificar si el usuario está logueado
+        if ($this->session->userdata('logged_in')) {
 
             $this->load->model('Dashboard_model');
-            // Obtener los préstamos vencidos desde el modelo
-            $resPrestamos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
+            $data['prestamos_vencidos'] = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
 
-            // Preparar los datos para JSON
-            if (!empty($resPrestamos)) {
-                $output = [];
-                foreach ($resPrestamos as $row) {
-                    foreach ($row as $key => $value) {
-                        // Codificar las cadenas en UTF-8 para asegurar la correcta visualización de caracteres especiales
-                        if (is_string($value)) {
-                            $row[$key] = utf8_encode($value);
-                        }
-                    }
-                    $output[] = $row;
-                }
-                print(json_encode(array("data" => $output)));
+            if (!empty($data['prestamos_vencidos'])) {
+                // Aquí podrías cargar una vista o simplemente devolver los datos como JSON
+                echo json_encode($data['prestamos_vencidos']);
             } else {
-                // Devolver un array vacío si no hay préstamos vencidos
-                print(json_encode(array("data" => [])));
+                echo json_encode([]);
             }
         } else {
-            // Redirigir al controlador por defecto si el usuario no está logueado
-            redirect($this->router->default_controller);
+            // Redirigir al usuario a la página de login si no está logueado
+            redirect('login');
         }
     }
 
