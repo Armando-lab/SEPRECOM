@@ -744,11 +744,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	?>
 </body>
 
-				<!-- Chart.js -->
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Tu propio script para generar la gr�fica de barras -->
 <script>
