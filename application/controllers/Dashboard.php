@@ -46,18 +46,20 @@ class Dashboard extends CI_Controller {
     }
     
     public function mostrar_prestamos_vencidos() {
+        // Verifica si el usuario está logueado usando los datos de sesión
         if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
-            $session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));
-            $this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'), $this->config->item('mycfg_pwd_usuario_conexion')));
 
             $this->load->model('Dashboard_model');
+            // Obtener los préstamos vencidos desde el modelo
             $resPrestamos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
 
-            if ($resPrestamos) {
+            // Preparar los datos para JSON
+            if (!empty($resPrestamos)) {
                 $output = [];
-                foreach ($resPrestamos->result_array() as $row) {
+                foreach ($resPrestamos as $row) {
                     foreach ($row as $key => $value) {
-                        if (gettype($value) == "string") {
+                        // Codificar las cadenas en UTF-8 para asegurar la correcta visualización de caracteres especiales
+                        if (is_string($value)) {
                             $row[$key] = utf8_encode($value);
                         }
                     }
@@ -65,9 +67,11 @@ class Dashboard extends CI_Controller {
                 }
                 print(json_encode(array("data" => $output)));
             } else {
-                print(json_encode(array("data" => "")));
+                // Devolver un array vacío si no hay préstamos vencidos
+                print(json_encode(array("data" => [])));
             }
         } else {
+            // Redirigir al controlador por defecto si el usuario no está logueado
             redirect($this->router->default_controller);
         }
     }
