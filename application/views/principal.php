@@ -68,7 +68,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class='col-md-12'>
 				<div class="jumbotron">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-7">
 							<h1 style="font-style: italic;">
 								Bienvenido, <font color='#000053'><?php echo $session_data['full_name']; ?></font>
 							</h1>
