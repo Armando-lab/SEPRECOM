@@ -177,107 +177,134 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				});
 </script>
 
-	<!-- Ventana modal del formulario para realizar el registro de prestamo -->	
+	<!-- Ventana modal del formulario para realizar el registro de prestamo -->
 	<div class='modal fade' id='modalPrestamo'>
-					<div class='modal-dialog'>
-						<div style='width: 480px;' class='modal-content'>
-							<div style="background-color: #000053;" class='modal-header'>
-								<!--<button style="background-color: #FFCD00;" type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>-->
-									<h4 style="color: white;" class='modal-title'>Datos del pr√©stamo</h4>
+				<div class='modal-dialog'>
+					<div style='width: 480px;' class='modal-content'>
+						<div style="background-color: #000053;" class='modal-header'>
+							<!--<button style="background-color: #FFCD00;" type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>-->
+							<h4 style="color: white;" class='modal-title'>Datos del prÈstamo</h4>
+						</div>
+						<div class='modal-body'>
+							<?php
+							echo form_open("Prestamo/Crear_Solicitud", "id='frmPrestamo' name='frmPrestamo' role='form'");
+							//Agregamos los campos de la llave primaria como campos de tipo hidden
+
+							?>
+							<div class='row'>
+								<div class='col-md-12' id='div_col_val_errors' name='div_col_val_errors'>
+								</div>
 							</div>
-							<div class='modal-body'>
-<?php 
-							echo form_open("Prestamo/Crear_Solicitud","id='frmPrestamo' name='frmPrestamo' role='form'"); 
-								//Agregamos los campos de la llave primaria como campos de tipo hidden
-						
-?>												
-								<div class='row'>												
-									<div class='col-md-12' id='div_col_val_errors' name='div_col_val_errors'>										
-									</div>
+
+							<div class='row'>
+								<div class='col-md-5'>
+									Responsable de la entrega:
 								</div>
-
-								<div class='row'>
-									<div class='col-md-8'>
-										Responsable de la entrega:
-									</div>
-									<div class='col-md-8'>
-										<div class='form-group'>									
-
-										<input style="border: none; outline: none; !important; color:orange; font-size: 17px; font-weight: bold; margin-bottom: -25px;" type="text" name='Encargado' value="<?php echo set_value('Encargado', $session_data['full_name']); ?>" readonly />
-
-										</div>
-									</div>
-								</div>
-
-								<div class='row'>
-									<div class='col-md-5'>
-										Nombre del solicitante:
-									</div>
-									<br>
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php
-											ComboBox("Nombre_Solicitante","Nombre_Solicitante","form-control","",1,false,1,$array_cliente,"","","","Nombre del solicitante");												
-?>
-										</div>
-									</div>
-								</div>
-
-								<div style="width: auto; display: flex; flex-wrap: wrap; align-items: flex-start;">
-									<div style="flex: 0 0 auto; margin-right: 10px;">
-										<div>Edificio:</div>
-										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<select name="Edificio" id="Edificio" class="form-control" onchange="fillAreas(this.value, document.getElementById('Tipo_Area').value)">
-												<option value="B">B</option>
-												<option value="D">D</option>
-												<option value="E">E</option>
-												<option value="F">F</option>
-												<option value="Externo">Externo</option>
-
-											</select>
-										</div>
-									</div>
-									
-									<div style="flex: 0 0 auto; margin-right: 10px;">
-										<div>Tipo √Årea:</div>
-										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<select name="Tipo_Area" id="Tipo_Area" class="form-control" onchange="fillAreas(document.getElementById('Edificio').value, this.value)">
-												<option value="AULA">AULA</option>
-												<option value="LABORATORIO">LABORATORIO</option>
-												<option value="Sala CIC">Sala CIC</option>
-												<option value="I+D+I">I+D+I</option>
-											</select>
-										</div>
-									</div>
-
-									<div style="flex: 0 0 auto; margin-right: 10px;">
-										<div>N√∫mero de √Årea:</div>
-										<div style="width: 100px; margin-top: 5px;" class='form-group'>
-											<select name="Id_Area" id="Id_Area" class="form-control" onchange="updateFields()">
-												<!-- Options will be filled by JavaScript -->
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class='row'>
-								<br>
 								<div class='col-md-8'>
 									<div class='form-group'>
 
+										<input style="border: none; outline: none; !important; color:orange; font-size: 17px; font-weight: bold; margin-bottom: -25px;" type="text" name='Encargado' value="<?php echo set_value('Encargado', $session_data['full_name']); ?>" readonly />
+
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<!-- Campo de b˙squeda -->
+									<label for="busqueda">Buscar cliente:</label>
+									<input type="text" id="busqueda" class="form-control">
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-md-6">
+									<!-- Selector para los clientes filtrados -->
+									<select id="selector" size="1" name="Nombre_Solicitante" class="form-control">
+										<?php foreach ($array_cliente as $cliente) : ?>
+											<option value="<?php echo $cliente; ?>"><?php echo $cliente; ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+							</div>
+
+							<!-- Script de JavaScript -->
+							<script>
+								$(document).ready(function() {
+									// Agrega un evento de cambio al campo de b˙squeda
+									$('#busqueda').on('input', function() {
+										var busqueda = $(this).val().toLowerCase();
+										if (busqueda.trim() !== '') {
+											$('#selector').show(); // Muestra el selector si hay una b˙squeda
+										} else {
+											$('#selector').hide(); // Oculta el selector si no hay b˙squeda
+										}
+										$('#selector option').each(function() {
+											var cliente = $(this).text().toLowerCase();
+											if (cliente.includes(busqueda)) {
+												$(this).show();
+											} else {
+												$(this).hide();
+											}
+										});
+									});
+								});
+							</script>
+
+							<div style="width: auto; display: flex; flex-wrap: wrap; align-items: flex-start;">
+								<div style="flex: 0 0 auto; margin-right: 10px;">
+									<div>Edificio:</div>
+									<div style="width: 100px; margin-top: 5px;" class='form-group'>
+										<select name="Edificio" id="Edificio" class="form-control" onchange="fillAreas(this.value, document.getElementById('Tipo_Area').value)">
+											<option value="B">B</option>
+											<option value="D">D</option>
+											<option value="E">E</option>
+											<option value="F">F</option>
+											<option value="Externo">Externo</option>
+
+										</select>
+									</div>
+								</div>
+
+								<div style="flex: 0 0 auto; margin-right: 10px;">
+									<div>Tipo √Årea:</div>
+									<div style="width: 100px; margin-top: 5px;" class='form-group'>
+										<select name="Tipo_Area" id="Tipo_Area" class="form-control" onchange="fillAreas(document.getElementById('Edificio').value, this.value)">
+											<option value="AULA">AULA</option>
+											<option value="LABORATORIO">LABORATORIO</option>
+											<option value="Sala CIC">Sala CIC</option>
+											<option value="I+D+I">I+D+I</option>
+										</select>
+									</div>
+								</div>
+
+								<div style="flex: 0 0 auto; margin-right: 10px;">
+									<div>N√∫mero de √Årea:</div>
+									<div style="width: 100px; margin-top: 5px;" class='form-group'>
+										<select name="Id_Area" id="Id_Area" class="form-control" onchange="updateFields()">
+											<!-- Options will be filled by JavaScript -->
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class='row'>
+								<br>
+								<div class='col-md-8'>
+									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
 												<!-- Campo de b˙squeda -->
 												<label for="busqueda1">Equipo o accesorio solicitado:</label>
-												<input type="text" id="busqueda1" class="form-control">
+												<input type="text" id="busqueda1" name="Equipo_Solicitado1" class="form-control" placeholder="Selecciona un producto">
+												<input type="hidden" id="producto_id1" name="producto_id1"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
 											</div>
 										</div>
 										<div class="row mt-3">
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
-												<select id="selector1" size="1" name="Equipo_Solicitado1" class="form-control">
-													<?php foreach ($array_producto as $producto) : ?>
-														<option value="<?php echo $producto; ?>"><?php echo $producto; ?></option>
+												<select id="selector1" size="1" class="form-control">
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciÛn por defecto -->
+													<?php foreach ($array_producto as $id => $nombre) : ?>
+														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
 												</select>
 											</div>
@@ -287,7 +314,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Agrega un evento de cambio al campo de b˙squeda
+										// Agregar evento de cambio al selector
+										$('#selector1').on('change', function() {
+											var selectedProduct = $(this).val(); // Obtener el ID del producto seleccionado
+											var selectedProductName = $(this).find(':selected').text(); // Obtener el nombre del producto seleccionado
+											$('#busqueda1').val(selectedProductName); // Rellenar el input con el nombre del producto
+											$('#producto_id1').val(selectedProduct); // Asignar el ID del producto al campo oculto
+
+											// Cambiar el nombre del campo oculto solo si no ha sido cambiado previamente
+											if ($('#producto_id1').attr('name') !== 'Equipo_Solicitado1') {
+												$('#producto_id1').attr('name', 'Equipo_Solicitado1');
+											}
+										});
+
+										// Agregar evento de b˙squeda al input
 										$('#busqueda1').on('input', function() {
 											var busqueda1 = $(this).val().toLowerCase();
 											if (busqueda1.trim() !== '') {
@@ -308,23 +348,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</script>
 
 
-
 								<div class='col-md-8'>
 									<div class='form-group'>
-
 										<div class="row">
 											<div class="col-md-9">
 												<!-- Campo de b˙squeda -->
 												<label for="busqueda2">Equipo o accesorio solicitado:</label>
-												<input type="text" id="busqueda2" class="form-control">
+												<input type="text" id="busqueda2" name="Equipo_Solicitado2" class="form-control" placeholder="Selecciona un producto">
+												<input type="hidden" id="producto_id2" name="producto_id2"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
 											</div>
 										</div>
 										<div class="row mt-3">
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
-												<select id="selector2" size="1" name="Equipo_Solicitado2" class="form-control">
-													<?php foreach ($array_producto as $producto2) : ?>
-														<option value="<?php echo $producto2; ?>"><?php echo $producto2; ?></option>
+												<select id="selector2" size="1" class="form-control">
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciÛn por defecto -->
+													<?php foreach ($array_producto as $id => $nombre) : ?>
+														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
 												</select>
 											</div>
@@ -334,7 +374,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Agrega un evento de cambio al campo de b˙squeda
+										// Ocultar el selector al cargar la p·gina
+										$('#selector2').hide();
+
+										// Agregar evento de cambio al selector
+										$('#selector2').on('change', function() {
+											var selectedProduct = $(this).val(); // Obtener el ID del producto seleccionado
+											var selectedProductName = $(this).find(':selected').text(); // Obtener el nombre del producto seleccionado
+											$('#busqueda2').val(selectedProductName); // Rellenar el input con el nombre del producto
+											$('#producto_id2').val(selectedProduct); // Asignar el ID del producto al campo oculto
+
+											// Cambiar el nombre del campo oculto solo si no ha sido cambiado previamente
+											if ($('#producto_id2').attr('name') !== 'Equipo_Solicitado2') {
+												$('#producto_id2').attr('name', 'Equipo_Solicitado2');
+											}
+										});
+
+										// Agregar evento de b˙squeda al input
 										$('#busqueda2').on('input', function() {
 											var busqueda2 = $(this).val().toLowerCase();
 											if (busqueda2.trim() !== '') {
@@ -356,20 +412,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class='col-md-8'>
 									<div class='form-group'>
-
 										<div class="row">
 											<div class="col-md-9">
 												<!-- Campo de b˙squeda -->
 												<label for="busqueda3">Equipo o accesorio solicitado:</label>
-												<input type="text" id="busqueda3" class="form-control">
+												<input type="text" id="busqueda3" name="Equipo_Solicitado3" class="form-control" placeholder="Selecciona un producto">
+												<input type="hidden" id="producto_id3" name="producto_id3"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
 											</div>
 										</div>
 										<div class="row mt-3">
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
-												<select id="selector3" size="1" name="Equipo_Solicitado3" class="form-control">
-													<?php foreach ($array_producto as $producto4) : ?>
-														<option value="<?php echo $producto4; ?>"><?php echo $producto4; ?></option>
+												<select id="selector3" size="1" class="form-control">
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciÛn por defecto -->
+													<?php foreach ($array_producto as $id => $nombre) : ?>
+														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
 												</select>
 											</div>
@@ -379,7 +436,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Agrega un evento de cambio al campo de b˙squeda
+										// Ocultar el selector al cargar la p·gina
+										$('#selector3').hide();
+
+										// Agregar evento de cambio al selector
+										$('#selector3').on('change', function() {
+											var selectedProduct = $(this).val(); // Obtener el ID del producto seleccionado
+											var selectedProductName = $(this).find(':selected').text(); // Obtener el nombre del producto seleccionado
+											$('#busqueda3').val(selectedProductName); // Rellenar el input con el nombre del producto
+											$('#producto_id3').val(selectedProduct); // Asignar el ID del producto al campo oculto
+
+											// Cambiar el nombre del campo oculto solo si no ha sido cambiado previamente
+											if ($('#producto_id3').attr('name') !== 'Equipo_Solicitado3') {
+												$('#producto_id3').attr('name', 'Equipo_Solicitado3');
+											}
+										});
+
+										// Agregar evento de b˙squeda al input
 										$('#busqueda3').on('input', function() {
 											var busqueda3 = $(this).val().toLowerCase();
 											if (busqueda3.trim() !== '') {
@@ -388,8 +461,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												$('#selector3').hide(); // Oculta el selector si no hay b˙squeda
 											}
 											$('#selector3 option').each(function() {
-												var producto4 = $(this).text().toLowerCase();
-												if (producto4.includes(busqueda3)) {
+												var producto2 = $(this).text().toLowerCase();
+												if (producto2.includes(busqueda3)) {
 													$(this).show();
 												} else {
 													$(this).hide();
@@ -398,102 +471,105 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										});
 									});
 								</script>
+
+
+
 							</div>
 
-								<div class='row'>
-									<div class='col-md-4'>
-										Fecha de solicitud:
-									</div>
-									<br>
-									<div class='col-md-8'>
-										<div class='form-group'>											
-<?php 
-											DateEditBox("Fecha_solicitud", "Fecha_solicitud", "form-control", "", 1, 255, 255, false, "Fecha de solicitud", "");												
-?>
-										</div>
+							<div class='row'>
+								<div class='col-md-4'>
+									Fecha de solicitud:
+								</div>
+								<br>
+								<div class='col-md-8'>
+									<div class='form-group'>
+										<?php
+										DateEditBox("Fecha_solicitud", "Fecha_solicitud", "form-control", "", 1, 255, 255, false, "Fecha de solicitud", "");
+										?>
 									</div>
 								</div>
-
-
-
 							</div>
-							<div style="background-color: #000053;" class='modal-footer'>
-								<button type='button' class='btn btn-close' data-dismiss='modal'><span class='glyphicon glyphicon-remove'></span> Cancelar</button>
-								<button type='button'  class='btn btn-color' id='btnGuardarSolicitud' name='btnGuardarSolicitud' value='Guardar'><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>
-							</div>
-							</form>
+
+
+
 						</div>
+						<div style="background-color: #000053;" class='modal-footer'>
+							<button type='button' class='btn btn-close' data-dismiss='modal'><span class='glyphicon glyphicon-remove'></span>Cancelar</button>
+							<button type='button' class='btn btn-color' id='btnGuardarSolicitud' name='btnGuardarSolicitud' value='Guardar'><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>
+						</div>
+						</form>
 					</div>
 				</div>
-				<!--este script realiza la accion de mostrar la ventana modal para registrar los datos del prestamo-->
-					<script>
-					$(document).ready(function () {
-						$("#Rprestamo").click(function(){
-							frmPrestamo.reset(); 
-								//se muestra la ventana modal del formulario
-								$('#modalPrestamo').modal();
-								//se blanquea el div de errores del formulario
-								$("#div_col_val_errors").html("");
-						});
+			</div>
+			<!--este script realiza la accion de mostrar la ventana modal para registrar los datos del prestamo-->
+			<script>
+				$(document).ready(function() {
+					$("#Rprestamo").click(function() {
+						frmPrestamo.reset();
+						//se muestra la ventana modal del formulario
+						$('#modalPrestamo').modal();
+						//se blanquea el div de errores del formulario
+						$("#div_col_val_errors").html("");
 					});
-					</script>
+				});
+			</script>
 
-					<script>
-						function fillAreas(edificio, areaType) {
-							var areas = {
-								"B": {
-									"AULA": ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
-									
-								},
-								"D": {
-									"AULA": ["42", "43", "44", "45", "46", "47"],
-									"Cubiculos": ["0"]
-								},
-								"E": {
-									"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"],
-									"Sala CIC": ["1", "2", "3", "4"]
-								},
-								"F": {
-									"AULA": ["17"],
-									"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"]
-								},
-								"Externo":{
-									"I+D+I": ["Laboratorios"]
-								}
-								// Add more areas as needed
-							};
+			<script>
+				function fillAreas(edificio, areaType) {
+					var areas = {
+						"B": {
+							"AULA": ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
 
-							var areaSelect = document.getElementById("Id_Area");
-							areaSelect.innerHTML = "";
-
-							areas[edificio][areaType].forEach(function(area) {
-								var option = document.createElement("option");
-								option.value = area;
-								option.text = area;
-								areaSelect.appendChild(option);
-							});
-
-							// Update other fields
-							document.getElementById("Edificio").value = edificio;
-							document.getElementById("Tipo_Area").value = areaType;
+						},
+						"D": {
+							"AULA": ["42", "43", "44", "45", "46", "47"],
+							"Cubiculos": ["0"]
+						},
+						"E": {
+							"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"],
+							"Sala CIC": ["1", "2", "3", "4"]
+						},
+						"F": {
+							"AULA": ["17"],
+							"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"]
+						},
+						"Externo": {
+							"I+D+I": ["Laboratorios"]
 						}
+						// Add more areas as needed
+					};
 
-						function updateFields() {
-							var edificio = document.getElementById("Edificio").value;
-							var areaType = document.getElementById("Tipo_Area").value;
-							var area = document.getElementById("Id_Area").value;
+					var areaSelect = document.getElementById("Id_Area");
+					areaSelect.innerHTML = "";
 
-							// Update other fields
-							document.getElementById("Edificio").value = edificio;
-							document.getElementById("Tipo_Area").value = areaType;
-						}
+					areas[edificio][areaType].forEach(function(area) {
+						var option = document.createElement("option");
+						option.value = area;
+						option.text = area;
+						areaSelect.appendChild(option);
+					});
 
-						// Initially fill the areas based on the selected type
-						var initialEdificio = document.getElementById("Edificio").value;
-						var initialType = document.getElementById("Tipo_Area").value;
-						fillAreas(initialEdificio, initialType);
+					// Update other fields
+					document.getElementById("Edificio").value = edificio;
+					document.getElementById("Tipo_Area").value = areaType;
+				}
 
-					</script>
+				function updateFields() {
+					var edificio = document.getElementById("Edificio").value;
+					var areaType = document.getElementById("Tipo_Area").value;
+					var area = document.getElementById("Id_Area").value;
+
+					// Update other fields
+					document.getElementById("Edificio").value = edificio;
+					document.getElementById("Tipo_Area").value = areaType;
+				}
+
+				// Initially fill the areas based on the selected type
+				var initialEdificio = document.getElementById("Edificio").value;
+				var initialType = document.getElementById("Tipo_Area").value;
+				fillAreas(initialEdificio, initialType);
+			</script>
+
 
 				
 	<!-- Ventana modal del formulario para editar el prestamo -->	
