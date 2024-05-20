@@ -45,13 +45,32 @@ class Dashboard extends CI_Controller {
         $this->load->view('Dashboard', $data);
     }
     
-    // En tu controlador Prestamos
-public function mostrar_prestamos_vencidos() {
-    $this->load->model('Dashboard_model');
-    $prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
-    $data = array('data' => $prestamosVencidos);
-    echo json_encode($data);
-}
+    public function mostrar_prestamos_vencidos() {
+        if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
+            $session_data = $this->session->userdata($this->config->item('mycfg_session_object_name'));
+            $this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'), $this->config->item('mycfg_pwd_usuario_conexion')));
+
+            $this->load->model('Dashboard_model');
+            $resPrestamos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
+
+            if ($resPrestamos) {
+                $output = [];
+                foreach ($resPrestamos->result_array() as $row) {
+                    foreach ($row as $key => $value) {
+                        if (gettype($value) == "string") {
+                            $row[$key] = utf8_encode($value);
+                        }
+                    }
+                    $output[] = $row;
+                }
+                print(json_encode(array("data" => $output)));
+            } else {
+                print(json_encode(array("data" => "")));
+            }
+        } else {
+            redirect($this->router->default_controller);
+        }
+    }
 
     
     

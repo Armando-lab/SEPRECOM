@@ -63,21 +63,11 @@ class Dashboard_model extends CI_Model {
     }
 
     public function obtener_prestamos_profesores_vencidos() {
-        // Selecciona las columnas necesarias de la tabla de préstamos
         $this->db->select('id_solicitud, profesor');
-        $this->db->from('prestamo');
-        
-        // Filtra para obtener solo los préstamos vencidos
-        $this->db->where('DATE_ADD(fecha_prest, INTERVAL 3 DAY) < NOW()');
-
+        $this->db->from('prestamos');
+        $this->db->where('DATE_ADD(fecha_prestamo, INTERVAL 3 DAY) <', 'CURDATE()', FALSE);
         $query = $this->db->get();
-
-        // Verifica si hay resultados
-        if ($query->num_rows() > 0) {
-            return $query->result(); // Devuelve el resultado como un array de objetos
-        } else {
-            return false; // Devuelve false si no hay datos
-        }
+        return $query;
     }
 }
 ?>
