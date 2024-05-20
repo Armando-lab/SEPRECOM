@@ -75,7 +75,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 						<div class="col-md-2">
 							<!-- SVG inline -->
-							<?php echo file_get_contents(base_url('application/images/views/undraw_hello_re_3evm.svg')); ?>
+							<?php echo file_get_contents(base_url('application/views/imagenes/undraw_hello_re_3evm.svg')); ?>
 						</div>
 					</div>
 				</div>
