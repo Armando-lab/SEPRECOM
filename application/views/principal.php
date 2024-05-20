@@ -65,10 +65,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<!-- Espacio disponible para mostrar informaci?n del portal -->
 		<div class='row'>
-			<div class='col-md-10'>
+			<div class='col-md-12'>
 				<div class="jumbotron">
 					<div class="row">
-						<div class="col-md-10">
+						<div class="col-md-8">
 							<h1 style="font-style: italic;">
 								Bienvenido, <font color='#000053'><?php echo $session_data['full_name']; ?></font>
 							</h1>
