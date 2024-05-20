@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <br>
 
             <div id='formFooter'>
-                <a href="<?php echo base_url('index.php/team'); ?>" class='footer' style='text-align: center; font-size: 12px; text-decoration:none; padding-top: 5px; color: white;'>
+                <a href="<?php echo base_url('team_view.html'); ?>" class='footer' style='text-align: center; font-size: 12px; text-decoration:none; padding-top: 5px; color: white;'>
                     Servicio de Prestamo de Computo @2024<br>				
                     Desarrollado por: <font color='orange'>Alumnos De ITS 8vo Semestre</font>
                 </a>
