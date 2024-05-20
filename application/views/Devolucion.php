@@ -544,6 +544,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							data: "estado"
 						}
 					],
+						order: [[4, 'desc']]
+					,
 					"createdRow": function(row, data) {
 						// Obtener el tiempo transcurrido para el préstamo
 						var fechaPrestamo = new Date(data.fecha_prest);
@@ -607,15 +609,31 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				});
 
 				$('#fechaInicio, #fechaFin').on('change', function() {
-				var fechaInicio = $('#fechaInicio').val();
-				var fechaFin = $('#fechaFin').val();
+					var fechaInicio = $('#fechaInicio').val();
+					var fechaFin = $('#fechaFin').val();
 
-				// Crear una expresión regular para el rango de fechas
-				var regex = '^' + fechaInicio + '$|^' + fechaFin + '$|^' + fechaInicio + '\\|.*$|^.*\\|' + fechaFin + '$';
+					// Limpiar todos los filtros personalizados previos
+					$.fn.dataTable.ext.search = [];
 
-				// Aplicar el filtro por rango de fechas en la columna de fecha de inicio
-				tbSolicitudes.column(3).search(regex, true, false).draw();
-			});
+					// Aplicar el filtro personalizado por rango de fechas
+					$.fn.dataTable.ext.search.push(
+						function(settings, data, dataIndex) {
+							var fecha = data[3] || ''; // Obtener la fecha de la columna 3 (suponiendo que la fecha esté en la columna 3)
+							fecha = fecha.trim(); // Eliminar espacios en blanco al principio y al final
+
+							// Verificar si la fecha está dentro del rango especificado
+							if ((fechaInicio === '' || fecha >= fechaInicio) && (fechaFin === '' || fecha <= fechaFin)) {
+								return true; // La fecha está dentro del rango
+							}
+							return false; // La fecha está fuera del rango
+						}
+					);
+
+					// Volver a dibujar la tabla para aplicar el filtro personalizado
+					tbSolicitudes.draw();
+				});
+
+
 
 
 
