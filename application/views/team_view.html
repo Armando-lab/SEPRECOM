@@ -74,7 +74,7 @@
             }
 
             var image = document.createElement('img');
-            image.src = "<?php echo base_url('view/imagenes/'); ?>" + member.image; // Ruta de la imagen
+            image.src = member.image;
             image.alt = member.name;
             image.classList.add('d-block', 'w-100'); // Añade clases de Bootstrap
 
