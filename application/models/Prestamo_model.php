@@ -5,9 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Prestamo_model extends CI_Model {			
 	
     public function Obtener_Prestamo(){			
-        $qry = "SELECT P.*, C.nombre AS nombre
+        $qry = "SELECT P.*, C.nombre AS profesor
         FROM prestamo P
-        JOIN cliente C ON P.profesor = C.matricula
+        JOIN cliente C ON P.profesor = C.nombre
         WHERE P.id_solicitud IS NOT NULL";
     
         $resqry = $this->db->query($qry);										

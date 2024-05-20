@@ -10,7 +10,7 @@ class Devolucion_model extends CI_Model {
         FROM devolucion
         LEFT JOIN producto ON devolucion.id_producto = producto.id_producto
         LEFT JOIN prestamo ON devolucion.id_solicitud = prestamo.id_solicitud
-        LEFT JOIN cliente ON prestamo.profesor = cliente.matricula
+        LEFT JOIN cliente ON prestamo.profesor = cliente.nombre
         WHERE devolucion.id_prestamo IS NOT NULL;";
 
 		$resqry = $this->db->query($qry);										
