@@ -187,36 +187,30 @@ class Devolucion extends CI_Controller {
 	}
 
 	public function mostrar_prestamos_vencidos() {
+		// Verifica si el usuario está autenticado
 		if ($this->session->userdata($this->config->item('mycfg_session_object_name'))) {
-			// Carga la configuración de la base de datos dinámicamente
-			$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values(
-				$this->config->item('mycfg_usuario_conexion'), 
-				$this->config->item('mycfg_pwd_usuario_conexion')
-			));
-	
-			// Carga el modelo
+			// Carga el modelo Dashboard_model
 			$this->load->model('Dashboard_model');
 	
-			// Obtiene los datos del modelo
+			// Obtiene los préstamos vencidos del modelo
 			$prestamosVencidos = $this->Dashboard_model->obtener_prestamos_profesores_vencidos();
 	
-			// Preparar la salida JSON
-			$output = array();
-			foreach ($prestamosVencidos as $prestamo) {
-				$row = array();
-				$row['id_solicitud'] = $prestamo->id_solicitud;
-				$row['nombre_profesor'] = $prestamo->nombre_profesor;
-				$output[] = $row;
+			// Verifica si se obtuvieron préstamos vencidos
+			if ($prestamosVencidos !== false) {
+				// Prepara la respuesta JSON
+				$response['data'] = $prestamosVencidos;
+			} else {
+				// No se encontraron préstamos vencidos
+				$response['error'] = 'No se encontraron préstamos vencidos.';
 			}
-	
-			// Devolver los datos en formato JSON para DataTables
-			echo json_encode(array("data" => $output));
 		} else {
-			// Redirige al usuario a la página de inicio si no está logueado
-			redirect($this->router->default_controller);
+			// El usuario no está autenticado, redirige a la página de inicio de sesión
+			$response['error'] = 'No estás autenticado.';
 		}
-	}
 	
+		// Devuelve la respuesta en formato JSON
+		echo json_encode($response);
+	}	
 
 	
 	
