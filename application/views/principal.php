@@ -273,7 +273,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</div>
 
 								<div style="flex: 0 0 auto; margin-right: 10px;">
-									<div>Tipo Ãrea:</div>
+									<div>Tipo Área:</div>
 									<div style="width: 100px; margin-top: 5px;" class='form-group'>
 										<select name="Tipo_Area" id="Tipo_Area" class="form-control" onchange="fillAreas(document.getElementById('Edificio').value, this.value)">
 											<option value="AULA">AULA</option>
@@ -285,7 +285,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</div>
 
 								<div style="flex: 0 0 auto; margin-right: 10px;">
-									<div>NÃºmero de Ãrea:</div>
+									<div>Número de Área:</div>
 									<div style="width: 100px; margin-top: 5px;" class='form-group'>
 										<select name="Id_Area" id="Id_Area" class="form-control" onchange="updateFields()">
 											<!-- Options will be filled by JavaScript -->
