@@ -273,7 +273,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</div>
 
 								<div style="flex: 0 0 auto; margin-right: 10px;">
-									<div>Tipo Ãrea:</div>
+									<div>Tipo Área:</div>
 									<div style="width: 100px; margin-top: 5px;" class='form-group'>
 										<select name="Tipo_Area" id="Tipo_Area" class="form-control" onchange="fillAreas(document.getElementById('Edificio').value, this.value)">
 											<option value="AULA">AULA</option>
@@ -285,7 +285,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</div>
 
 								<div style="flex: 0 0 auto; margin-right: 10px;">
-									<div>NÃºmero de Ãrea:</div>
+									<div>Número de Área:</div>
 									<div style="width: 100px; margin-top: 5px;" class='form-group'>
 										<select name="Id_Area" id="Id_Area" class="form-control" onchange="updateFields()">
 											<!-- Options will be filled by JavaScript -->
@@ -533,12 +533,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							"Cubiculos": ["0"]
 						},
 						"E": {
-							"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"],
-							"Sala CIC": ["1", "2", "3", "4"]
-						},
+							"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"]						},
 						"F": {
 							"AULA": ["17"],
-							"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"]
+							"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"],
+							"Sala CIC": ["1", "2", "3", "4"]
+
 						},
 						"Externo": {
 							"I+D+I": ["Laboratorios"]

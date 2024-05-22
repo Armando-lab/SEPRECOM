@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <br>
 
             <div id='formFooter'>
-                <a href="<?php echo base_url('index.php/team_view.html'); ?>" class='footer' style='text-align: center; font-size: 12px; text-decoration:none; padding-top: 5px; color: white;'>
+                <a href="https://seprecom.tech/Acerca_De/" target="_blank" class='footer' style='text-align: center; font-size: 12px; text-decoration:none; padding-top: 5px; color: white;'>
                     Servicio de Préstamo de Computo @2024<br>				
                     Desarrollado por: <font color='orange'>Alumnos De ITS 8vo Semestre</font>
                 </a>

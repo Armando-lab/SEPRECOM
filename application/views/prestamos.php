@@ -183,7 +183,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div style='width: 480px;' class='modal-content'>
 						<div style="background-color: #000053;" class='modal-header'>
 							<!--<button style="background-color: #FFCD00;" type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>-->
-							<h4 style="color: white;" class='modal-title'>Datos del préstamo</h4>
+							<h4 style="color: white;" class='modal-title'>Datos del prÃ©stamo</h4>
 						</div>
 						<div class='modal-body'>
 							<?php
@@ -211,7 +211,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<div class="row">
 								<div class="col-md-6">
-									<!-- Campo de búsqueda -->
+									<!-- Campo de bï¿½squeda -->
 									<label for="busqueda">Buscar cliente:</label>
 									<input type="text" id="busqueda" class="form-control">
 								</div>
@@ -230,13 +230,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<!-- Script de JavaScript -->
 							<script>
 								$(document).ready(function() {
-									// Agrega un evento de cambio al campo de búsqueda
+									// Agrega un evento de cambio al campo de bï¿½squeda
 									$('#busqueda').on('input', function() {
 										var busqueda = $(this).val().toLowerCase();
 										if (busqueda.trim() !== '') {
-											$('#selector').show(); // Muestra el selector si hay una búsqueda
+											$('#selector').show(); // Muestra el selector si hay una bï¿½squeda
 										} else {
-											$('#selector').hide(); // Oculta el selector si no hay búsqueda
+											$('#selector').hide(); // Oculta el selector si no hay bï¿½squeda
 										}
 										$('#selector option').each(function() {
 											var cliente = $(this).text().toLowerCase();
@@ -292,7 +292,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de búsqueda -->
+												<!-- Campo de bï¿½squeda -->
 												<label for="busqueda1">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda1" name="Equipo_Solicitado1" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id1" name="producto_id1"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -302,7 +302,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector1" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciï¿½n por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -327,13 +327,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de búsqueda al input
+										// Agregar evento de bï¿½squeda al input
 										$('#busqueda1').on('input', function() {
 											var busqueda1 = $(this).val().toLowerCase();
 											if (busqueda1.trim() !== '') {
-												$('#selector1').show(); // Muestra el selector si hay una búsqueda
+												$('#selector1').show(); // Muestra el selector si hay una bï¿½squeda
 											} else {
-												$('#selector1').hide(); // Oculta el selector si no hay búsqueda
+												$('#selector1').hide(); // Oculta el selector si no hay bï¿½squeda
 											}
 											$('#selector1 option').each(function() {
 												var producto = $(this).text().toLowerCase();
@@ -352,7 +352,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de búsqueda -->
+												<!-- Campo de bï¿½squeda -->
 												<label for="busqueda2">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda2" name="Equipo_Solicitado2" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id2" name="producto_id2"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -362,7 +362,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector2" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciï¿½n por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -374,7 +374,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Ocultar el selector al cargar la página
+										// Ocultar el selector al cargar la pï¿½gina
 										$('#selector2').hide();
 
 										// Agregar evento de cambio al selector
@@ -390,13 +390,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de búsqueda al input
+										// Agregar evento de bï¿½squeda al input
 										$('#busqueda2').on('input', function() {
 											var busqueda2 = $(this).val().toLowerCase();
 											if (busqueda2.trim() !== '') {
-												$('#selector2').show(); // Muestra el selector si hay una búsqueda
+												$('#selector2').show(); // Muestra el selector si hay una bï¿½squeda
 											} else {
-												$('#selector2').hide(); // Oculta el selector si no hay búsqueda
+												$('#selector2').hide(); // Oculta el selector si no hay bï¿½squeda
 											}
 											$('#selector2 option').each(function() {
 												var producto2 = $(this).text().toLowerCase();
@@ -414,7 +414,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class='form-group'>
 										<div class="row">
 											<div class="col-md-9">
-												<!-- Campo de búsqueda -->
+												<!-- Campo de bï¿½squeda -->
 												<label for="busqueda3">Equipo o accesorio solicitado:</label>
 												<input type="text" id="busqueda3" name="Equipo_Solicitado3" class="form-control" placeholder="Selecciona un producto">
 												<input type="hidden" id="producto_id3" name="producto_id3"> <!-- Agregar un campo oculto para almacenar el ID del producto -->
@@ -424,7 +424,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<div class="col-md-6">
 												<!-- Selector para los productos filtrados -->
 												<select id="selector3" size="1" class="form-control">
-													<option value="">Selecciona un producto</option> <!-- Agregar una opción por defecto -->
+													<option value="">Selecciona un producto</option> <!-- Agregar una opciï¿½n por defecto -->
 													<?php foreach ($array_producto as $id => $nombre) : ?>
 														<option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
 													<?php endforeach; ?>
@@ -436,7 +436,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<script>
 									$(document).ready(function() {
-										// Ocultar el selector al cargar la página
+										// Ocultar el selector al cargar la pï¿½gina
 										$('#selector3').hide();
 
 										// Agregar evento de cambio al selector
@@ -452,13 +452,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											}
 										});
 
-										// Agregar evento de búsqueda al input
+										// Agregar evento de bï¿½squeda al input
 										$('#busqueda3').on('input', function() {
 											var busqueda3 = $(this).val().toLowerCase();
 											if (busqueda3.trim() !== '') {
-												$('#selector3').show(); // Muestra el selector si hay una búsqueda
+												$('#selector3').show(); // Muestra el selector si hay una bï¿½squeda
 											} else {
-												$('#selector3').hide(); // Oculta el selector si no hay búsqueda
+												$('#selector3').hide(); // Oculta el selector si no hay bï¿½squeda
 											}
 											$('#selector3 option').each(function() {
 												var producto2 = $(this).text().toLowerCase();
@@ -526,12 +526,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							"Cubiculos": ["0"]
 						},
 						"E": {
-							"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"],
-							"Sala CIC": ["1", "2", "3", "4"]
+							"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"]
+							
 						},
 						"F": {
 							"AULA": ["17"],
-							"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"]
+							"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"],
+							"Sala CIC": ["1", "2", "3", "4"]
 						},
 						"Externo": {
 							"I+D+I": ["Laboratorios"]
