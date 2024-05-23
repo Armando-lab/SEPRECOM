@@ -4,7 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Acceso extends CI_Controller {
 	
-
+	public function __construct() {
+        parent::__construct();
+        // Carga la biblioteca Rollbar en el constructor
+        $this->load->libraries('rollbar');
+    }
 
 	public function index()	{ 	
 		$this->load->view('acceso');		
@@ -13,7 +17,7 @@ class Acceso extends CI_Controller {
 	
 	public function login() {
 		// Carga la biblioteca Rollbar
-		$this->load->library('rollbar');
+		$this->load->libraries('rollbar');
 		
 		// Configura Rollbar con el nivel de log correspondiente (puedes ajustarlo según tus necesidades)
 		$this->rollbar->setLevel('error');
