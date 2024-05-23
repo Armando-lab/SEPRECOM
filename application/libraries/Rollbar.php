@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once FCPATH . 'config/autoload.php';
+require_once FCPATH . 'application/config/autoload.php';
 
 use Rollbar\Rollbar as RollbarLib;
 use Rollbar\Payload\Level;
