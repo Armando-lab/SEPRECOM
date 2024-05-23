@@ -7,6 +7,8 @@ class Acceso extends CI_Controller {
 	public function index()	{ 	
 		$this->load->view('acceso');		
 	}		
+	Rollbar::log(Level::INFO, 'Test info message');
+	throw new Exception('Test exception');
 	
 	public function login(){
 		$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
