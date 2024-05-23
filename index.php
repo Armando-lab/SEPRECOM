@@ -67,14 +67,8 @@
  * By default development will show errors but testing and live will hide them.
  */
 
-use \Rollbar\Rollbar;
-use \Rollbar\Payload\Level;
-Rollbar::init(
-    array(
-        'access_token' => '40bdd05d0b3243bdb191609a811ca28e',
-        'environment' => 'production'
-    )
-);
+
+ 
 
 switch (ENVIRONMENT)
 {
