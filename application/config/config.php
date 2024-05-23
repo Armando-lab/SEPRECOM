@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Rollbar\Rollbar;
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -573,5 +575,15 @@ $config['mycfg_email'] = "tu_cuenta_gmail@gmail.com";
 //En este par?metro no se deben incluir acentos ni ?
 $config['mycfg_email_description'] = "alias_de_tu_cuenta_ej_portal_x";
 $config['mycfg_email_password'] = "password_de_tu_cuenta_gmail";
+
+
+$config = array(
+    // required
+    'access_token' => 'e7a4f4e8dc9049a6ae62a0770cb8a51c',
+    // optional - environment name. any string will do.
+    'environment' => 'production',
+);
+Rollbar::init($config); 
+
 
 ?>
