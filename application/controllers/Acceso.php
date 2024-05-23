@@ -3,67 +3,41 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Acceso extends CI_Controller {
-
-	public function __construct()
-    {
-        parent::__construct();
-        $this->load->library('rollbar');
-    }
-
+	
 	public function index()	{ 	
 		$this->load->view('acceso');		
 	}		
 	
 	
-	public function login()
-    {
-        // Cargar base de datos según configuración
-        $this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
-
-        // Validación del formulario
-        $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|xss_clean', array('required' => 'Debe proporcionar un %s.'));
-        $this->form_validation->set_rules('password', 'Contraseña', 'required|xss_clean', array('required' => 'Debe proporcionar una %s.'));
-
-        if ($this->form_validation->run() == FALSE) {
-            // Mostrar vista de acceso si la validación falla
-            $this->load->view('acceso');
-        } else {
-            try {
-                // Obtener datos del usuario
-                $rowUsuario = $this->Seguridad_SIIA_Model->Obtener_Datos_Usuario($this->input->post('username'), $this->input->post('password'));
-
-                if (!$rowUsuario) {
-                    // Mostrar mensaje de error si los datos del usuario no son válidos
-                    MostrarNotificacion("El Nombre de usuario y la Contraseña no son válidos.", "Error", true);
-                    $this->load->view('acceso');
-                    return;
-                }
-
-                // Crear arreglo de sesión
-                $session_array = array(
-                    'username' => $rowUsuario->nombre,
-                    'full_name' => $rowUsuario->nombre,
-                    'default_pfc' => $rowUsuario->matricula,
-                    'default_pfc_name' => $rowUsuario->Rol_admin,
-                    'oauth_logged_in' => 'N'
-                );
-
-                // Establecer datos de sesión
-                $this->session->set_userdata($this->config->item('mycfg_session_object_name'), $session_array);  
-
-                // Redireccionar a la página principal
-                redirect('principal');
-            } catch (Exception $e) {
-                // Registro de un error en Rollbar
-                $this->rollbar->error('An error occurred during login', array('exception' => $e));
-
-                // Mostrar mensaje de error
-                MostrarNotificacion("Se produjo un error durante el inicio de sesión. Por favor, inténtelo de nuevo más tarde.", "Error", true);
-                $this->load->view('acceso');
-                return;
-            }
-        }
-    }
+	public function login(){
+		$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
+	
+		$this->form_validation->set_rules('username', 'Nombre de usuario', 'required|xss_clean', array('required' => 'Debe proporcionar un %s.'));
+		$this->form_validation->set_rules('password', 'Contraseña', 'required|xss_clean', array('required' => 'Debe proporcionar una %s.'));
+	
+		if ($this->form_validation->run() == FALSE)	{
+			$this->load->view('acceso');
+		} else {
+			$rowUsuario = $this->Seguridad_SIIA_Model->Obtener_Datos_Usuario($this->input->post('username'), $this->input->post('password'));
+	
+			// Verificar si se obtuvieron datos del usuario
+			if (!$rowUsuario) {
+				MostrarNotificacion("El Nombre de usuario y la Contraseña no son válidos.", "Error", true);
+				$this->load->view('acceso');
+				return;
+			}
+	
+			$session_array = array(
+				'username' => $rowUsuario->nombre,
+				'full_name' => $rowUsuario->nombre,
+				'default_pfc' => $rowUsuario->matricula,
+				'default_pfc_name' => $rowUsuario->Rol_admin,
+				'oauth_logged_in' => 'N'
+			);
+			$this->session->set_userdata($this->config->item('mycfg_session_object_name'), $session_array);			
+			redirect('principal');
+		}
+	}
 	
 	public function logout(){	
 		if($this->session->userdata($this->config->item('mycfg_session_object_name'))){	
