@@ -5,7 +5,7 @@ use \Rollbar\Rollbar;
 use \Rollbar\Payload\Level;
 
 $config['rollbar'] = array(
-    'access_token' => 'ca89b4b196634660a33efe0f5d2d76e6',
+    'access_token' => '40bdd05d0b3243bdb191609a811ca28e',
     'environment' => 'production'
 );
 
