@@ -4,12 +4,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Acceso extends CI_Controller {
 	
+	public function __construct() {
+        parent::__construct();
+        // Carga la biblioteca Rollbar en el constructor
+        $this->load->libraries('rollbar');
+    }
+
 	public function index()	{ 	
 		$this->load->view('acceso');		
 	}		
 	
 	
-	public function login(){
+	public function login() {
+		// Carga la biblioteca Rollbar
+		$this->load->libraries('rollbar');
+		
+		// Configura Rollbar con el nivel de log correspondiente (puedes ajustarlo según tus necesidades)
+		$this->rollbar->setLevel('error');
+		
+		// Intenta realizar la lógica de inicio de sesión
 		$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
 	
 		$this->form_validation->set_rules('username', 'Nombre de usuario', 'required|xss_clean', array('required' => 'Debe proporcionar un %s.'));
