@@ -397,6 +397,10 @@ class Config
         return $this->dataBuilder->getCustom();
     }
     
+    public function getAllowedCircularReferenceTypes()
+    {
+        return $this->allowedCircularReferenceTypes;
+    }
     
     public function setCustomTruncation($type)
     {
