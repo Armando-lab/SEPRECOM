@@ -11,7 +11,8 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=5.2.4"
+		"php": ">=5.2.4",
+		"rollbar/rollbar": "^1.7"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
@@ -19,4 +20,6 @@
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
 	}
+
+	
 }
