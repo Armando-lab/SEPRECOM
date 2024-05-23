@@ -1,6 +1,5 @@
 <?php namespace Rollbar;
 
-use Exception;
 use Rollbar\Payload\Level;
 use Rollbar\Payload\Payload;
 use \Rollbar\Payload\EncodedPayload;
@@ -397,6 +396,10 @@ class Config
         return $this->dataBuilder->getCustom();
     }
     
+    public function getAllowedCircularReferenceTypes()
+    {
+        return $this->allowedCircularReferenceTypes;
+    }
     
     public function setCustomTruncation($type)
     {
