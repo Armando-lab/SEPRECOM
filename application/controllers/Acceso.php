@@ -4,39 +4,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Acceso extends CI_Controller {
 	
-	public function __construct() {
-        parent::__construct();
-        // Carga la biblioteca Rollbar en el constructor
-        $this->load->libraries('rollbar');
-    }
-
 	public function index()	{ 	
 		$this->load->view('acceso');		
 	}		
 	
 	
-	public function login() {
-		// Carga la biblioteca Rollbar
-		$this->load->libraries('rollbar');
-		
-		// Configura Rollbar con el nivel de log correspondiente (puedes ajustarlo según tus necesidades)
-		$this->rollbar->setLevel('error');
-		
-		// Intenta realizar la lógica de inicio de sesión
+	public function login(){
 		$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
 	
 		$this->form_validation->set_rules('username', 'Nombre de usuario', 'required|xss_clean', array('required' => 'Debe proporcionar un %s.'));
 		$this->form_validation->set_rules('password', 'Contraseña', 'required|xss_clean', array('required' => 'Debe proporcionar una %s.'));
 	
-		if ($this->form_validation->run() == FALSE) {
+		if ($this->form_validation->run() == FALSE)	{
 			$this->load->view('acceso');
 		} else {
 			$rowUsuario = $this->Seguridad_SIIA_Model->Obtener_Datos_Usuario($this->input->post('username'), $this->input->post('password'));
 	
 			// Verificar si se obtuvieron datos del usuario
 			if (!$rowUsuario) {
-				// Manejo de error: el nombre de usuario y la contraseña no son válidos
-				$this->rollbar->error("El Nombre de usuario y la Contraseña no son válidos.");
 				MostrarNotificacion("El Nombre de usuario y la Contraseña no son válidos.", "Error", true);
 				$this->load->view('acceso');
 				return;
@@ -49,7 +34,7 @@ class Acceso extends CI_Controller {
 				'default_pfc_name' => $rowUsuario->Rol_admin,
 				'oauth_logged_in' => 'N'
 			);
-			$this->session->set_userdata($this->config->item('mycfg_session_object_name'), $session_array);            
+			$this->session->set_userdata($this->config->item('mycfg_session_object_name'), $session_array);			
 			redirect('principal');
 		}
 	}
@@ -87,6 +72,36 @@ class Acceso extends CI_Controller {
 			http_response_code(401);
 			echo json_encode(array('error' => 'No se ha iniciado sesión'));
 		}
+	}
+	
+	
+	public function Usuario_Existe($Username){				
+		if ($this->Seguridad_SIIA_Model->Usuario_Existe($Username)){				
+			return true; 
+		}else{						
+			$this->form_validation->set_message('Usuario_Existe', 'El Usuario no existe');
+			return false;
+		}				
+	}
+	
+	public function Password_Valido($Password,$Username){
+		if ($this->Seguridad_SIIA_Model->Usuario_Existe($Username)){		
+			$rowUsuario=$this->Seguridad_SIIA_Model->Obtener_Datos_Usuario($Username);						
+			if ($this->Seguridad_SIIA_Model->Desencriptar($rowUsuario->Password)==$Password){			
+				if ($this->Seguridad_SIIA_Model->Usuario_TieneDerecho_Aplicacion($Username,$this->config->item('mycfg_id_aplicacion'))){
+					return true;
+				}else{
+					$this->form_validation->set_message('Password_Valido', 'El Usuario no tiene derecho de acceso a la aplicaci?n');
+					return false;		
+				}
+			}else{
+				$this->form_validation->set_message('Password_Valido', 'El Password no coincide');
+				return false;	
+			}
+		}else{			
+			$this->form_validation->set_message('Password_Valido', 'El Usuario no existe');
+			return false;
+		}								
 	}
 	
 }

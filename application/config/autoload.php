@@ -58,7 +58,8 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('session','encryption','form_validation', 'Rollbar');
+$autoload['libraries'] = array('session','encryption','form_validation', 'rollbar_lib');
+
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +104,7 @@ $autoload['helper'] = array('security','form','url','notifications_messages','fo
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array();
+$autoload['config'] = array('rollbar');
 
 /*
 | -------------------------------------------------------------------

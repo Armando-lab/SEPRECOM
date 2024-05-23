@@ -54,10 +54,10 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	// Ruta al archivo de configuración de Rollbar
-	require_once 'application/libraries/rollbar/src/Config.php';
+	//require_once 'application/libraries/rollbar/src/Config.php';
 
 	// Ruta a la carpeta Rollbar
-	require_once 'application/libraries/rollbar/src/Rollbar.php';
+	//require_once 'application/libraries/rollbar/src/Rollbar.php';
 	
 	//establecer a development activa el error_reporting, pero si se pone production lo desactiva
 	$_SERVER['CI_ENV']='production';	
