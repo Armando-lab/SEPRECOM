@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('session','encryption','form_validation');
+$autoload['libraries'] = array('session','encryption','form_validation', 'rollbar');
 
 /*
 | -------------------------------------------------------------------
@@ -135,7 +135,3 @@ $autoload['language'] = array();
 $autoload['model'] = array('Seguridad_SIIA_Model', 'Gestion_Instituciones_Model');
 
 
-/*
-    Rollbar
-*/
-$autoload['libraries'] = array('rollbar');
