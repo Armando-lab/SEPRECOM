@@ -69,19 +69,6 @@
 
 
  
- require 'vendor/autoload.php';
-
- // Configurar Rollbar
- Rollbar\Rollbar::init(
-	 array(
-		 'access_token' => '40bdd05d0b3243bdb191609a811ca28e',
-		 'environment' => 'production'
-	 )
- );
- 
- // Registrar un ejemplo de error
- Rollbar\Rollbar::log(Level::error, 'Prueba de error de Rollbar');
-
 
 switch (ENVIRONMENT)
 {
