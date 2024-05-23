@@ -308,6 +308,12 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
+
+	set_exception_handler(function ($exception) {
+		$CI =& get_instance();
+		$CI->rollbar->log_exception($exception);
+	});
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
@@ -315,4 +321,5 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-require_once BASEPATH.'core/CodeIgniter.php';
+	require_once BASEPATH.'core/CodeIgniter.php';
+?>
