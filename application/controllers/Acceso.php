@@ -5,8 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Acceso extends CI_Controller {
 	
 	public function index()	{ 	
-		Rollbar::log(Level::INFO, 'Test info message');
-		throw new Exception('Test exception');	
+		$this->load->view('acceso');		
 	}		
 	
 	
