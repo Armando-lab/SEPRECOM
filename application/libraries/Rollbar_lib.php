@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require 'path/to/Rollbar/autoload.php'; // Asegúrate de que la ruta sea correcta
 
 class Rollbar_lib {
     
