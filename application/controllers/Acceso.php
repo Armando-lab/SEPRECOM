@@ -5,6 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Acceso extends CI_Controller {
 	
 	public function index()	{ 	
+		$this->rollbar_lib->error('This is a test error from CodeIgniter!');
+        
 		$this->load->view('acceso');		
 	}		
 	
