@@ -89,35 +89,5 @@ class Acceso extends CI_Controller {
 		}
 	}
 	
-	
-	public function Usuario_Existe($Username){				
-		if ($this->Seguridad_SIIA_Model->Usuario_Existe($Username)){				
-			return true; 
-		}else{						
-			$this->form_validation->set_message('Usuario_Existe', 'El Usuario no existe');
-			return false;
-		}				
-	}
-	
-	public function Password_Valido($Password,$Username){
-		if ($this->Seguridad_SIIA_Model->Usuario_Existe($Username)){		
-			$rowUsuario=$this->Seguridad_SIIA_Model->Obtener_Datos_Usuario($Username);						
-			if ($this->Seguridad_SIIA_Model->Desencriptar($rowUsuario->Password)==$Password){			
-				if ($this->Seguridad_SIIA_Model->Usuario_TieneDerecho_Aplicacion($Username,$this->config->item('mycfg_id_aplicacion'))){
-					return true;
-				}else{
-					$this->form_validation->set_message('Password_Valido', 'El Usuario no tiene derecho de acceso a la aplicaci?n');
-					return false;		
-				}
-			}else{
-				$this->form_validation->set_message('Password_Valido', 'El Password no coincide');
-				return false;	
-			}
-		}else{			
-			$this->form_validation->set_message('Password_Valido', 'El Usuario no existe');
-			return false;
-		}								
-	}
-	
 }
 ?>
