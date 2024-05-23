@@ -7,7 +7,7 @@ class Acceso extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         // Carga la biblioteca Rollbar en el constructor
-        $this->load->libraries('rollbar');
+        $this->load->library('Rollbar');
     }
 
 	public function index()	{ 	
@@ -17,7 +17,7 @@ class Acceso extends CI_Controller {
 	
 	public function login() {
 		// Carga la biblioteca Rollbar
-		$this->load->libraries('rollbar');
+		$this->load->library('Rollbar');
 		
 		// Configura Rollbar con el nivel de log correspondiente (puedes ajustarlo según tus necesidades)
 		$this->rollbar->setLevel('error');
