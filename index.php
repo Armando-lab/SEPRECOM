@@ -308,12 +308,6 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
-
-	set_exception_handler(function ($exception) {
-		$CI =& get_instance();
-		$CI->rollbar->log_exception($exception);
-	});
-
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
