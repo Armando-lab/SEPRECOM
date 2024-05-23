@@ -4,6 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Acceso extends CI_Controller {
 	
+	public function __construct() {
+        parent::__construct();
+        // Carga la biblioteca Rollbar en el constructor
+        $this->load->library('rollbar');
+    }
+
 	public function index()	{ 	
 		$this->load->view('acceso');		
 	}		
