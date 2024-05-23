@@ -9,19 +9,28 @@ class Acceso extends CI_Controller {
 	}		
 	
 	
-	public function login(){
+	public function login() {
+		// Carga la biblioteca Rollbar
+		$this->load->library('rollbar');
+		
+		// Configura Rollbar con el nivel de log correspondiente (puedes ajustarlo según tus necesidades)
+		$this->rollbar->setLevel('error');
+		
+		// Intenta realizar la lógica de inicio de sesión
 		$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
 	
 		$this->form_validation->set_rules('username', 'Nombre de usuario', 'required|xss_clean', array('required' => 'Debe proporcionar un %s.'));
 		$this->form_validation->set_rules('password', 'Contraseña', 'required|xss_clean', array('required' => 'Debe proporcionar una %s.'));
 	
-		if ($this->form_validation->run() == FALSE)	{
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('acceso');
 		} else {
 			$rowUsuario = $this->Seguridad_SIIA_Model->Obtener_Datos_Usuario($this->input->post('username'), $this->input->post('password'));
 	
 			// Verificar si se obtuvieron datos del usuario
 			if (!$rowUsuario) {
+				// Manejo de error: el nombre de usuario y la contraseña no son válidos
+				$this->rollbar->error("El Nombre de usuario y la Contraseña no son válidos.");
 				MostrarNotificacion("El Nombre de usuario y la Contraseña no son válidos.", "Error", true);
 				$this->load->view('acceso');
 				return;
@@ -34,7 +43,7 @@ class Acceso extends CI_Controller {
 				'default_pfc_name' => $rowUsuario->Rol_admin,
 				'oauth_logged_in' => 'N'
 			);
-			$this->session->set_userdata($this->config->item('mycfg_session_object_name'), $session_array);			
+			$this->session->set_userdata($this->config->item('mycfg_session_object_name'), $session_array);            
 			redirect('principal');
 		}
 	}
