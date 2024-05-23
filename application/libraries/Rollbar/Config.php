@@ -1,6 +1,5 @@
 <?php namespace Rollbar;
 
-use Exception;
 use Rollbar\Payload\Level;
 use Rollbar\Payload\Payload;
 use \Rollbar\Payload\EncodedPayload;
@@ -252,8 +251,6 @@ class Config
         if (isset($_ENV['ROLLBAR_ACCESS_TOKEN']) && !isset($config['access_token'])) {
             $config['access_token'] = $_ENV['ROLLBAR_ACCESS_TOKEN'];
         }
-        // Establece el token de acceso aquí
-        $config['access_token'] = '6ca3dfab2cd0441f962391f4bf6ead5c';
         $this->utilities->validateString($config['access_token'], "config['access_token']", 32, false);
         $this->accessToken = $config['access_token'];
     }
