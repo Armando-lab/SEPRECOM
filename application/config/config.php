@@ -28,12 +28,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['base_url'] = 'http://seprecom.tech/CICASSISTANCE/SEPRECOM_TEST/SEPRECOM';
 
-	// Ruta al archivo de configuración de Rollbar
-	require_once 'application/libraries/rollbar/src/Config.php';
-
-	// Ruta a la carpeta Rollbar
-	require_once 'application/libraries/rollbar/src/Rollbar.php';
-
 /*
 |--------------------------------------------------------------------------
 | Index File
