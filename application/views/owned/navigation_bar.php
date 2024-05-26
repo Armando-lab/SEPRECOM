@@ -21,7 +21,7 @@
 					  
 			<ul class='nav navbar-nav navbar-right'>
 				<li>
-                    <a href='https://seprecom.tech/soporte/' class='navbar-btn btn btn-primary' style="margin-right: 10px;">
+                    <a href='https://seprecom.tech/soporte/' target="_blank" class='navbar-btn btn btn-primary' style="margin-right: 10px;">
                         <img src='<?php echo base_url();?>application/views/imagenes/atraso.png' style='height: 20px; margin-right: 5px;' alt='Soporte'>Soporte
                     </a>
                 </li>		  
