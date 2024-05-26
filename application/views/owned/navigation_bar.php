@@ -1,4 +1,4 @@
-<!-- Barra de Navegación colocada en la parte superior y fija -->	
+<!-- Barra de Navegaciï¿½n colocada en la parte superior y fija -->	
 	<nav style="background-color:#000053;"  class="navbar navbar-default navbar-fixed-top">
 		<div style='width: 98%;' class="container-fluid">		
 		<div class="navbar-header">
@@ -8,26 +8,29 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <!-- Logo y título del portal -->	
+		  <!-- Logo y tï¿½tulo del portal -->	
 		  <a class="navbar-brand" href="<?php echo base_url();?>index.php/principal" style='border-right: 2px solid lightgray; height: 70px;'><img style='margin-right: 5px; height: 100%; border-radius:100%;' src='<?php echo base_url();?>application/views/imagenes/LogoSeprecom.jpg' alt='uac'><?php echo $this->config->item('mycfg_nombre_aplicacion'); ?></a>
 		</div>		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<!-- Menú de opciones -->	
+				<!-- Menï¿½ de opciones -->	
 <?php
 				echo $menu;
 ?>				
 			</ul>		  
 			<ul class='nav navbar-nav navbar-right'>		  
-				<!-- Opción para visualizar perfil del usuario conectado -->	
+				<!-- Opciï¿½n para visualizar perfil del usuario conectado -->	
 				<li class='active'><a href='<?php echo base_url();?>index.php/principal'><span class='glyphicon glyphicon-user'></span> <?php echo $session_data['full_name']; ?><br> <font color='orange'><?php echo $session_data['default_pfc_name']; ?></font></a></li>				
 <?php
 				echo form_open("acceso/logout","class='navbar-form navbar-right' role='form'");
 ?>				
 				
-					<!-- Botón para salir del portal -->	
+					<!-- Botï¿½n para salir del portal -->	
 					<button type='submit' class='navbar-btn btn btn-success'>Salir</button>
-				</form>				
+				</form>	
+				<li>
+                    <a href='http://www.example.com' class='navbar-btn btn btn-primary'>Ir a Ejemplo</a>
+                </li>			
 			</ul>		  
 		</div>
 		</div>
