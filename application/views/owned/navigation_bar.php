@@ -18,10 +18,11 @@
 				echo $menu;
 ?>				
 			</ul>	
-			<li>
+					  
+			<ul class='nav navbar-nav navbar-right'>
+				<li>
                     <a href='http://www.example.com' class='navbar-btn btn btn-primary'>Ir a Ejemplo</a>
                 </li>		  
-			<ul class='nav navbar-nav navbar-right'>		  
 				<!-- Opci�n para visualizar perfil del usuario conectado -->	
 				<li class='active'><a href='<?php echo base_url();?>index.php/principal'><span class='glyphicon glyphicon-user'></span> <?php echo $session_data['full_name']; ?><br> <font color='orange'><?php echo $session_data['default_pfc_name']; ?></font></a></li>				
 <?php
