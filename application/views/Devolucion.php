@@ -22,16 +22,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	require "owned/estilos_portal.php";
 	?>
 	<style>
-		#tbSolicitudes td {
-			color: white;
-			/* Texto blanco en las celdas del cuerpo */
-		}
-
-		/* Estilo para los encabezados de la tabla */
-		#tbSolicitudes th {
-			color: black;
-			/* Texto negro en los encabezados */
-		}
 		.semaphore {
 			margin-top: 10px;
 		}
@@ -51,13 +41,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		#tbSolicitudes td {
         color: white;
-        /* Texto blanco en las celdas del cuerpo */
 		}
 
-		/* Estilo para los encabezados de la tabla */
 		#tbSolicitudes th {
 			color: black;
-			/* Texto negro en los encabezados */
 		}
 
 		.semaphore {
@@ -67,7 +54,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		.color-circle {
 			width: 20px;
 			height: 20px;
-			border-radius: 50%; /* Esto hace que el div sea un círculo */
+			border-radius: 50%; 
 			display: inline-block;
 			margin-right: 10px;
 		}
@@ -80,7 +67,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		/* Estilo para resaltar la fila seleccionada */
 		#tbSolicitudes tbody tr.selected {
 			background-color: #000053 !important; /* Color de fondo para la fila seleccionada */
-			color: yellow; /* Color del texto para la fila seleccionada */
+			color: yellow !important; /* Color del texto para la fila seleccionada */
+		}
+
+		/* Asegurarse de que los estilos de DataTables se apliquen correctamente */
+		#tbSolicitudes tbody tr.selected td {
+			background-color: #000053 !important; /* Color de fondo para la fila seleccionada */
+			color: yellow !important; /* Color del texto para la fila seleccionada */
 		}
 
 
@@ -609,19 +602,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						var fechaActual = new Date();
 						var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
 
-						var verdeLimite = 1; // Verde para préstamos de hasta 1 día
-						var amarilloLimite = 2; // Amarillo para préstamos de hasta 2 días
+						var verdeLimite = 1; 
+						var amarilloLimite = 2; 
 
 						var color;
 						if (data.estado.toLowerCase() === "devuelto") {
-							color = '#428bca'; // Azul si el estado es "devuelto"
+							color = '#428bca'; 
 						} else {
 							if (tiempoTranscurrido <= verdeLimite) {
-								color = '#52BE80'; // Verde pastel si el préstamo es reciente
+								color = '#52BE80'; 
 							} else if (tiempoTranscurrido <= amarilloLimite) {
-								color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de dos días
+								color = '#F4D03F'; 
 							} else {
-								color = '#EC7063'; // Rojo pastel si el préstamo tiene tres días o más
+								color = '#EC7063'; 
 							}
 						}
 
@@ -678,6 +671,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					});
 				});
 			});
+
 
 		</script>
 
