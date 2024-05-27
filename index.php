@@ -52,7 +52,13 @@
  *     production
  *
  * NOTE: If you change these, also change the error_reporting() code below
- */	
+ */
+	// Ruta al archivo de configuración de Rollbar
+	//require_once 'application/libraries/rollbar/src/Config.php';
+
+	// Ruta a la carpeta Rollbar
+	//require_once 'application/libraries/rollbar/src/Rollbar.php';
+	
 	//establecer a development activa el error_reporting, pero si se pone production lo desactiva
 	$_SERVER['CI_ENV']='production';	
 	
@@ -66,6 +72,10 @@
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
+
+
+ 
+
 switch (ENVIRONMENT)
 {
 	case 'development':

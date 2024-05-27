@@ -8,6 +8,7 @@ class Acceso extends CI_Controller {
 		$this->load->view('acceso');		
 	}		
 	
+	
 	public function login(){
 		$this->load->database($this->Seguridad_SIIA_Model->Obtener_DBConfig_Values($this->config->item('mycfg_usuario_conexion'),$this->config->item('mycfg_pwd_usuario_conexion')));
 	
