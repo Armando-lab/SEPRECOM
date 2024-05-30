@@ -280,14 +280,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </div>
 
                                 <div style="flex: 0 0 auto; margin-right: 10px;">
-                                    <div>Número o Nombre de Área:</div>
-                                    <div style="width: 100px; margin-top: 5px;" class='form-group'>
-                                        <input type="text" id="areaInput" class="form-control" placeholder="Número o Nombre de Área">
-                                        <select name="Id_Area" id="Id_Area" class="form-control" onchange="updateFields()">
-                                            <!-- Options will be filled by JavaScript -->
-                                        </select>
-                                    </div>
-                                </div>
+									<div>Número o Nombre de Área:</div>
+									<div style="width: 100px; margin-top: 5px;" class='form-group'>
+										<input type="text" id="areaInput" class="form-control" list="areaOptions" placeholder="Número o Nombre de Área">
+										<datalist id="areaOptions">
+											<!-- Options will be filled by JavaScript -->
+										</datalist>
+									</div>
+								</div>
+
                             </div>
                             <div class='row'>
                                 <br>
@@ -509,89 +510,61 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         $("#div_col_val_errors").html("");
                     });
                 });
+				function fillAreas(edificio, areaType) {
+					var areas = {
+						"B": {
+							"AULA": ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
+						},
+						"C": {
+							"AULA": ["42", "43", "44", "45", "46", "47"],
+							"Cubiculos": ["0"]
+						},
+						"D": {
+							"AULA": ["42", "43", "44", "45", "46", "47"],
+							"Cubiculos": ["0"]
+						},
+						"E": {
+							"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"]
+						},
+						"F": {
+							"AULA": ["17"],
+							"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3", "Sala de Maestros"],
+							"Sala CIC": ["1", "2", "3", "4"]
+						},
+						"Externo": {
+							"I+D+I": ["Laboratorios"]
+						}
+					};
 
-                function fillAreas(edificio, areaType) {
-                    var areas = {
-                        "B": {
-                            "AULA": ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"]
-                        },
-                        "C": {
-                            "AULA": ["0"],
-                            "Cubiculos": ["0"]
-                        },
-                        "D": {
-                            "AULA": ["42", "43", "44", "45", "46", "47"],
-                            "Cubiculos": ["0"]
-                        },
-                        "E": {
-                            "AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"]
-                        },
-                        "F": {
-                            "AULA": ["17"],
-                            "LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3", "Sala de Maestros"],
-                            "Sala CIC": ["1", "2", "3", "4"]
-                        },
-                        "Externo": {
-                            "I+D+I": ["Laboratorios"]
-                        }
-                    };
+					var areaOptions = document.getElementById("areaOptions");
+					areaOptions.innerHTML = "";
 
-                    var areaSelect = document.getElementById("Id_Area");
-                    var areaInput = document.getElementById("areaInput");
-                    areaSelect.innerHTML = "";
+					areas[edificio][areaType].forEach(function(area) {
+						var option = document.createElement("option");
+						option.value = area;
+						areaOptions.appendChild(option);
+					});
 
-                    areas[edificio][areaType].forEach(function(area) {
-                        var option = document.createElement("option");
-                        option.value = area;
-                        option.text = area;
-                        areaSelect.appendChild(option);
-                    });
+					// Update other fields
+					document.getElementById("Edificio").value = edificio;
+					document.getElementById("Tipo_Area").value = areaType;
+				}
 
-                    // Update other fields
-                    document.getElementById("Edificio").value = edificio;
-                    document.getElementById("Tipo_Area").value = areaType;
+				function updateFields() {
+					var edificio = document.getElementById("Edificio").value;
+					var areaType = document.getElementById("Tipo_Area").value;
+					var area = document.getElementById("areaInput").value;
 
-                    // Sync the input with the selector
-                    areaInput.value = areaSelect.value;
-                }
+					// Update other fields
+					document.getElementById("Edificio").value = edificio;
+					document.getElementById("Tipo_Area").value = areaType;
+				}
 
-                function updateFields() {
-                    var edificio = document.getElementById("Edificio").value;
-                    var areaType = document.getElementById("Tipo_Area").value;
-                    var area = document.getElementById("Id_Area").value;
+				// Initially fill the areas based on the selected type
+				var initialEdificio = document.getElementById("Edificio").value;
+				var initialType = document.getElementById("Tipo_Area").value;
+				fillAreas(initialEdificio, initialType);
 
-                    // Update other fields
-                    document.getElementById("Edificio").value = edificio;
-                    document.getElementById("Tipo_Area").value = areaType;
-
-                    // Sync the input with the selector
-                    document.getElementById("areaInput").value = area;
-                }
-
-                // Sync the selector when the input changes
-                document.getElementById("areaInput").addEventListener("input", function() {
-                    var areaInput = document.getElementById("areaInput").value.toLowerCase();
-                    var areaSelect = document.getElementById("Id_Area");
-                    var matchFound = false;
-
-                    for (var i = 0; i < areaSelect.options.length; i++) {
-                        var optionText = areaSelect.options[i].text.toLowerCase();
-                        if (optionText === areaInput) {
-                            areaSelect.selectedIndex = i;
-                            matchFound = true;
-                            break;
-                        }
-                    }
-
-                    if (!matchFound) {
-                        areaSelect.selectedIndex = -1; // Deselect if no match found
-                    }
-                });
-
-                // Initially fill the areas based on the selected type
-                var initialEdificio = document.getElementById("Edificio").value;
-                var initialType = document.getElementById("Tipo_Area").value;
-                fillAreas(initialEdificio, initialType);
             </script>
 
             <div style="text-align: center; cursor: pointer;" class="col-md-4" id="Verprestamo">
