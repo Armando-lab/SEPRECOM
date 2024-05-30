@@ -22,16 +22,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	require "owned/estilos_portal.php";
 	?>
 	<style>
-		#tbSolicitudes td {
-			color: white;
-			/* Texto blanco en las celdas del cuerpo */
-		}
-
-		/* Estilo para los encabezados de la tabla */
-		#tbSolicitudes th {
-			color: black;
-			/* Texto negro en los encabezados */
-		}
 		.semaphore {
 			margin-top: 10px;
 		}
@@ -47,6 +37,43 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		.semaphore span {
 			font-size: 14px;
 			vertical-align: middle;
+		}
+
+		#tbSolicitudes td {
+        color: white;
+		}
+
+		#tbSolicitudes th {
+			color: black;
+		}
+
+		.semaphore {
+			margin-top: 10px;
+		}
+
+		.color-circle {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%; 
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.semaphore span {
+			font-size: 14px;
+			vertical-align: middle;
+		}
+
+		/* Estilo para resaltar la fila seleccionada */
+		#tbSolicitudes tbody tr.selected {
+			background-color: #000053 !important; /* Color de fondo para la fila seleccionada */
+			color: yellow !important; /* Color del texto para la fila seleccionada */
+		}
+
+		/* Asegurarse de que los estilos de DataTables se apliquen correctamente */
+		#tbSolicitudes tbody tr.selected td {
+			background-color: #000053 !important; /* Color de fondo para la fila seleccionada */
+			color: yellow !important; /* Color del texto para la fila seleccionada */
 		}
 
 
@@ -510,7 +537,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						info: "Mostrando _START_ a _END_ de _TOTAL_ registro(s)",
 						infoEmpty: "Mostrando 0 a 0 de 0 registros",
 						infoFiltered: "(Filtrados de _MAX_ registros en total)",
-						infoPostFix: "",
 						loadingRecords: "Cargando...",
 						zeroRecords: "No hay registros para mostrar",
 						emptyTable: "No hay datos disponibles en la tabla",
@@ -518,7 +544,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							first: "Primero",
 							previous: "Anterior",
 							next: "Siguiente",
-							last: "Ultimo"
+							last: "Último"
 						},
 						aria: {
 							sortAscending: ": Ordenar ascendentemente",
@@ -532,13 +558,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							}
 						}
 					},
-					"pageLength": 10,
-					"lengthMenu": [5, 10, 25, 50, 100, 250, 500, 1000, 5000, 10000],
+					pageLength: 10,
+					lengthMenu: [5, 10, 25, 50, 100, 250, 500, 1000, 5000, 10000],
 					responsive: true,
 					select: {
-						style: 'os'
+						style: 'single'  // Cambiar a 'single' para permitir solo una selección
 					},
-					buttons: [{
+					buttons: [
+						{
 							extend: 'copyHtml5',
 							text: '<span class="glyphicon glyphicon-indent-left"></span> Copiar registros'
 						},
@@ -547,7 +574,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							text: '<span class="glyphicon glyphicon-export"></span> Exportar a Excel'
 						}
 					],
-					columnDefs: [{
+					columnDefs: [
+						{
 							responsivePriority: 1,
 							targets: 0
 						},
@@ -558,171 +586,93 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					],
 					ajax: '<?php echo base_url(); ?>index.php/Devolucion/Obtener_Dataset_Prestamo',
 					autoWidth: false,
-					columns: [{
-							data: "id_prestamo",
-							visible: false
-						},
-						{
-							data: "nombre_producto"
-						},
-						{
-							data: "encargado_devo"
-						},
-						{
-							data: "fecha_prest"
-						},
-						{
-							data: "fecha_devo"
-						},
-						{
-							data: "observaciones"
-						},
-						{
-							data: "id_solicitud"
-						},
-						{
-							data: "estado"
-						}
+					columns: [
+						{ data: "id_prestamo", visible: false },
+						{ data: "nombre_producto" },
+						{ data: "encargado_devo" },
+						{ data: "fecha_prest" },
+						{ data: "fecha_devo" },
+						{ data: "observaciones" },
+						{ data: "id_solicitud" },
+						{ data: "estado" }
 					],
-						order: [[3, 'desc']],
-						
-						createdRow: function(row, data) {
-						// Obtener la fecha de préstamo y la fecha actual
+					order: [[3, 'desc']],
+					createdRow: function(row, data) {
 						var fechaPrestamo = new Date(data.fecha_prest);
 						var fechaActual = new Date();
-
-						// Calcular la diferencia en días entre la fecha actual y la fecha de préstamo
 						var tiempoTranscurrido = Math.floor((fechaActual - fechaPrestamo) / (1000 * 60 * 60 * 24));
 
-						// Definir los umbrales de tiempo para cada color
-						var verdeLimite = 1; // Verde para préstamos de hasta 1 día
-						var amarilloLimite = 2; // Amarillo para préstamos de hasta 2 días
+						var verdeLimite = 1; 
+						var amarilloLimite = 2; 
 
-						// Aplicar color según el estado
 						var color;
-						if (data.estado === "devuelto") {
-							color = '#428bca'; // Gris si el estado es "devuelto"
+						if (data.estado.toLowerCase() === "devuelto") {
+							color = '#428bca'; 
 						} else {
 							if (tiempoTranscurrido <= verdeLimite) {
-								color = '#52BE80'; // Verde pastel si el préstamo es reciente
+								color = '#52BE80'; 
 							} else if (tiempoTranscurrido <= amarilloLimite) {
-								color = '#F4D03F'; // Amarillo pastel si el préstamo tiene menos de dos días
+								color = '#F4D03F'; 
 							} else {
-								color = '#EC7063'; // Rosa pastel si el préstamo tiene tres días o más
+								color = '#EC7063'; 
 							}
 						}
 
-						// Aplicar el color de fondo a las celdas de la fila
 						$(row).find('td').css('background-color', color);
-					},
-
-
-
-					"footerCallback": function(row, data, start, end, display) {
-						var api = this.api(),
-							data;
-
-						// Remove the formatting to get only the number data
-						var numericVal = function(i) {
-							return typeof i === 'string' ?
-								i.replace(/[\$,]/g, '') * 1 :
-								typeof i === 'number' ?
-								i : 0;
-						};
-						/*
-								// Total over all pages
-								total = api
-									.column( 1 )
-									.data()
-									.reduce( function (a, b) {
-										return numericVal(a) + numericVal(b);
-									}, 0 );
-					 
-								// Total over this page
-								pageTotal = api
-									.column( 1, { page: 'current'} )
-									.data()
-									.reduce( function (a, b) {
-										return numericVal(a) + numericVal(b);
-									}, 0 );
-					 
-								// Update footer data
-								$( api.column( 1 ).footer() ).html(
-									pageTotal +' (de '+ total +')'
-								);
-								*/
 					}
-
-
 				});
 
 				$('#fechaInicio, #fechaFin').on('change', function() {
 					var fechaInicio = $('#fechaInicio').val();
 					var fechaFin = $('#fechaFin').val();
 
-					// Si la fecha de inicio está vacía, asignar la fecha actual
 					if (fechaInicio === '') {
 						var fechaActual = new Date();
 						var dia = ('0' + fechaActual.getDate()).slice(-2);
 						var mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2);
 						var anio = fechaActual.getFullYear();
 						fechaInicio = anio + '-' + mes + '-' + dia;
-						$('#fechaInicio').val(fechaInicio); // Actualizar el valor en el campo de fecha de inicio
+						$('#fechaInicio').val(fechaInicio);
 					}
 
-					// Limpiar todos los filtros personalizados previos
 					$.fn.dataTable.ext.search = [];
 
-					// Aplicar el filtro personalizado por rango de fechas
 					$.fn.dataTable.ext.search.push(
 						function(settings, data, dataIndex) {
-							var fecha = data[3] || ''; // Obtener la fecha de la columna 3 (suponiendo que la fecha esté en la columna 3)
-							fecha = fecha.trim(); // Eliminar espacios en blanco al principio y al final
+							var fecha = data[3] || '';
+							fecha = fecha.trim();
 
-							// Verificar si la fecha está dentro del rango especificado
 							if ((fechaInicio === '' || fecha >= fechaInicio) && (fechaFin === '' || fecha <= fechaFin)) {
-								return true; // La fecha está dentro del rango
+								return true;
 							}
-							return false; // La fecha está fuera del rango
+							return false;
 						}
 					);
 
-					// Volver a dibujar la tabla para aplicar el filtro personalizado
 					tbSolicitudes.draw();
 				});
 
-				// Llamar al evento 'change' al cargar la página para aplicar el filtro por defecto
 				$('#fechaInicio').trigger('change');
 
-
-				// Aplicar filtro por Estado cuando cambie el valor del filtroEstado
 				$('#filtroEstado').on('change', function() {
 					var filtro = $(this).val();
-					tbSolicitudes.column(7).search(filtro).draw(); // Filtrar por estado en la columna 7 y dibujar la tabla
+					tbSolicitudes.column(7).search(filtro).draw();
 				});
 
-				// Establecer el valor predeterminado del filtroEstado como "prestado" al iniciar la página
 				$('#filtroEstado').val('Prestado');
-
-				// Aplicar el filtrado por Estado al iniciar la página
 				$('#filtroEstado').trigger('change');
 
-				// Aplicar búsqueda en tiempo real para cada columna de la tabla
 				$('#tbSolicitudes').DataTable().columns().every(function() {
 					var that = this;
-
-					// Cuando cambia el valor en un campo de entrada de texto en el encabezado de la columna
 					$('input', this.header()).on('keyup change', function() {
-						if (that.search() !== this.value) { // Si el valor de búsqueda ha cambiado
-							that
-								.search(this.value) // Aplicar la búsqueda
-								.draw(); // Dibujar la tabla
+						if (that.search() !== this.value) {
+							that.search(this.value).draw();
 						}
 					});
 				});
-
-
 			});
+
+
 		</script>
 
 	</div>
