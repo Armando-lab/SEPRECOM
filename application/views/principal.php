@@ -536,7 +536,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							"AULA": ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"]						},
 						"F": {
 							"AULA": ["17"],
-							"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3"],
+							"LABORATORIO": ["Sala Didactica", "Dibujo", "Lab. Aplicaciones", "Lab. Redes", "Eficiencia Energetica", "Posgrado 1", "Posgrado 2", "Posgrado 3", "Sala de Maestros"],
 							"Sala CIC": ["1", "2", "3", "4"]
 
 						},
