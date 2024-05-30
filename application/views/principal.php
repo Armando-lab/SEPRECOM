@@ -539,11 +539,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					var areaOptions = document.getElementById("areaOptions");
 					areaOptions.innerHTML = "";
 
-					areas[edificio][areaType].forEach(function(area) {
-						var option = document.createElement("option");
-						option.value = area;
-						areaOptions.appendChild(option);
-					});
+					if (areas[edificio] && areas[edificio][areaType]) {
+						areas[edificio][areaType].forEach(function(area) {
+							var option = document.createElement("option");
+							option.value = area;
+							areaOptions.appendChild(option);
+						});
+					}
 
 					// Update other fields
 					document.getElementById("Edificio").value = edificio;
@@ -564,6 +566,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				var initialEdificio = document.getElementById("Edificio").value;
 				var initialType = document.getElementById("Tipo_Area").value;
 				fillAreas(initialEdificio, initialType);
+
 
             </script>
 
